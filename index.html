@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lead2Value — Développer un portefeuille clients B2B plus rentable</title>
-  <meta name="description" content="Lead2Value installe un système d’acquisition et de qualification pour attirer des clients B2B plus rentables pour votre cabinet comptable, sans alourdir l’organisation." />
+  <meta name="description" content="Lead2Value met en place un système d’acquisition et de qualification pour attirer des clients B2B plus rentables pour votre cabinet comptable, sans alourdir l’organisation." />
 
   <style>
     :root{
@@ -36,6 +36,7 @@
       background:
         radial-gradient(900px 600px at 18% -10%, rgba(106,167,255,.22), transparent 60%),
         radial-gradient(900px 600px at 85% 6%, rgba(246,196,69,.18), transparent 58%),
+        radial-gradient(900px 600px at 50% 110%, rgba(79,209,197,.10), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       line-height:1.55;
       overflow-x:hidden;
@@ -43,6 +44,7 @@
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding: 18px 18px 70px;}
 
+    /* subtle grid */
     .bg-grid{
       position:fixed; inset:0;
       background:
@@ -75,7 +77,7 @@
       font-weight:950; letter-spacing:.2px;
     }
 
-    /* === YOUR LOGO (replaces placeholder) === */
+    /* Logo (no assets folder) */
     .brand-logo{
       width:34px; height:34px;
       border-radius: 12px;
@@ -84,6 +86,7 @@
       border:1px solid rgba(255,255,255,.12);
       padding: 6px;
       box-shadow: 0 12px 26px rgba(0,0,0,.30);
+      flex: 0 0 auto;
     }
 
     .navlinks{
@@ -163,10 +166,8 @@
     body.lang-en .chip-fr{opacity:.55}
     body.lang-fr .chip-en{opacity:.55}
 
-    /* Toggle visibility of language blocks */
-    [data-lang]{display:none;}
-    body.lang-fr [data-lang="fr"]{display:block;}
-    body.lang-en [data-lang="en"]{display:block;}
+    /* Bulletproof language hiding */
+    [data-lang][hidden]{ display:none !important; }
 
     /* HERO */
     .hero{
@@ -221,7 +222,7 @@
       color: rgba(246,196,69,.98);
     }
     .sub{
-      max-width: 80ch;
+      max-width: 82ch;
       color: rgba(243,246,255,.85);
       font-weight: 740;
       font-size: 16px;
@@ -257,6 +258,7 @@
       background: rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.12);
       padding: 4px;
+      flex: 0 0 auto;
     }
     .seal b{color: rgba(243,246,255,.95); font-weight:950;}
 
@@ -370,9 +372,9 @@
     .subpill{
       display:inline-block;
       margin-top: 10px;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(246,196,69,.35);
+      border: 1px solid rgba(246,196,69,.30);
       background: rgba(246,196,69,.08);
       color: rgba(246,196,69,.98);
       font-weight: 980;
@@ -465,7 +467,7 @@
   <div class="nav">
     <div class="nav-inner">
       <div class="brand">
-        <!-- (1) Strategic logo placement: NAV -->
+        <!-- Logo #1 (NAV) -->
         <img id="logoNav" class="brand-logo" alt="Lead2Value logo" />
         <div>Lead2Value</div>
       </div>
@@ -544,12 +546,12 @@
           <div class="note">⏱️ 15 minutes · Diagnosis + recommendations · If it’s not relevant, we’ll tell you clearly.</div>
         </div>
 
-        <!-- (2) Strategic logo placement: trust seal in hero -->
+        <!-- Logo #2 (Hero seal) -->
         <div class="seal-row">
           <div class="seal">
             <img id="logoSeal" class="seal-logo" alt="Lead2Value" />
-            <span data-lang="fr"><b>Système installé</b> : qualification + orientation + suivi</span>
-            <span data-lang="en"><b>System installed</b>: qualification + routing + follow-up</span>
+            <span data-lang="fr"><b>Système installé</b> : qualification · orientation · suivi</span>
+            <span data-lang="en"><b>System installed</b>: qualification · routing · follow-up</span>
           </div>
           <span data-lang="fr">Conçu pour améliorer la rentabilité, sans complexifier le quotidien du cabinet.</span>
           <span data-lang="en">Designed to increase profitability without operational complexity.</span>
@@ -561,10 +563,10 @@
             <div style="font-weight:980; font-size:18px;" data-lang="en">What you get</div>
 
             <p style="margin:8px 0 0; color:var(--muted); font-weight:740;" data-lang="fr">
-              Un flux régulier de demandes qualifiées, et des rendez-vous réservés uniquement lorsque le dossier correspond à vos critères.
+              Un flux régulier de demandes qualifiées, et des rendez-vous proposés uniquement lorsque le dossier correspond à vos critères.
             </p>
             <p style="margin:8px 0 0; color:var(--muted); font-weight:740;" data-lang="en">
-              A steady flow of qualified requests, with meetings booked only when prospects match your criteria.
+              A steady flow of qualified requests, with meetings proposed only when prospects match your criteria.
             </p>
 
             <div class="kpi">
@@ -664,8 +666,8 @@
           <div class="num">1</div>
           <h3 data-lang="fr">Cadrage : dossier idéal & exclusions</h3>
           <h3 data-lang="en">Define ideal engagement & exclusions</h3>
-          <p data-lang="fr">Alignement sur des critères précis : taille, besoin, budget, secteur, complexité et priorités.</p>
-          <p data-lang="en">Align on precise criteria: size, need, budget, sector, complexity, and priorities.</p>
+          <p data-lang="fr">Alignement sur des critères précis : besoin, budget, secteur, complexité et priorités.</p>
+          <p data-lang="en">Align on precise criteria: need, budget, sector, complexity, and priorities.</p>
         </div>
 
         <div class="step">
@@ -688,8 +690,46 @@
           <div class="num">+</div>
           <h3 data-lang="fr">Reporting simple</h3>
           <h3 data-lang="en">Simple reporting</h3>
-          <p data-lang="fr">Sources, volumes, taux de qualification, et indicateurs de qualité — sans complexité.</p>
-          <p data-lang="en">Sources, volume, qualification rate, and quality indicators — without complexity.</p>
+          <p data-lang="fr">Sources, volumes, taux de qualification et indicateurs de qualité — sans complexité.</p>
+          <p data-lang="en">Sources, volume, qualification rate and quality indicators — without complexity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMITMENT -->
+    <section class="section" id="engagement">
+      <div class="commit">
+        <div class="commit-inner">
+          <h2 data-lang="fr">Votre investissement, notre engagement</h2>
+          <h2 data-lang="en">Your investment, our commitment</h2>
+
+          <div class="subpill" data-lang="fr">objectif défini lors de l’audit</div>
+          <div class="subpill" data-lang="en">goal defined during the audit</div>
+
+          <div class="twopills">
+            <div class="pillbox blue">
+              <div data-lang="fr">Objectif : un flux de demandes qualifiées<br/><span style="opacity:.9;">(défini selon votre marché)</span></div>
+              <div data-lang="en">Goal: a flow of qualified requests<br/><span style="opacity:.9;">(defined for your market)</span></div>
+            </div>
+            <div class="pillbox gold">
+              <div data-lang="fr">Si l’objectif n’est pas atteint :<br/><span style="font-weight:980;">prolongation sans frais</span></div>
+              <div data-lang="en">If the goal isn’t met:<br/><span style="font-weight:980;">we extend at no cost</span></div>
+            </div>
+          </div>
+
+          <div class="cond" data-lang="fr">*Conditions : cadrage et objectif validés lors de l’audit, en fonction de votre capacité et de la pertinence du dispositif.</div>
+          <div class="cond" data-lang="en">*Conditions: scope and goal validated during the audit, based on your capacity and overall fit.</div>
+
+          <div class="benefits">
+            <span data-lang="fr">💶 Rentabilité</span><span data-lang="en">💶 Profitability</span>
+            <span data-lang="fr">⏱️ Temps associé</span><span data-lang="en">⏱️ Partner time</span>
+            <span data-lang="fr">🧠 Sérénité</span><span data-lang="en">🧠 Peace of mind</span>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn primary" href="#contact" data-lang="fr">Réserver l’audit</a>
+            <a class="btn primary" href="#contact" data-lang="en">Book the audit</a>
+          </div>
         </div>
       </div>
     </section>
@@ -715,7 +755,7 @@
           <div class="icon">🧾</div>
           <h3 data-lang="fr">Comment assurez-vous la qualité ?</h3>
           <h3 data-lang="en">How do you ensure quality?</h3>
-          <p data-lang="fr">Critères d’exclusion, scoring, et orientation adaptée. L’objectif est de protéger votre temps.</p>
+          <p data-lang="fr">Critères d’exclusion, scoring et orientation adaptée. L’objectif est de protéger votre temps.</p>
           <p data-lang="en">Exclusion criteria, scoring, and proper routing. The objective is to protect your time.</p>
         </div>
 
@@ -723,7 +763,7 @@
           <div class="icon">⏱️</div>
           <h3 data-lang="fr">Quand voyez-vous un impact ?</h3>
           <h3 data-lang="en">When do you see impact?</h3>
-          <p data-lang="fr">Après installation, l’optimisation se fait sur la qualité des demandes. Le délai dépend du canal et de votre zone.</p>
+          <p data-lang="fr">Après installation, l’optimisation porte sur la qualité des demandes. Le délai dépend du canal et de votre zone.</p>
           <p data-lang="en">After setup, optimization focuses on demand quality. Timing depends on channel and your area.</p>
         </div>
       </div>
@@ -750,7 +790,7 @@
             Briefly describe your firm and criteria. We’ll follow up with the next steps.
           </p>
 
-          <form class="form" onsubmit="event.preventDefault(); alert('Formulaire reçu. Vous pouvez connecter ici votre email / Calendly (ou un embed Tally/Typeform).');">
+          <form class="form" onsubmit="event.preventDefault(); alert('Formulaire reçu. Vous pouvez connecter ici votre email / Calendly (ou un formulaire externe).');">
             <input required placeholder="Nom du cabinet / Firm name" />
             <input required type="email" placeholder="Email professionnel / Business email" />
             <input placeholder="Site web (optionnel) / Website (optional)" />
@@ -759,8 +799,8 @@
             <button class="btn primary" type="submit" data-lang="fr">Envoyer</button>
             <button class="btn primary" type="submit" data-lang="en">Send</button>
 
-            <div class="mini" data-lang="fr">Conseil : vous pouvez intégrer ici un lien Calendly et remplacer ce formulaire par un outil (Tally/Typeform).</div>
-            <div class="mini" data-lang="en">Tip: you can embed a Calendly link and replace this form with a tool (Tally/Typeform).</div>
+            <div class="mini" data-lang="fr">Conseil : vous pouvez remplacer ce formulaire par un lien Calendly ou un outil (Tally/Typeform).</div>
+            <div class="mini" data-lang="en">Tip: you can replace this with a Calendly link or a tool (Tally/Typeform).</div>
           </form>
         </div>
 
@@ -812,48 +852,54 @@
   </div>
 
   <script>
-    // ✅ CHANGE THIS: set your real logo path (relative or absolute)
-    // Example: "assets/logo.png" or "https://lead2value.com/logo.png"
-    const LOGO_URL = "assets/logo.png";
+    // Put your logo file next to index.html (no assets folder)
+    // Example: index.html + logo.png in the same folder
+    const LOGO_URL = "./logo.png";
 
-    // Assign logo to both strategic placements
-    document.getElementById("logoNav").src = LOGO_URL;
-    document.getElementById("logoSeal").src = LOGO_URL;
+    // Assign logo
+    const navLogo = document.getElementById("logoNav");
+    const sealLogo = document.getElementById("logoSeal");
+    navLogo.src = LOGO_URL;
+    sealLogo.src = LOGO_URL;
+
+    // If logo missing, hide images cleanly
+    [navLogo, sealLogo].forEach(img => {
+      img.onerror = () => { img.style.display = "none"; };
+    });
 
     // year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // language preference
     const KEY = "l2v_lang";
-    const saved = localStorage.getItem(KEY);
     const browser = (navigator.language || "").toLowerCase();
+
+    function applyLang(lang){
+      document.body.classList.remove("lang-fr","lang-en");
+      document.body.classList.add("lang-" + lang);
+      document.documentElement.lang = lang;
+
+      // Bulletproof: hard hide/show
+      document.querySelectorAll("[data-lang]").forEach(el => {
+        el.hidden = (el.getAttribute("data-lang") !== lang);
+      });
+
+      localStorage.setItem(KEY, lang);
+    }
+
+    // init
+    const saved = localStorage.getItem(KEY);
     const initial = (saved === "en" || saved === "fr")
       ? saved
       : (browser.startsWith("en") ? "en" : "fr");
 
-    document.body.classList.remove("lang-fr","lang-en");
-    document.body.classList.add("lang-" + initial);
-    document.documentElement.lang = initial;
+    applyLang(initial);
 
     // toggle
     const toggle = document.getElementById("langToggle");
     toggle.addEventListener("click", () => {
       const isEN = document.body.classList.contains("lang-en");
-      const next = isEN ? "fr" : "en";
-      document.body.classList.remove("lang-fr","lang-en");
-      document.body.classList.add("lang-" + next);
-      localStorage.setItem(KEY, next);
-      document.documentElement.lang = next;
+      applyLang(isEN ? "fr" : "en");
     });
-
-    // fallback if logo missing
-    const fallback = (img) => {
-      img.onerror = () => {
-        img.style.display = "none";
-      };
-    };
-    fallback(document.getElementById("logoNav"));
-    fallback(document.getElementById("logoSeal"));
   </script>
 </body>
 </html>
