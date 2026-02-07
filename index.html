@@ -14,9 +14,7 @@
       --text: #333;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -47,9 +45,7 @@
       opacity: 0.95;
     }
 
-    section {
-      padding: 80px 20px;
-    }
+    section { padding: 80px 20px; }
 
     .container {
       max-width: 960px;
@@ -74,22 +70,13 @@
       border-radius: 12px;
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: var(--dark);
-    }
-
-    .card p {
-      line-height: 1.6;
-    }
-
     .cta {
       text-align: center;
       background: var(--primary);
       color: white;
     }
 
-    .cta a {
+    .cta a.button {
       display: inline-block;
       margin-top: 24px;
       padding: 14px 32px;
@@ -100,8 +87,17 @@
       font-weight: 600;
     }
 
-    .cta a:hover {
+    .cta a.button:hover { opacity: 0.9; }
+
+    .email {
+      margin-top: 16px;
+      font-size: 16px;
       opacity: 0.9;
+    }
+
+    .email a {
+      color: white;
+      text-decoration: underline;
     }
 
     footer {
@@ -125,18 +121,18 @@
     </p>
   </header>
 
-  <!-- POSITIONNEMENT -->
+  <!-- APPROCHE -->
   <section>
     <div class="container">
       <h2>Notre approche</h2>
       <p>
-        Beaucoup d’entreprises font face à une forte demande, mais avec un
-        déséquilibre dans leur portefeuille clients : trop de dossiers chronophages,
-        peu rentables, et une pression opérationnelle constante.
+        De nombreuses entreprises font face à une forte demande,
+        mais avec un portefeuille clients déséquilibré :
+        trop de dossiers chronophages et peu rentables.
         <br><br>
-        Lead2Value intervient pour restructurer l’acquisition client, en attirant
-        des prospects mieux qualifiés, à plus forte valeur, afin de permettre
-        une croissance saine, maîtrisée et durable.
+        Lead2Value restructure l’acquisition client afin d’attirer
+        des prospects plus qualifiés, à plus forte valeur,
+        pour une croissance saine et maîtrisée.
       </p>
     </div>
   </section>
@@ -149,41 +145,35 @@
       <div class="grid">
         <div class="card">
           <h3>Acquisition ciblée</h3>
-          <p>
-            Nous attirons des prospects B2B correspondant précisément à vos
-            critères de valeur, de maturité et de rentabilité.
-          </p>
+          <p>Attraction de prospects B2B correspondant à vos critères de valeur.</p>
         </div>
 
         <div class="card">
           <h3>Qualification en amont</h3>
-          <p>
-            Les échanges sont filtrés et qualifiés avant tout rendez-vous,
-            afin de préserver votre temps et vos équipes.
-          </p>
+          <p>Filtrage précis avant toute mise en relation.</p>
         </div>
 
         <div class="card">
-          <h3>Stabilité opérationnelle</h3>
-          <p>
-            Aucun ajout de charge interne, aucun outil inutile :
-            l’objectif est l’impact, pas la complexité.
-          </p>
+          <h3>Simplicité opérationnelle</h3>
+          <p>Aucune complexité inutile, uniquement ce qui génère de l’impact.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CONTACT -->
   <section class="cta">
     <div class="container">
-      <h2 style="color:white;">Entrons en contact</h2>
+      <h2 style="color:white;">Contact</h2>
       <p>
-        Si vous souhaitez attirer de meilleurs clients, sans augmenter votre charge
-        opérationnelle, nous pouvons en discuter.
+        Pour échanger sur votre acquisition client ou explorer une collaboration :
       </p>
 
-      <a href="mailto:contact@lead2value.com">Contactez-nous</a>
+      <a class="button" href="mailto:contact@lead2value.com">Nous écrire</a>
+
+      <div class="email">
+        ou par email : <a href="mailto:contact@lead2value.com">contact@lead2value.com</a>
+      </div>
     </div>
   </section>
 
