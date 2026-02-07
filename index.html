@@ -3,268 +3,702 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lead2Value — Acquisition B2B pour cabinets comptables</title>
-  <meta name="description" content="Lead2Value installe un système d'acquisition complet : landing page, formulaire de qualification, calendrier, automatisations." />
+  <title>Lead2Value — Clients B2B rentables pour cabinets comptables</title>
+  <meta name="description" content="Lead2Value installe un système d’acquisition pour attirer et pré-qualifier des clients B2B plus rentables, sans surcharge interne." />
+
   <style>
     :root{
-      --bg:#0b1220; --panel:#0f1a33; --text:#e9eefc; --muted:#b9c3e6;
+      --bg:#070a12;
+      --bg2:#0b1022;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.04);
       --line:rgba(255,255,255,.12);
+      --text:#f3f6ff;
+      --muted:#bac3e6;
+
       --accent:#f6c445; /* jaune */
-      --shadow: 0 18px 45px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1100px;
-      --pad: 18px;
-      --pad2: 28px;
-      --h1: clamp(32px, 5vw, 56px);
+      --blue:#6aa7ff;
+      --teal:#4fd1c5;
+
+      --max:1120px;
+      --r:22px;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+
+      --h1: clamp(34px, 5.2vw, 64px);
       --h2: clamp(22px, 3vw, 34px);
+      --h3: 18px;
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(1100px 600px at 20% -10%, rgba(106,167,255,.25), transparent 60%),
-                  radial-gradient(900px 500px at 85% 5%, rgba(246,196,69,.18), transparent 55%),
-                  var(--bg);
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
-      line-height:1.5;
+      background:
+        radial-gradient(900px 600px at 18% -10%, rgba(106,167,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 85% 6%, rgba(246,196,69,.18), transparent 58%),
+        radial-gradient(900px 600px at 50% 110%, rgba(79,209,197,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.55;
+      overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding: 22px var(--pad);}
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding: 10px 0;}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
-    .logo{width:38px; height:38px; border-radius:12px; background: linear-gradient(135deg, rgba(246,196,69,.95), rgba(106,167,255,.85)); box-shadow: 0 10px 24px rgba(0,0,0,.25);}
-    .navlinks{display:flex; gap:16px; flex-wrap:wrap; color:var(--muted); font-weight:700; font-size:14px}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 18px 18px 70px;}
+
+    /* subtle grid */
+    .bg-grid{
+      position:fixed; inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 90px 90px;
+      opacity:.07;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: rgba(7,10,18,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.2px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(246,196,69,1), rgba(106,167,255,.9));
+      box-shadow: 0 14px 28px rgba(0,0,0,.35);
+    }
+    .navlinks{
+      display:flex; gap:18px; flex-wrap:wrap;
+      color:rgba(186,195,230,.92);
+      font-weight:850;
+      font-size:14px;
+    }
+    .navlinks a{opacity:.9}
+    .navlinks a:hover{opacity:1}
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      padding: 12px 16px; border-radius: 14px; border:1px solid var(--line);
-      background: rgba(255,255,255,.06); color:var(--text); font-weight:800;
-      transition: transform .15s ease, background .15s ease;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:950;
       cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
     }
     .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09)}
-    .btn.primary{background: linear-gradient(135deg, rgba(246,196,69,1), rgba(246,196,69,.88)); color:#10131a; border-color: transparent;}
-    .btn.primary:hover{background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,210,92,1))}
-    .hero{padding: 40px 0 14px}
-    .grid{display:grid; gap: 18px; grid-template-columns: 1.15fr .85fr; align-items:stretch;}
-    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
-    .card{border:1px solid var(--line); background: rgba(255,255,255,.05); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;}
-    .card .inner{padding: var(--pad2)}
-    h1{margin:0 0 10px; font-size:var(--h1); line-height:1.05}
-    .sub{color:var(--muted); font-size:16px; max-width: 62ch}
-    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px}
-    .pill{font-size:13px; font-weight:800; border:1px solid var(--line); padding:8px 10px; border-radius:999px; background: rgba(255,255,255,.04);}
+    .btn.primary{
+      border-color: transparent;
+      color:#0a0e18;
+      background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,220,120,1));
+      box-shadow: 0 14px 35px rgba(246,196,69,.20);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(255,220,120,1), rgba(246,196,69,1));
+    }
+    .btn.ghost{background: transparent}
+
+    /* HERO */
+    .hero{
+      margin-top: 18px;
+      border-radius: 30px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      background:
+        radial-gradient(900px 520px at 70% 15%, rgba(106,167,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 20% 10%, rgba(246,196,69,.14), transparent 60%),
+        linear-gradient(180deg, rgba(15,24,52,.85), rgba(7,10,18,.92));
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.70)),
+        radial-gradient(1200px 650px at 50% 10%, rgba(255,255,255,.06), transparent 55%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      padding: 58px 24px 48px;
+      text-align:left;
+    }
+    .hero-top{
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(186,195,230,.95);
+      font-weight:950;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
     .pill b{color:var(--accent)}
-    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin-top: 22px}
-    .note{margin-top: 10px; font-size:13px; color:var(--muted)}
-    .panel{height:100%; background: linear-gradient(180deg, rgba(15,26,51,.9), rgba(15,26,51,.55)); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);}
-    .panel .inner{padding: var(--pad2)}
-    .kpi{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px}
-    .kpi .box{border:1px solid var(--line); background: rgba(255,255,255,.04); border-radius: 16px; padding: 14px;}
-    .kpi .big{font-size:20px; font-weight:950}
-    .kpi .small{color:var(--muted); font-size:12px; font-weight:800}
-    .section{padding: 24px 0}
-    h2{font-size:var(--h2); margin:0 0 8px}
-    .muted{color:var(--muted)}
-    .cols4{display:grid; gap:14px; grid-template-columns:repeat(4,1fr);}
-    @media (max-width: 1100px){ .cols4{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width: 650px){ .cols4{grid-template-columns:1fr} }
-    .feature{border:1px solid var(--line); background: rgba(255,255,255,.04); border-radius: var(--radius); padding: 18px; height:100%;}
-    .badge{display:inline-block; font-size:12px; font-weight:950; color:#10131a; background: var(--accent); padding:6px 10px; border-radius:999px; margin-bottom: 10px;}
-    .feature h3{margin:0 0 6px; font-size:18px}
-    .feature p{margin:0; color:var(--muted); font-size:14px}
-    .two{display:grid; gap:16px; grid-template-columns:1fr 1fr; align-items:stretch;}
-    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
-    .form{display:grid; gap:10px;}
+    h1{
+      margin: 18px 0 12px;
+      font-size: var(--h1);
+      line-height: 1.03;
+      font-weight: 980;
+      letter-spacing:-.02em;
+      max-width: 18ch;
+      text-shadow: 0 18px 45px rgba(0,0,0,.45);
+    }
+    .hero-accent{
+      display:block;
+      margin-top: 10px;
+      font-size: clamp(20px, 3.2vw, 38px);
+      font-weight: 980;
+      color: rgba(246,196,69,.98);
+    }
+    .sub{
+      max-width: 75ch;
+      color: rgba(243,246,255,.85);
+      font-weight: 750;
+      font-size: 16px;
+      margin: 0 0 18px;
+    }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+    .note{
+      margin-top: 12px;
+      color: rgba(186,195,230,.90);
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .hero-split{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .hero-split{grid-template-columns:1fr} }
+
+    .panel{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      padding: 18px;
+      box-shadow: 0 14px 35px rgba(0,0,0,.22);
+    }
+    .kpi{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:12px; margin-top: 12px;
+    }
+    .kpi .box{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,.20);
+      padding: 14px;
+    }
+    .kpi .big{font-size:18px; font-weight:980}
+    .kpi .small{font-size:12px; color:rgba(186,195,230,.9); font-weight:850}
+
+    /* sections */
+    .section{padding: 54px 0 0}
+    .section-head{text-align:center; margin-bottom: 26px;}
+    h2{margin:0; font-size:var(--h2); font-weight:980; letter-spacing:-.01em}
+    .lead{
+      margin: 10px auto 0;
+      max-width: 85ch;
+      color: var(--muted);
+      font-weight: 760;
+      font-size: 15px;
+    }
+
+    /* cards */
+    .grid3{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 22px;
+    }
+    @media (max-width: 920px){ .grid3{grid-template-columns:1fr} }
+
+    .card{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; left:0; top:0; bottom:0; width:4px;
+      background: linear-gradient(180deg, rgba(246,196,69,1), rgba(106,167,255,1));
+      opacity:.95;
+    }
+    .icon{
+      width:44px; height:44px;
+      border-radius: 16px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      margin-bottom: 12px;
+      font-weight:980;
+    }
+    .card h3{margin:0 0 8px; font-size:var(--h3); font-weight:980}
+    .card p{margin:0; color:var(--muted); font-weight:720; font-size:14px}
+
+    /* FR/EN blocks */
+    .lang-wrap{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .lang-wrap{grid-template-columns:1fr} }
+
+    .lang{
+      background: var(--card2);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+      padding: 18px 18px 16px;
+    }
+    .lang .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:980;
+      font-size:12px;
+      color: rgba(243,246,255,.92);
+      margin-bottom: 10px;
+    }
+    .lang .tag span{opacity:.85}
+    .lang .tag b{color:var(--accent)}
+    .lang p{margin:0; color:var(--muted); font-weight:740}
+
+    /* steps */
+    .steps{
+      margin-top: 22px;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 920px){ .steps{grid-template-columns:1fr} }
+    .step{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+      padding: 18px;
+    }
+    .num{
+      width:36px; height:36px; border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:980;
+      color:#0a0e18;
+      background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,220,120,1));
+      margin-bottom: 10px;
+    }
+    .step h3{margin:0 0 6px; font-size:18px; font-weight:980}
+    .step p{margin:0; color:var(--muted); font-weight:720}
+
+    /* commitment */
+    .commit{
+      margin-top: 22px;
+      border-radius: 30px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 550px at 50% 0%, rgba(106,167,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(10,16,34,.86), rgba(7,10,18,.95));
+      box-shadow: var(--shadow);
+      padding: 34px 18px 30px;
+      position:relative;
+      overflow:hidden;
+    }
+    .commit::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(2px 2px at 12% 20%, rgba(255,255,255,.22) 0 60%, transparent 61%);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .commit-inner{position:relative; max-width: 980px; margin:0 auto; text-align:center}
+    .subpill{
+      display:inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(246,196,69,.35);
+      background: rgba(246,196,69,.08);
+      color: rgba(246,196,69,.98);
+      font-weight: 980;
+      font-size: 12px;
+      letter-spacing:.04em;
+      text-transform: lowercase;
+    }
+    .twopills{
+      margin: 22px auto 10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 920px;
+    }
+    @media (max-width: 860px){ .twopills{grid-template-columns:1fr} }
+    .pillbox{
+      border-radius: 22px;
+      padding: 22px 18px;
+      font-weight: 980;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+    }
+    .pillbox.blue{
+      background: linear-gradient(135deg, rgba(106,167,255,.95), rgba(59,130,246,.70));
+    }
+    .pillbox.gold{
+      color:#0a0e18;
+      background: linear-gradient(135deg, rgba(246,196,69,.95), rgba(255,220,120,.70));
+    }
+    .cond{
+      margin-top: 10px;
+      color: rgba(186,195,230,.86);
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 720;
+    }
+    .benefits{
+      margin: 18px auto 0;
+      display:flex; justify-content:center;
+      gap: 14px; flex-wrap:wrap;
+      font-weight: 980;
+      color: rgba(243,246,255,.92);
+    }
+    .benefits span{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* contact */
+    .contact{
+      margin-top: 22px;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap: 16px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .contact{grid-template-columns:1fr} }
+    .form{display:grid; gap:10px}
     input, textarea{
-      width:100%; padding: 12px 12px; border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
       color: var(--text);
       outline:none;
-      font-weight:700;
+      font-weight: 750;
     }
     textarea{min-height:110px; resize:vertical}
-    .mini{font-size:12px; color:var(--muted)}
-    .footer{border-top:1px solid var(--line); padding: 22px 0 40px; color:var(--muted); font-size:14px;}
+    .mini{font-size:12px; color: rgba(186,195,230,.85); font-weight:720}
+
+    /* footer */
+    .footer{
+      margin-top: 60px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: rgba(186,195,230,.92);
+      font-weight: 720;
+      font-size: 14px;
+      display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap;
+    }
+
+    /* small */
+    @media (max-width: 520px){
+      .navlinks{display:none}
+      h1{max-width: 100%}
+    }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header class="nav">
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>Lead2Value</div>
       </div>
-      <nav class="navlinks">
-        <a href="#install">Features</a>
+
+      <div class="navlinks">
+        <a href="#offre">Offre</a>
         <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
-      </nav>
+      </div>
+
       <a class="btn primary" href="#contact">Réserver un audit</a>
-    </header>
+    </div>
+  </div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="grid">
-        <div class="card">
-          <div class="inner">
-            <h1>On installe un système qui transforme vos demandes en <span style="color:var(--accent)">RDV qualifiés</span>.</h1>
-            <p class="sub">
-              Pour cabinets comptables (10–50 employés) : on attire des B2B plus rentables,
-              on pré-qualifie, puis on fait booker des RDV — sans ajouter de charge à l’équipe.
-            </p>
+  <div class="wrap">
 
-            <div class="pillrow">
-              <div class="pill"><b>Landing</b> haute conversion</div>
-              <div class="pill"><b>Formulaire</b> qualifiant</div>
-              <div class="pill"><b>Calendrier</b> instant</div>
-              <div class="pill"><b>Automations</b> & suivi</div>
-            </div>
-
-            <div class="ctaRow">
-              <a class="btn primary" href="#contact">Voir si c’est un fit</a>
-              <a class="btn" href="#install">Voir les features</a>
-            </div>
-            <div class="note">Audit offert 15 min. Si ce n’est pas pertinent pour ton cabinet, on stop net.</div>
-          </div>
+    <!-- HERO (garde tout, FR/EN) -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-top">
+          <div class="pill"><b>Lead2Value</b> <span>— Prospects B2B rentables</span></div>
+          <a class="btn ghost" href="#offre">Voir l’offre</a>
         </div>
 
-        <aside class="panel">
-          <div class="inner">
-            <div style="font-weight:950; font-size:18px;">Résultat visé</div>
-            <div class="muted" style="margin-top:6px;">
-              Un flux régulier de demandes filtrées, avec une prise de RDV simple et traçable.
-            </div>
+        <h1>
+          Des prospects B2B <span style="color:rgba(106,167,255,.95)">qualifiés</span> pour votre cabinet,
+          <span class="hero-accent">sans surcharge interne.</span>
+        </h1>
+
+        <p class="sub">
+          Lead2Value aide les cabinets comptables (10–50 employés) à remplacer progressivement les dossiers peu rentables
+          par des clients B2B mieux qualifiés — via un système d’acquisition simple, mesurable et maîtrisé.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="#contact">Obtenir un audit gratuit</a>
+          <a class="btn" href="#process">Voir le process</a>
+        </div>
+        <div class="note">⏱️ 15 min · Verdict direct · Si ce n’est pas un fit, on te le dit.</div>
+
+        <div class="hero-split">
+          <div class="panel">
+            <div style="font-weight:980; font-size:18px;">Ce que vous obtenez</div>
+            <p style="margin:8px 0 0; color:var(--muted); font-weight:740;">
+              Un flux stable de demandes filtrées, avec une prise de RDV simple et traçable.
+            </p>
             <div class="kpi">
-              <div class="box">
-                <div class="big">+ Qualité</div>
-                <div class="small">Moins de dossiers “chronophages”</div>
-              </div>
-              <div class="box">
-                <div class="big">+ Pipeline</div>
-                <div class="small">RDV bookés sans chasing</div>
-              </div>
-              <div class="box">
-                <div class="big">+ Contrôle</div>
-                <div class="small">Critères ICP & scoring</div>
-              </div>
-              <div class="box">
-                <div class="big">+ Mesure</div>
-                <div class="small">Tracking & reporting</div>
-              </div>
+              <div class="box"><div class="big">+ Qualité</div><div class="small">Moins de “petits dossiers”</div></div>
+              <div class="box"><div class="big">+ Pipeline</div><div class="small">RDV bookés sans chasing</div></div>
+              <div class="box"><div class="big">+ Contrôle</div><div class="small">Critères ICP & scoring</div></div>
+              <div class="box"><div class="big">+ Mesure</div><div class="small">Tracking & reporting</div></div>
             </div>
           </div>
-        </aside>
+
+          <div class="panel">
+            <div style="font-weight:980; font-size:18px;">Positionnement (FR/EN)</div>
+
+            <div class="lang-wrap">
+              <div class="lang" data-lang="fr">
+                <div class="tag">🇫🇷 <b>FR</b> <span>— phrase courte</span></div>
+                <p><b>J’aide les cabinets comptables (10–50 employés) à attirer des clients B2B plus rentables</b> et à pré-qualifier les demandes, pour remplacer progressivement les dossiers à faible marge — sans augmenter la charge interne.</p>
+              </div>
+
+              <div class="lang" data-lang="en">
+                <div class="tag">🇬🇧 <b>EN</b> <span>— short line</span></div>
+                <p><b>I help accounting firms (10–50 employees) attract higher-value B2B clients</b> and pre-qualify inbound demand, so partners can gradually replace low-margin work — without adding internal workload.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- FEATURES (comme Scalint) -->
-    <section class="section" id="install">
-      <h2>Ce qu’on installe chez vous</h2>
-      <p class="muted">Un “mini-système” complet : acquisition → qualification → prise de RDV → suivi.</p>
+    <!-- OFFRE (garde la logique "ce qu'on installe") -->
+    <section class="section" id="offre">
+      <div class="section-head">
+        <h2>Ce qu’on installe chez vous</h2>
+        <div class="lead">Un mini-système complet : acquisition → qualification → prise de RDV → suivi.</div>
+      </div>
 
-      <div class="cols4" style="margin-top:14px;">
-        <div class="feature">
-          <span class="badge">Landing page</span>
-          <h3>Design haute conversion</h3>
-          <p>Une page simple, crédible, orientée décision : promesse claire, preuve, CTA, objections traitées.</p>
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">🧩</div>
+          <h3>Landing page haute conversion</h3>
+          <p>Une page simple, crédible, orientée décision : promesse claire, preuves, objections traitées, CTA net.</p>
         </div>
 
-        <div class="feature">
-          <span class="badge">Formulaire</span>
-          <h3>Qualification automatique</h3>
-          <p>Questions + scoring : on filtre les “petits dossiers” et on laisse passer les prospects rentables.</p>
+        <div class="card">
+          <div class="icon">🧠</div>
+          <h3>Formulaire de qualification</h3>
+          <p>Questions + scoring : on filtre les demandes non rentables, et on priorise les prospects “bon fit”.</p>
         </div>
 
-        <div class="feature">
-          <span class="badge">Calendrier</span>
-          <h3>RDV instantanés</h3>
-          <p>Les bons prospects bookent directement un créneau (sans aller-retour), avec confirmations.</p>
-        </div>
-
-        <div class="feature">
-          <span class="badge">Automatisations</span>
-          <h3>Suivi & relances</h3>
-          <p>Emails/SMS, rappels, routing interne, tagging CRM/Sheet, notifications… tout ce qui évite la friction.</p>
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Calendrier + automations</h3>
+          <p>RDV instantanés + confirmations/relances. Tout est pensé pour éviter la friction et le no-show.</p>
         </div>
       </div>
 
-      <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn primary" href="#contact">Je veux installer ça</a>
-        <a class="btn" href="#process">Voir le process</a>
+      <div class="lang-wrap">
+        <div class="lang">
+          <div class="tag">🇫🇷 <b>FR</b> <span>— bénéfice</span></div>
+          <p><b>Résultat :</b> vous choisissez mieux vos clients, vous montez en gamme, et vous récupérez du temps associé.</p>
+        </div>
+        <div class="lang">
+          <div class="tag">🇬🇧 <b>EN</b> <span>— outcome</span></div>
+          <p><b>Outcome:</b> you control your client mix, move upmarket, and reclaim partner time.</p>
+        </div>
       </div>
     </section>
 
     <!-- PROCESS -->
     <section class="section" id="process">
-      <h2>Process en 3 étapes</h2>
-      <p class="muted">Rapide, cadré, sans blabla.</p>
+      <div class="section-head">
+        <h2>Process en 3 étapes</h2>
+        <div class="lead">Rapide, cadré, sans blabla.</div>
+      </div>
 
-      <div class="two" style="margin-top:14px;">
-        <div class="card"><div class="inner">
-          <div style="font-weight:950;">1) Cadrage ICP + offre</div>
-          <p class="muted">On définit qui on vise, qui on exclut, et les critères “rentables”.</p>
-          <div style="font-weight:950; margin-top:10px;">2) Installation</div>
-          <p class="muted">Landing + formulaire + calendrier + automations. Mise en place des tracking.</p>
-          <div style="font-weight:950; margin-top:10px;">3) Lancement + optimisation</div>
-          <p class="muted">On lance, on analyse, on ajuste pour augmenter la qualité des RDV.</p>
-        </div></div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Cadrage ICP + critères d’exclusion</h3>
+          <p>On définit le dossier idéal, ce qu’on refuse, et la promesse la plus claire pour attirer les bons prospects.</p>
+        </div>
 
-        <div class="card"><div class="inner">
-          <div style="font-weight:950;">À quoi ressemble “un bon lead” ?</div>
-          <p class="muted">
-            Entreprise B2B, besoin clair, capacité de paiement, décisionnaire accessible,
-            et un scope qui ne détruit pas vos marges.
-          </p>
-          <div style="border-top:1px solid var(--line); margin:14px 0;"></div>
-          <div style="font-weight:950;">Ce qu’on refuse</div>
-          <p class="muted">Demandes floues, budgets bas, projets “support illimité”, urgence + faible valeur.</p>
-        </div></div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Installation du système</h3>
+          <p>Landing + formulaire + calendrier + automations + tracking. Mise en place rapide et propre.</p>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Lancement + optimisation</h3>
+          <p>On analyse la qualité des demandes, on ajuste le tri et le message pour augmenter la rentabilité.</p>
+        </div>
+
+        <div class="step">
+          <div class="num">+</div>
+          <h3>Reporting clair</h3>
+          <p>Vous voyez ce qui marche : sources, taux de qualif, RDV, no-show, qualité des dossiers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMITMENT -->
+    <section class="section" id="engagement">
+      <div class="commit">
+        <div class="commit-inner">
+          <h2>Votre investissement, notre engagement</h2>
+          <div class="subpill">objectif défini à l’audit</div>
+
+          <div class="twopills">
+            <div class="pillbox blue">Objectif : pipeline de RDV qualifiés<br/><span style="opacity:.9;">(cadre + volume réaliste)</span></div>
+            <div class="pillbox gold">Si objectif non atteint :<br/><span style="font-weight:980;">prolongation sans frais</span></div>
+          </div>
+
+          <div class="cond">*Conditions : basées sur l’audit initial, votre zone, votre capacité et le fit.</div>
+
+          <div class="benefits">
+            <span>💶 + Marge</span>
+            <span>⏱️ + Temps</span>
+            <span>🧠 + Sérénité</span>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn primary" href="#contact">Réserver l’audit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <div class="lead">Les questions qu’on te posera (et celles que tu devrais poser).</div>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">❓</div>
+          <h3>Vous faites LinkedIn, Ads, ou autre ?</h3>
+          <p>On choisit le canal en fonction de ta zone, de ton offre, et de ton cycle de vente. Le système reste le même : attirer → qualifier → booker.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🧾</div>
+          <h3>Comment vous évitez les “mauvais leads” ?</h3>
+          <p>Par un tri intelligent : critères d’exclusion, scoring, messages de cadrage, et routage. Le but : protéger ton temps.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⏱️</div>
+          <h3>Combien de temps pour voir des résultats ?</h3>
+          <p>Ça dépend du canal et de ta zone. En général : installation rapide, puis optimisation sur la qualité des demandes.</p>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section class="section" id="contact">
-      <h2>Réserver l’audit (15 min)</h2>
-      <p class="muted">Dis-moi ton cabinet, ta cible idéale, et ton problème n°1 sur la qualité des dossiers.</p>
+      <div class="section-head">
+        <h2>Audit offert (15 minutes)</h2>
+        <div class="lead">On valide le fit, on te donne un plan, et tu décides.</div>
+      </div>
 
-      <div class="two" style="margin-top:14px;">
-        <div class="card"><div class="inner">
-          <form class="form" onsubmit="event.preventDefault(); alert('OK — envoie-moi ce message par email ou ajoute un lien Calendly ici.');">
+      <div class="contact">
+        <div class="panel">
+          <div style="font-weight:980; font-size:18px; margin-bottom:8px;">Demande d’audit</div>
+          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;">Remplis ça. Ensuite tu mets ton lien Calendly (ou je te l’intègre).</p>
+
+          <form class="form" onsubmit="event.preventDefault(); alert('OK — branche ton email / Calendly ici (ou Tally/Typeform).');">
             <input required placeholder="Nom du cabinet" />
-            <input required type="email" placeholder="Email" />
-            <input placeholder="Site web (optionnel)" />
-            <textarea placeholder="Ta cible idéale + le problème principal (2 lignes)"></textarea>
+            <input required type="email" placeholder="Email pro" />
+            <input placeholder="Ville / région (optionnel)" />
+            <textarea placeholder="En 2 lignes : dossier idéal + ce que tu refuses (budget, taille, secteur…)"></textarea>
             <button class="btn primary" type="submit">Envoyer</button>
-            <div class="mini">Astuce : remplace ce formulaire par ton outil (Tally, Typeform, etc.) + Calendly.</div>
+            <div class="mini">Astuce : je peux remplacer ce formulaire par un embed (Tally/Typeform) + Calendly.</div>
           </form>
-        </div></div>
+        </div>
 
-        <div class="panel"><div class="inner">
-          <div style="font-weight:950; font-size:18px;">Ce que tu reçois après l’audit</div>
-          <ul style="color:var(--muted); margin-top:10px; padding-left:18px;">
-            <li>Verdict “fit / not fit” en direct</li>
-            <li>Critères ICP (qui exclure en priorité)</li>
-            <li>Proposition de funnel : landing → formulaire → RDV</li>
-            <li>Prochaines actions concrètes (même si on ne bosse pas ensemble)</li>
+        <div class="panel">
+          <div style="font-weight:980; font-size:18px; margin-bottom:8px;">Ce que tu repars avec</div>
+          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;">Même si on ne bosse pas ensemble, tu ressors avec un plan clair.</p>
+
+          <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:760;">
+            <li>Critères “bon lead / mauvais lead”</li>
+            <li>Un tunnel minimal adapté à ton cabinet</li>
+            <li>Les 3 optimisations qui augmentent la qualité</li>
+            <li>Un verdict fit / no-fit sans perte de temps</li>
           </ul>
-          <div style="margin-top:14px;">
-            <a class="btn" href="#install">Revoir les features</a>
+
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="#top">Retour en haut</a>
+            <a class="btn ghost" href="#offre">Voir l’offre</a>
           </div>
-        </div></div>
+        </div>
       </div>
     </section>
 
     <footer class="footer">
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <div>© <span id="y"></span> Lead2Value</div>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="#install">Features</a>
-          <a href="#process">Process</a>
-          <a href="#contact">Contact</a>
-        </div>
+      <div>© <span id="y"></span> Lead2Value</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#offre">Offre</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </div>
     </footer>
+
   </div>
 
   <script>
