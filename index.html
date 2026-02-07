@@ -3,9 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <title>Lead2Value</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --primary: #0f1f3d;
+      --secondary: #4a6fa5;
+      --light: #f5f7fb;
+      --dark: #111;
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      color: var(--text);
+      background: white;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--light);
+      padding: 32px;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--dark);
+    }
+
+    .card p {
+      line-height: 1.6;
+    }
+
+    .cta {
+      text-align: center;
+      background: var(--primary);
+      color: white;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      background: white;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .cta a:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      background: #0b162c;
+      color: #aaa;
+      text-align: center;
+      padding: 24px;
+      font-size: 14px;
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align:center; margin-top:100px;">
-  <h1>Lead2Value</h1>
-  <p>Nous aidons les entreprises établies à attirer des clients à plus forte valeur, sans augmenter la charge de travail.</p>
+
+<body>
+
+  <!-- HERO -->
+  <header>
+    <h1>Lead2Value</h1>
+    <p>
+      Nous aidons les entreprises établies à attirer des clients à plus forte valeur,
+      sans augmenter la charge de travail ni complexifier leurs opérations.
+    </p>
+  </header>
+
+  <!-- POSITIONNEMENT -->
+  <section>
+    <div class="container">
+      <h2>Notre approche</h2>
+      <p>
+        Beaucoup d’entreprises font face à une forte demande, mais avec un
+        déséquilibre dans leur portefeuille clients : trop de dossiers chronophages,
+        peu rentables, et une pression opérationnelle constante.
+        <br><br>
+        Lead2Value intervient pour restructurer l’acquisition client, en attirant
+        des prospects mieux qualifiés, à plus forte valeur, afin de permettre
+        une croissance saine, maîtrisée et durable.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section style="background: var(--light);">
+    <div class="container">
+      <h2>Ce que nous faisons</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Acquisition ciblée</h3>
+          <p>
+            Nous attirons des prospects B2B correspondant précisément à vos
+            critères de valeur, de maturité et de rentabilité.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Qualification en amont</h3>
+          <p>
+            Les échanges sont filtrés et qualifiés avant tout rendez-vous,
+            afin de préserver votre temps et vos équipes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Stabilité opérationnelle</h3>
+          <p>
+            Aucun ajout de charge interne, aucun outil inutile :
+            l’objectif est l’impact, pas la complexité.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2 style="color:white;">Entrons en contact</h2>
+      <p>
+        Si vous souhaitez attirer de meilleurs clients, sans augmenter votre charge
+        opérationnelle, nous pouvons en discuter.
+      </p>
+
+      <a href="mailto:contact@lead2value.com">Contactez-nous</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Lead2Value — Tous droits réservés
+  </footer>
+
 </body>
 </html>
