@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Lead2Value — Acquisition B2B sélective : attirer des clients à plus forte valeur sans augmenter la charge de travail." />
+  <meta name="description" content="Lead2Value — Acquisition B2B sélective pour cabinets d’expertise comptable : attirer des dossiers à plus forte valeur sans augmenter la charge de travail." />
   <title>Lead2Value</title>
 
   <style>
@@ -70,9 +70,10 @@
       display:flex;
       align-items:center;
       gap: 12px;
-      min-width: 160px;
+      min-width: 220px;
     }
 
+    /* mini logo container */
     .brandMark{
       width: 34px;
       height: 34px;
@@ -80,7 +81,17 @@
       background: linear-gradient(135deg, rgba(103,183,255,.35), rgba(124,77,255,.30));
       border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
       flex: 0 0 auto;
+    }
+    .brandMark img{
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
     }
 
     .brandText{
@@ -167,7 +178,7 @@
     .sub{
       font-size: 18px;
       color: var(--muted);
-      max-width: 56ch;
+      max-width: 62ch;
       margin: 0 0 22px;
     }
 
@@ -193,6 +204,7 @@
       font-weight: 800;
       font-size: 14px;
       box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      white-space: nowrap;
     }
     .btn:hover{ background: rgba(255,255,255,.12); }
 
@@ -234,7 +246,7 @@
     }
 
     .logoWrap img{
-      width: min(260px, 72%);
+      width: min(300px, 78%);
       height:auto;
       filter: drop-shadow(0 14px 30px rgba(0,0,0,.25));
     }
@@ -274,7 +286,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 16px;
-      max-width: 82ch;
+      max-width: 90ch;
     }
 
     .cards{
@@ -289,7 +301,7 @@
       border: 1px solid rgba(255,255,255,.10);
       border-radius: 16px;
       padding: 18px;
-      min-height: 130px;
+      min-height: 140px;
     }
     .card h3{
       margin: 0 0 8px;
@@ -388,9 +400,10 @@
       .cards{ grid-template-columns: 1fr; }
       .twoCol{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
-      .nav{ display:none; } /* clean on mobile */
+      .nav{ display:none; }
       .brand{ min-width: 0; }
       .lang{ min-width: 0; }
+      .logoWrap img{ width: min(280px, 76%); }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -407,11 +420,13 @@
     <div class="wrap">
       <div class="topbar">
         <div class="brand" aria-label="Lead2Value">
-          <div class="brandMark" aria-hidden="true"></div>
+          <div class="brandMark">
+            <img src="./logo.png?v=4" alt="Lead2Value logo mini">
+          </div>
           <div class="brandText">
             <strong>Lead2Value</strong>
-            <span data-lang="fr">Acquisition B2B sélective</span>
-            <span data-lang="en">Selective B2B acquisition</span>
+            <span data-lang="fr">Acquisition B2B sélective — Cabinets d’expertise comptable</span>
+            <span data-lang="en">Selective B2B acquisition — Accounting firms</span>
           </div>
         </div>
 
@@ -443,18 +458,19 @@
           <div class="kicker" data-lang="en">From demand to value</div>
 
           <div data-lang="fr">
-            <h1>Attirez de meilleurs clients, sans augmenter la charge.</h1>
+            <h1>Attirez des dossiers à plus forte valeur, sans augmenter la charge.</h1>
             <p class="sub">
-              Lead2Value aide les entreprises établies à améliorer la rentabilité de leur portefeuille client
-              en attirant des prospects B2B à plus forte valeur — avec une qualification en amont et une exécution légère.
+              Lead2Value accompagne les cabinets d’expertise comptable qui sont déjà bien demandés,
+              mais saturés par un mix client peu rentable. Objectif : attirer des dossiers B2B mieux qualifiés,
+              alignés avec vos critères (taille, complexité, honoraires) — sans alourdir l’organisation.
             </p>
           </div>
 
           <div data-lang="en">
-            <h1>Attract better clients, without increasing workload.</h1>
+            <h1>Attract higher-value engagements, without increasing workload.</h1>
             <p class="sub">
-              Lead2Value helps established firms improve client profitability by attracting higher-value B2B prospects —
-              with upfront qualification and lightweight execution.
+              Lead2Value supports established accounting firms with strong demand but limited capacity.
+              We help attract better-fit B2B engagements aligned with your value criteria—without adding operational burden.
             </p>
           </div>
 
@@ -465,28 +481,27 @@
             <a class="btn" href="mailto:contact@lead2value.com">contact@lead2value.com</a>
           </div>
 
-          <div class="note" data-lang="fr">Approche sobre. Résultats mesurables. Zéro complexité inutile.</div>
-          <div class="note" data-lang="en">Simple approach. Measurable outcomes. No unnecessary complexity.</div>
+          <div class="note" data-lang="fr">Capacité protégée • Qualification stricte • Qualité > volume</div>
+          <div class="note" data-lang="en">Capacity protected • Strict qualification • Quality > volume</div>
         </div>
 
         <aside class="heroCard" aria-label="Brand card">
           <div class="logoWrap">
-            <!-- anti-cache: change v=3 if you update the image -->
-            <img src="./logo.png?v=3" alt="Lead2Value logo">
+            <img src="./logo.png?v=4" alt="Lead2Value logo">
           </div>
 
           <div class="mini">
             <div>
-              <strong data-lang="fr">Ciblage</strong>
-              <strong data-lang="en">Targeting</strong>
-              <span data-lang="fr">ICP clair, critères de valeur</span>
-              <span data-lang="en">Clear ICP, value criteria</span>
+              <strong data-lang="fr">Mix client</strong>
+              <strong data-lang="en">Client mix</strong>
+              <span data-lang="fr">Moins de “petits dossiers” chronophages</span>
+              <span data-lang="en">Fewer low-margin time sinks</span>
             </div>
             <div>
-              <strong data-lang="fr">Qualification</strong>
-              <strong data-lang="en">Qualification</strong>
-              <span data-lang="fr">Filtrage avant RDV</span>
-              <span data-lang="en">Filtering before meetings</span>
+              <strong data-lang="fr">Valeur / dossier</strong>
+              <strong data-lang="en">Value per engagement</strong>
+              <span data-lang="fr">Plus de B2B récurrent et rentable</span>
+              <span data-lang="en">More recurring, profitable B2B</span>
             </div>
           </div>
         </aside>
@@ -500,20 +515,24 @@
     <div class="wrap">
       <div class="panel">
         <div data-lang="fr">
-          <div class="h2">Notre approche</div>
+          <div class="h2">Une approche adaptée aux cabinets</div>
           <p class="lead">
-            Beaucoup d’entreprises ont de la demande, mais un mix client déséquilibré : trop de dossiers chronophages,
-            peu rentables, et une pression opérationnelle constante. Nous mettons en place une acquisition sélective
-            pour attirer des opportunités à plus forte valeur et protéger le temps des équipes.
+            Nous connaissons les contraintes d’un cabinet : pics de charge (clôtures, TVA), production prioritaire,
+            arbitrage permanent entre “répondre à tout” et préserver la capacité. L’enjeu n’est pas d’avoir plus de demandes,
+            mais d’avoir <b>les bons dossiers</b> : meilleure qualité, meilleure rentabilité, meilleure stabilité.
+            <br><br>
+            Notre rôle : créer un flux d’opportunités cohérent (taille, secteur, complexité) et filtrer avant toute mise en relation.
           </p>
         </div>
 
         <div data-lang="en">
-          <div class="h2">Our approach</div>
+          <div class="h2">An approach built for accounting firms</div>
           <p class="lead">
-            Many firms have real demand, yet an unoptimized client mix: too many time-consuming, low-margin engagements
-            and constant operational pressure. We implement selective acquisition to attract higher-value opportunities
-            while protecting team capacity.
+            We understand the reality of an accounting firm: seasonal peaks (close, VAT), delivery first,
+            constant trade-offs between saying yes and protecting capacity. The goal isn’t more demand—
+            it’s <b>better-fit engagements</b>: higher value, better margins, and stability.
+            <br><br>
+            Our role: create a coherent flow of opportunities and qualify before any introduction.
           </p>
         </div>
 
@@ -522,28 +541,29 @@
             <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="fr">Ce que vous obtenez</div>
             <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="en">What you get</div>
             <ul class="list" data-lang="fr">
-              <li>Une acquisition alignée sur vos critères de valeur</li>
-              <li>Une qualification stricte avant mise en relation</li>
-              <li>Un pipeline plus propre, avec moins de bruit</li>
+              <li>Des prospects B2B alignés avec vos critères (honoraires, complexité, récurrence)</li>
+              <li>Une qualification stricte avant RDV (fit, besoin, timing)</li>
+              <li>Moins de bruit, plus de qualité dans le pipe</li>
             </ul>
             <ul class="list" data-lang="en">
-              <li>Acquisition aligned with your value criteria</li>
-              <li>Strict qualification before introductions</li>
-              <li>A cleaner pipeline with less noise</li>
+              <li>B2B prospects aligned with your value criteria (fees, complexity, recurring work)</li>
+              <li>Strict qualification before meetings (fit, need, timing)</li>
+              <li>Less noise, higher-quality pipeline</li>
             </ul>
           </div>
+
           <div>
             <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="fr">Ce que nous évitons</div>
             <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="en">What we avoid</div>
             <ul class="list" data-lang="fr">
+              <li>Les demandes “petites missions” non rentables</li>
               <li>Les volumes artificiels et les leads non qualifiés</li>
-              <li>Les outils ajoutés “pour faire joli”</li>
-              <li>La surcharge opérationnelle</li>
+              <li>La complexité opérationnelle inutile</li>
             </ul>
             <ul class="list" data-lang="en">
+              <li>Low-margin small engagements</li>
               <li>Artificial volume and unqualified leads</li>
-              <li>Tools added “just to look fancy”</li>
-              <li>Operational overload</li>
+              <li>Unnecessary operational complexity</li>
             </ul>
           </div>
         </div>
@@ -558,33 +578,39 @@
       <div class="panel">
         <div data-lang="fr">
           <div class="h2">Services</div>
-          <p class="lead">Un dispositif simple, axé sur la valeur, conçu pour être opérationnel rapidement.</p>
+          <p class="lead">
+            Un dispositif simple, pensé pour un cabinet : ciblage précis, messages sobres, qualification en amont.
+            Vous gardez le contrôle sur les critères et l’acceptation des dossiers.
+          </p>
         </div>
         <div data-lang="en">
           <div class="h2">Services</div>
-          <p class="lead">A simple, value-first system designed to go live quickly.</p>
+          <p class="lead">
+            A simple system designed for accounting firms: precise targeting, concise messaging, upfront qualification.
+            You stay in control of criteria and acceptance.
+          </p>
         </div>
 
         <div class="cards">
           <div class="card">
             <h3 data-lang="fr">Acquisition ciblée</h3>
             <h3 data-lang="en">Targeted acquisition</h3>
-            <p data-lang="fr">Prospection et messages alignés ICP, orientés problèmes concrets et valeur.</p>
-            <p data-lang="en">ICP-aligned outreach focused on concrete problems and value.</p>
+            <p data-lang="fr">Prospection alignée sur vos “bons dossiers” (taille, secteur, complexité, récurrence).</p>
+            <p data-lang="en">Outreach aligned with your “ideal engagements” (size, industry, complexity, recurring).</p>
           </div>
 
           <div class="card">
-            <h3 data-lang="fr">Qualification en amont</h3>
-            <h3 data-lang="en">Upfront qualification</h3>
-            <p data-lang="fr">Filtrage avant RDV : critères, contexte, besoin, timing, fit.</p>
-            <p data-lang="en">Filtering before meetings: criteria, context, need, timing, fit.</p>
+            <h3 data-lang="fr">Pré-qualification</h3>
+            <h3 data-lang="en">Pre-qualification</h3>
+            <p data-lang="fr">Filtrage avant RDV : contexte, besoins, budget, calendrier, fit cabinet.</p>
+            <p data-lang="en">Filtering before meetings: context, needs, budget, timing, firm fit.</p>
           </div>
 
           <div class="card">
-            <h3 data-lang="fr">Simplicité & exécution</h3>
-            <h3 data-lang="en">Simplicity & delivery</h3>
-            <p data-lang="fr">Process clair, reporting utile, optimisation progressive sans complexité.</p>
-            <p data-lang="en">Clear process, useful reporting, progressive optimization without complexity.</p>
+            <h3 data-lang="fr">Exécution légère</h3>
+            <h3 data-lang="en">Lightweight execution</h3>
+            <p data-lang="fr">Reporting utile, ajustements progressifs, sans multiplier les outils ni la charge interne.</p>
+            <p data-lang="en">Useful reporting, iterative improvements—without piling on tools or internal workload.</p>
           </div>
         </div>
 
@@ -599,13 +625,20 @@
         <div class="contactBox">
           <div data-lang="fr">
             <div class="h2">Contact</div>
-            <p class="lead">Dites-nous où vous voulez aller (type de clients, valeur, contraintes). On vous répond rapidement.</p>
+            <p class="lead">
+              Dites-nous votre cible (secteurs, taille, type de dossiers, seuil d’honoraires) et vos contraintes de capacité.
+              Nous vous répondrons rapidement.
+            </p>
             <a class="contactBtn" href="mailto:contact@lead2value.com">Écrire à Lead2Value</a>
             <div class="emailLine">Email : <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
           </div>
+
           <div data-lang="en">
             <div class="h2">Contact</div>
-            <p class="lead">Tell us your target client profile and constraints. We’ll get back to you quickly.</p>
+            <p class="lead">
+              Share your target (industries, size, engagement types, fee threshold) and capacity constraints.
+              We’ll respond quickly.
+            </p>
             <a class="contactBtn" href="mailto:contact@lead2value.com">Email Lead2Value</a>
             <div class="emailLine">Email: <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
           </div>
@@ -613,19 +646,19 @@
 
         <div class="contactBox">
           <div data-lang="fr">
-            <div class="h2">À qui c’est destiné</div>
+            <div class="h2">Exemples de dossiers souvent recherchés</div>
             <ul class="list">
-              <li>Entreprises établies, besoin de qualité plutôt que volume</li>
-              <li>Capacité opérationnelle limitée, priorité au temps</li>
-              <li>Volonté de remplacer progressivement les dossiers faibles</li>
+              <li>PME/TPE B2B structurées (récurrence, volume stable)</li>
+              <li>Groupes / holdings (consolidation, management fees, structuration)</li>
+              <li>Services pro : B2B récurrent, facturation claire, process</li>
             </ul>
           </div>
           <div data-lang="en">
-            <div class="h2">Who it’s for</div>
+            <div class="h2">Typical engagements often targeted</div>
             <ul class="list">
-              <li>Established firms prioritizing quality over volume</li>
-              <li>Limited capacity, protecting time is key</li>
-              <li>Replacing low-value work with better-fit clients</li>
+              <li>Structured B2B SMEs (recurring work, stable volume)</li>
+              <li>Groups / holdings (structuring, reporting, complexity)</li>
+              <li>Professional services with clear recurring needs</li>
             </ul>
           </div>
         </div>
@@ -650,10 +683,6 @@
 
     btnFr.addEventListener("click", () => setLang("fr"));
     btnEn.addEventListener("click", () => setLang("en"));
-
-    // Optional: auto language on first load (kept OFF to avoid surprises)
-    // const userLang = (navigator.language || "").toLowerCase();
-    // if (userLang.startsWith("en")) setLang("en");
   </script>
 
 </body>
