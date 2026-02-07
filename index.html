@@ -1,230 +1,904 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lead2Value — Clients B2B plus rentables pour cabinets comptables</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lead2Value — Acquisition & Qualification pour cabinets comptables</title>
+  <meta name="description" content="Lead2Value met en place un système d’acquisition et de qualification pour attirer des clients B2B plus rentables pour votre cabinet comptable, sans alourdir l’organisation." />
 
   <style>
     :root{
       --bg:#070a12;
       --bg2:#0b1022;
+      --card:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
       --text:#f3f6ff;
       --muted:#bac3e6;
-      --accent:#f6c445;
-      --line:rgba(255,255,255,.15);
-      --card:rgba(255,255,255,.06);
+      --accent:#f6c445; /* jaune */
+      --blue:#6aa7ff;
       --max:1120px;
       --r:22px;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --h1: clamp(34px, 5.2vw, 64px);
+      --h2: clamp(22px, 3vw, 34px);
+      --h3: 18px;
     }
 
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:linear-gradient(180deg,var(--bg),var(--bg2));
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
+      background:
+        radial-gradient(900px 600px at 18% -10%, rgba(106,167,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 85% 6%, rgba(246,196,69,.18), transparent 58%),
+        radial-gradient(900px 600px at 50% 110%, rgba(79,209,197,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       line-height:1.55;
+      overflow-x:hidden;
     }
-    a{text-decoration:none;color:inherit}
-    [data-lang][hidden]{display:none!important}
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 18px 18px 70px;}
 
-    .wrap{max-width:var(--max);margin:auto;padding:24px}
+    .bg-grid{
+      position:fixed; inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 90px 90px;
+      opacity:.07;
+      pointer-events:none;
+      z-index:-1;
+    }
 
     /* NAV */
     .nav{
-      position:sticky;top:0;z-index:10;
-      background:rgba(7,10,18,.78);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: rgba(7,10,18,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
     .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
     }
+
     .brand{
-      display:flex;align-items:center;gap:10px;
-      font-weight:900;
-      letter-spacing:.2px;
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.2px;
+      min-width: 170px;
     }
-    .brand img{
-      width:34px;height:34px;
-      padding:6px;
-      border-radius:10px;
-      background:rgba(255,255,255,.08);
-      border:1px solid var(--line);
+    .brand-logo{
+      width:34px; height:34px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 6px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.30);
+      flex: 0 0 auto;
     }
+
+    .navlinks{
+      display:flex; gap:18px; flex-wrap:wrap;
+      color:rgba(186,195,230,.92);
+      font-weight:850;
+      font-size:14px;
+    }
+    .navlinks a{opacity:.9}
+    .navlinks a:hover{opacity:1}
 
     .btn{
-      padding:12px 18px;
-      border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 16px;
+      border-radius: 999px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.08);
-      font-weight:800;
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:950;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09)}
+    .btn.primary{
+      border-color: transparent;
+      color:#0a0e18;
+      background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,220,120,1));
+      box-shadow: 0 14px 35px rgba(246,196,69,.20);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(255,220,120,1), rgba(246,196,69,1));
+    }
+    .btn.ghost{background: transparent}
+
+    /* Language toggle */
+    .right{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+    .lang-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+      user-select:none;
       cursor:pointer;
     }
-    .btn.primary{
-      background:linear-gradient(135deg,#f6c445,#ffe08a);
-      color:#0a0e18;
-      border:none;
+    .switch{
+      width: 54px; height: 30px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      position:relative;
     }
+    .knob{
+      width: 24px; height: 24px;
+      border-radius: 999px;
+      position:absolute; top: 2px; left: 2px;
+      background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,220,120,1));
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+      transition: transform .18s ease;
+    }
+    body.lang-en .knob{ transform: translateX(24px); }
+    .lang-chip{
+      font-weight:950;
+      font-size:12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(243,246,255,.92);
+      min-width: 44px;
+      text-align:center;
+    }
+    body.lang-en .chip-fr{opacity:.55}
+    body.lang-fr .chip-en{opacity:.55}
+
+    /* Bulletproof language hiding */
+    [data-lang][hidden]{ display:none !important; }
 
     /* HERO */
+    .hero{
+      margin-top: 18px;
+      border-radius: 30px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      background:
+        radial-gradient(900px 520px at 70% 15%, rgba(106,167,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 20% 10%, rgba(246,196,69,.14), transparent 60%),
+        linear-gradient(180deg, rgba(15,24,52,.85), rgba(7,10,18,.92));
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.70)),
+        radial-gradient(1200px 650px at 50% 10%, rgba(255,255,255,.06), transparent 55%);
+      pointer-events:none;
+    }
+    .hero-inner{position:relative; padding: 58px 24px 44px; text-align:left;}
+    .hero-top{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(186,195,230,.95);
+      font-weight:950;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .pill b{color:var(--accent)}
     h1{
-      font-size:clamp(34px,5vw,64px);
-      line-height:1.05;
-      margin-bottom:12px;
+      margin: 18px 0 12px;
+      font-size: var(--h1);
+      line-height: 1.03;
+      font-weight: 980;
+      letter-spacing:-.02em;
+      max-width: 20ch;
+      text-shadow: 0 18px 45px rgba(0,0,0,.45);
+    }
+    .hero-accent{
+      display:block;
+      margin-top: 10px;
+      font-size: clamp(20px, 3.2vw, 38px);
+      font-weight: 980;
+      color: rgba(246,196,69,.98);
     }
     .sub{
-      max-width:820px;
-      color:var(--muted);
-      font-weight:600;
+      max-width: 82ch;
+      color: rgba(243,246,255,.85);
+      font-weight: 740;
+      font-size: 16px;
+      margin: 0 0 18px;
     }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+    .note{margin-top: 12px; color: rgba(186,195,230,.90); font-size: 13px; font-weight: 740;}
 
-    /* PANELS */
+    .hero-split{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .hero-split{grid-template-columns:1fr} }
+
     .panel{
-      margin-top:40px;
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--r);
-      padding:26px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      padding: 18px;
+      box-shadow: 0 14px 35px rgba(0,0,0,.22);
+    }
+    .kpi{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:12px; margin-top: 12px;
+    }
+    .kpi .box{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,.20);
+      padding: 14px;
+    }
+    .kpi .big{font-size:18px; font-weight:980}
+    .kpi .small{font-size:12px; color:rgba(186,195,230,.9); font-weight:840}
+
+    /* sections */
+    .section{padding: 54px 0 0}
+    .section-head{text-align:center; margin-bottom: 26px;}
+    h2{margin:0; font-size:var(--h2); font-weight:980; letter-spacing:-.01em}
+    .lead{margin: 10px auto 0; max-width: 90ch; color: var(--muted); font-weight: 740; font-size: 15px;}
+
+    /* cards */
+    .grid3{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 22px;
+    }
+    @media (max-width: 920px){ .grid3{grid-template-columns:1fr} }
+
+    .card{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; left:0; top:0; bottom:0; width:4px;
+      background: linear-gradient(180deg, rgba(246,196,69,1), rgba(106,167,255,1));
+      opacity:.95;
+    }
+    .icon{
+      width:44px; height:44px;
+      border-radius: 16px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      margin-bottom: 12px;
+      font-weight:980;
+    }
+    .card h3{margin:0 0 8px; font-size:var(--h3); font-weight:980}
+    .card p{margin:0; color:var(--muted); font-weight:720; font-size:14px}
+
+    /* steps */
+    .steps{
+      margin-top: 22px;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 920px){ .steps{grid-template-columns:1fr} }
+    .step{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+      padding: 18px;
+    }
+    .num{
+      width:36px; height:36px; border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:980;
+      color:#0a0e18;
+      background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,220,120,1));
+      margin-bottom: 10px;
+    }
+    .step h3{margin:0 0 6px; font-size:18px; font-weight:980}
+    .step p{margin:0; color:var(--muted); font-weight:720}
+
+    /* commitment */
+    .commit{
+      margin-top: 22px;
+      border-radius: 30px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 550px at 50% 0%, rgba(106,167,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(10,16,34,.86), rgba(7,10,18,.95));
+      box-shadow: var(--shadow);
+      padding: 34px 18px 30px;
+      position:relative;
+      overflow:hidden;
+    }
+    .commit-inner{position:relative; max-width: 980px; margin:0 auto; text-align:center}
+    .subpill{
+      display:inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(246,196,69,.30);
+      background: rgba(246,196,69,.08);
+      color: rgba(246,196,69,.98);
+      font-weight: 980;
+      font-size: 12px;
+      letter-spacing:.04em;
+      text-transform: lowercase;
+    }
+    .twopills{
+      margin: 22px auto 10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 920px;
+    }
+    @media (max-width: 860px){ .twopills{grid-template-columns:1fr} }
+    .pillbox{
+      border-radius: 22px;
+      padding: 22px 18px;
+      font-weight: 980;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+    }
+    .pillbox.blue{
+      background: linear-gradient(135deg, rgba(106,167,255,.95), rgba(59,130,246,.70));
+    }
+    .pillbox.gold{
+      color:#0a0e18;
+      background: linear-gradient(135deg, rgba(246,196,69,.95), rgba(255,220,120,.70));
+    }
+    .cond{margin-top: 10px; color: rgba(186,195,230,.86); font-size: 12px; font-style: italic; font-weight: 700;}
+    .benefits{
+      margin: 18px auto 0;
+      display:flex; justify-content:center;
+      gap: 14px; flex-wrap:wrap;
+      font-weight: 980;
+      color: rgba(243,246,255,.92);
+    }
+    .benefits span{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
     }
 
-    /* FORM */
-    form{display:grid;gap:12px}
-    input,textarea{
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.25);
-      color:var(--text);
-      font-weight:600;
+    /* contact */
+    .contact{
+      margin-top: 22px;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap: 16px;
+      align-items:stretch;
     }
-    textarea{min-height:120px}
-    .mini{font-size:13px;color:var(--muted)}
+    @media (max-width: 920px){ .contact{grid-template-columns:1fr} }
+    .form{display:grid; gap:10px}
+    .two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 520px){ .two{grid-template-columns:1fr} }
+
+    input, textarea{
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+      font-weight: 760;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .mini{font-size:12px; color: rgba(186,195,230,.85); font-weight:700}
 
     /* FOOTER */
-    footer{
-      margin-top:64px;
-      padding-top:24px;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
+    .footer{
+      margin-top: 60px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: rgba(186,195,230,.92);
+      font-weight: 700;
+      font-size: 14px;
+      display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap;
       align-items:center;
-      gap:16px;
-      flex-wrap:wrap;
     }
-    footer img{
-      width:28px;height:28px;
-      padding:5px;
-      border-radius:8px;
-      background:rgba(255,255,255,.08);
-      border:1px solid var(--line);
+    .footer-left{
+      display:flex; align-items:center; gap:10px;
+      min-width: 210px;
+    }
+    .footer-logo{
+      width:28px; height:28px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 5px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.22);
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 520px){
+      .navlinks{display:none}
+      h1{max-width: 100%}
+      .brand{min-width:auto}
+      .footer-left{min-width:auto}
     }
   </style>
 </head>
 
 <body class="lang-fr">
+  <div class="bg-grid" aria-hidden="true"></div>
 
-<!-- NAV -->
-<div class="nav">
-  <div class="wrap nav-inner">
-    <div class="brand">
-      <img src="./logo.png" alt="Lead2Value" onerror="this.style.display='none'">
-      Lead2Value
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <img id="logoNav" class="brand-logo" alt="Lead2Value logo" />
+        <div>Lead2Value</div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#offre" data-lang="fr">Offre</a>
+        <a href="#offre" data-lang="en">Offer</a>
+
+        <a href="#process" data-lang="fr">Méthode</a>
+        <a href="#process" data-lang="en">Method</a>
+
+        <a href="#faq" data-lang="fr">FAQ</a>
+        <a href="#faq" data-lang="en">FAQ</a>
+
+        <a href="#contact" data-lang="fr">Contact</a>
+        <a href="#contact" data-lang="en">Contact</a>
+      </div>
+
+      <div class="right">
+        <div class="lang-toggle" id="langToggle" role="button" aria-label="Changer la langue / Change language">
+          <div class="lang-chip chip-fr">FR</div>
+          <div class="switch" aria-hidden="true"><div class="knob"></div></div>
+          <div class="lang-chip chip-en">EN</div>
+        </div>
+
+        <a class="btn primary" href="#contact" data-lang="fr">Audit offert</a>
+        <a class="btn primary" href="#contact" data-lang="en">Free audit</a>
+      </div>
     </div>
-    <a href="#contact" class="btn primary" data-lang="fr">Audit offert</a>
-    <a href="#contact" class="btn primary" data-lang="en">Free audit</a>
   </div>
-</div>
 
-<div class="wrap">
+  <div class="wrap">
 
-  <!-- HERO -->
-  <section>
-    <div data-lang="fr">
-      <h1>
-        Attirez des clients B2B plus rentables<br>
-        sans alourdir votre organisation.
-      </h1>
-      <p class="sub">
-        Lead2Value met en place un système d’acquisition et de qualification
-        permettant aux cabinets comptables de sélectionner de meilleurs dossiers,
-        d’améliorer la rentabilité et de préserver le temps des associés.
-      </p>
-    </div>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-top">
+          <div class="pill" data-lang="fr"><b>Cabinets comptables</b> <span>— acquisition & qualification</span></div>
+          <div class="pill" data-lang="en"><b>Accounting firms</b> <span>— acquisition & qualification</span></div>
 
-    <div data-lang="en">
-      <h1>
-        Attract higher-value B2B clients<br>
-        without operational overload.
-      </h1>
-      <p class="sub">
-        Lead2Value implements an acquisition and qualification system
-        that helps accounting firms select better engagements
-        and improve profitability.
-      </p>
-    </div>
-  </section>
+          <a class="btn ghost" href="#offre" data-lang="fr">Découvrir l’offre</a>
+          <a class="btn ghost" href="#offre" data-lang="en">Explore the offer</a>
+        </div>
 
-  <!-- CONTACT -->
-  <section id="contact" class="panel">
-    <h2 data-lang="fr">Audit offert (15 minutes)</h2>
-    <h2 data-lang="en">Free audit (15 minutes)</h2>
+        <div data-lang="fr">
+          <h1>
+            Attirez des clients B2B <span style="color:rgba(106,167,255,.95)">plus rentables</span>
+            <span class="hero-accent">sans alourdir votre organisation.</span>
+          </h1>
+          <p class="sub">
+            Lead2Value met en place un système clair pour générer des demandes pertinentes, les qualifier en amont,
+            puis orienter uniquement les bons profils vers un rendez-vous.
+            Objectif : améliorer votre mix client et votre marge, sans ajouter de charge opérationnelle.
+          </p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Réserver l’audit</a>
+            <a class="btn" href="#process">Voir la méthode</a>
+          </div>
+          <div class="note">⏱️ 15 minutes · Diagnostic + recommandations · Si ce n’est pas pertinent, nous vous le dirons clairement.</div>
+        </div>
 
-    <!-- ✅ FORMULAIRE GRATUIT FONCTIONNEL -->
-    <form action="https://formsubmit.co/contact@lead2value.com" method="POST">
+        <div data-lang="en">
+          <h1>
+            Attract <span style="color:rgba(106,167,255,.95)">higher-value</span> B2B clients
+            <span class="hero-accent">without adding operational weight.</span>
+          </h1>
+          <p class="sub">
+            Lead2Value implements a clear system that generates relevant demand, qualifies it upfront,
+            and routes only strong-fit prospects to a meeting.
+            The goal: improve your client mix and margins without increasing internal workload.
+          </p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Book the audit</a>
+            <a class="btn" href="#process">See the method</a>
+          </div>
+          <div class="note">⏱️ 15 minutes · Diagnosis + recommendations · If it’s not relevant, we’ll tell you clearly.</div>
+        </div>
 
-      <!-- CONFIG FORMSUBMIT -->
-      <input type="hidden" name="_subject" value="Nouvelle demande d’audit — Lead2Value">
-      <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="./?sent=1#contact">
+        <div class="hero-split">
+          <div class="panel">
+            <div style="font-weight:980; font-size:18px;" data-lang="fr">Ce que vous obtenez</div>
+            <div style="font-weight:980; font-size:18px;" data-lang="en">What you get</div>
 
-      <!-- FIELDS -->
-      <input name="firm" required placeholder="Nom du cabinet">
-      <input name="email" type="email" required placeholder="Email professionnel">
-      <input name="website" placeholder="Site web (optionnel)">
-      <textarea name="message" placeholder="Critères du dossier idéal, exclusions, contexte…"></textarea>
+            <p style="margin:8px 0 0; color:var(--muted); font-weight:740;" data-lang="fr">
+              Un flux régulier de demandes qualifiées, et des rendez-vous proposés uniquement lorsque le dossier correspond à vos critères.
+            </p>
+            <p style="margin:8px 0 0; color:var(--muted); font-weight:740;" data-lang="en">
+              A steady flow of qualified requests, with meetings proposed only when prospects match your criteria.
+            </p>
 
-      <button type="submit" class="btn primary" data-lang="fr">Envoyer</button>
-      <button type="submit" class="btn primary" data-lang="en">Send</button>
+            <div class="kpi">
+              <div class="box">
+                <div class="big" data-lang="fr">Mix client</div>
+                <div class="big" data-lang="en">Client mix</div>
+                <div class="small" data-lang="fr">Vous reprenez le contrôle</div>
+                <div class="small" data-lang="en">You regain control</div>
+              </div>
+              <div class="box">
+                <div class="big" data-lang="fr">Rentabilité</div>
+                <div class="big" data-lang="en">Profitability</div>
+                <div class="small" data-lang="fr">Priorité aux dossiers à marge</div>
+                <div class="small" data-lang="en">Prioritize high-margin work</div>
+              </div>
+              <div class="box">
+                <div class="big" data-lang="fr">Sélection</div>
+                <div class="big" data-lang="en">Selection</div>
+                <div class="small" data-lang="fr">Qualification en amont</div>
+                <div class="small" data-lang="en">Upfront qualification</div>
+              </div>
+              <div class="box">
+                <div class="big" data-lang="fr">Visibilité</div>
+                <div class="big" data-lang="en">Visibility</div>
+                <div class="small" data-lang="fr">Indicateurs simples</div>
+                <div class="small" data-lang="en">Simple metrics</div>
+              </div>
+            </div>
+          </div>
 
-      <p id="sent-fr" class="mini" hidden data-lang="fr">
-        Merci. Votre demande a bien été envoyée. Nous revenons vers vous rapidement.
-      </p>
-      <p id="sent-en" class="mini" hidden data-lang="en">
-        Thank you. Your request has been sent. We’ll get back to you shortly.
-      </p>
-    </form>
-  </section>
+          <div class="panel">
+            <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">Positionnement</div>
+            <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">Positioning</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div style="display:flex;align-items:center;gap:10px">
-      <img src="./logo.png" alt="Lead2Value" onerror="this.style.display='none'">
-      © <span id="year"></span> Lead2Value
-    </div>
-  </footer>
+            <p style="margin:0; color:var(--muted); font-weight:740;" data-lang="fr">
+              <b>Nous aidons les cabinets comptables à attirer des clients B2B plus rentables</b>
+              et à qualifier les demandes en amont, afin de sélectionner de meilleurs dossiers et d’améliorer la marge, sans complexifier l’organisation.
+            </p>
 
-</div>
+            <p style="margin:0; color:var(--muted); font-weight:740;" data-lang="en">
+              <b>We help accounting firms attract higher-value B2B clients</b>
+              and qualify demand upfront, so you can select better-fit engagements and improve margins without operational complexity.
+            </p>
+          </div>
+        </div>
 
-<script>
-  // year
-  document.getElementById("year").textContent = new Date().getFullYear();
+      </div>
+    </section>
 
-  // confirmation message
-  const params = new URLSearchParams(window.location.search);
-  if(params.get("sent")==="1"){
-    document.getElementById("sent-fr")?.removeAttribute("hidden");
-    document.getElementById("sent-en")?.removeAttribute("hidden");
-  }
+    <!-- OFFER -->
+    <section class="section" id="offre">
+      <div class="section-head">
+        <h2 data-lang="fr">Ce que nous mettons en place</h2>
+        <h2 data-lang="en">What we implement</h2>
+        <div class="lead" data-lang="fr">Un système minimal, robuste et mesurable : acquisition → qualification → orientation → suivi.</div>
+        <div class="lead" data-lang="en">A minimal, robust and measurable system: acquisition → qualification → routing → follow-up.</div>
+      </div>
 
-  // language auto
-  const lang = navigator.language.startsWith("en") ? "en" : "fr";
-  document.querySelectorAll("[data-lang]").forEach(el=>{
-    el.hidden = el.getAttribute("data-lang") !== lang;
-  });
-</script>
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">🧩</div>
+          <h3 data-lang="fr">Page d’acquisition orientée conversion</h3>
+          <h3 data-lang="en">Conversion-focused acquisition page</h3>
+          <p data-lang="fr">Message clair, crédibilité, preuves, objections traitées et appel à l’action structuré.</p>
+          <p data-lang="en">Clear messaging, credibility, proof, objections addressed, and a structured call-to-action.</p>
+        </div>
 
+        <div class="card">
+          <div class="icon">🧠</div>
+          <h3 data-lang="fr">Qualification en amont</h3>
+          <h3 data-lang="en">Upfront qualification</h3>
+          <p data-lang="fr">Formulaire + scoring : seuls les profils conformes à vos critères passent à l’étape suivante.</p>
+          <p data-lang="en">Form + scoring: only prospects matching your criteria move to the next step.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⚙️</div>
+          <h3 data-lang="fr">Automatisation & traçabilité</h3>
+          <h3 data-lang="en">Automation & traceability</h3>
+          <p data-lang="fr">Orientation, confirmations, relances de suivi et reporting — avec une mise en place propre.</p>
+          <p data-lang="en">Routing, confirmations, follow-ups, and reporting — implemented cleanly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="section-head">
+        <h2 data-lang="fr">Méthode en 3 étapes</h2>
+        <h2 data-lang="en">3-step method</h2>
+        <div class="lead" data-lang="fr">Une exécution structurée, centrée sur la qualité des dossiers et la rentabilité.</div>
+        <div class="lead" data-lang="en">A structured execution focused on engagement quality and profitability.</div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3 data-lang="fr">Cadrage : dossier idéal & exclusions</h3>
+          <h3 data-lang="en">Define ideal engagement & exclusions</h3>
+          <p data-lang="fr">Alignement sur des critères précis : besoin, budget, secteur, complexité et priorités.</p>
+          <p data-lang="en">Align on precise criteria: need, budget, sector, complexity, and priorities.</p>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <h3 data-lang="fr">Mise en place : tunnel & automatisations</h3>
+          <h3 data-lang="en">Build the funnel & automations</h3>
+          <p data-lang="fr">Page + qualification + orientation + suivi, afin de réduire les sollicitations inutiles et protéger votre temps.</p>
+          <p data-lang="en">Page + qualification + routing + follow-up to reduce unnecessary requests and protect your time.</p>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <h3 data-lang="fr">Optimisation : qualité & conversion</h3>
+          <h3 data-lang="en">Optimize: quality & conversion</h3>
+          <p data-lang="fr">Ajustements continus du message et de la qualification pour maximiser la qualité des opportunités.</p>
+          <p data-lang="en">Continuous refinement of messaging and qualification to maximize opportunity quality.</p>
+        </div>
+
+        <div class="step">
+          <div class="num">+</div>
+          <h3 data-lang="fr">Reporting simple</h3>
+          <h3 data-lang="en">Simple reporting</h3>
+          <p data-lang="fr">Sources, volumes, taux de qualification et indicateurs de qualité — sans complexité.</p>
+          <p data-lang="en">Sources, volume, qualification rate and quality indicators — without complexity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMITMENT -->
+    <section class="section" id="engagement">
+      <div class="commit">
+        <div class="commit-inner">
+          <h2 data-lang="fr">Votre investissement, notre engagement</h2>
+          <h2 data-lang="en">Your investment, our commitment</h2>
+
+          <div class="subpill" data-lang="fr">objectif défini lors de l’audit</div>
+          <div class="subpill" data-lang="en">goal defined during the audit</div>
+
+          <div class="twopills">
+            <div class="pillbox blue">
+              <div data-lang="fr">Objectif : un flux de demandes qualifiées<br/><span style="opacity:.9;">(défini selon votre marché)</span></div>
+              <div data-lang="en">Goal: a flow of qualified requests<br/><span style="opacity:.9;">(defined for your market)</span></div>
+            </div>
+            <div class="pillbox gold">
+              <div data-lang="fr">Si l’objectif n’est pas atteint :<br/><span style="font-weight:980;">prolongation sans frais</span></div>
+              <div data-lang="en">If the goal isn’t met:<br/><span style="font-weight:980;">we extend at no cost</span></div>
+            </div>
+          </div>
+
+          <div class="cond" data-lang="fr">*Conditions : cadrage et objectif validés lors de l’audit, en fonction de votre capacité et de la pertinence du dispositif.</div>
+          <div class="cond" data-lang="en">*Conditions: scope and goal validated during the audit, based on your capacity and overall fit.</div>
+
+          <div class="benefits">
+            <span data-lang="fr">💶 Rentabilité</span><span data-lang="en">💶 Profitability</span>
+            <span data-lang="fr">⏱️ Temps associé</span><span data-lang="en">⏱️ Partner time</span>
+            <span data-lang="fr">🧠 Sérénité</span><span data-lang="en">🧠 Peace of mind</span>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn primary" href="#contact" data-lang="fr">Réserver l’audit</a>
+            <a class="btn primary" href="#contact" data-lang="en">Book the audit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <div class="lead" data-lang="fr">Les questions fréquentes, côté cabinet.</div>
+        <div class="lead" data-lang="en">Common questions from accounting firms.</div>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">❓</div>
+          <h3 data-lang="fr">Quels canaux utilisez-vous ?</h3>
+          <h3 data-lang="en">Which channels do you use?</h3>
+          <p data-lang="fr">Le canal dépend de votre positionnement, de votre zone et de votre marché. Nous priorisons la stabilité et la qualité.</p>
+          <p data-lang="en">It depends on your positioning, area, and market. We prioritize stability and lead quality.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🧾</div>
+          <h3 data-lang="fr">Comment assurez-vous la qualité ?</h3>
+          <h3 data-lang="en">How do you ensure quality?</h3>
+          <p data-lang="fr">Critères d’exclusion, scoring et orientation adaptée. L’objectif est de protéger votre temps.</p>
+          <p data-lang="en">Exclusion criteria, scoring, and proper routing. The objective is to protect your time.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⏱️</div>
+          <h3 data-lang="fr">Quand voyez-vous un impact ?</h3>
+          <h3 data-lang="en">When do you see impact?</h3>
+          <p data-lang="fr">Après installation, l’optimisation porte sur la qualité des demandes. Le délai dépend du canal et de votre zone.</p>
+          <p data-lang="en">After setup, optimization focuses on demand quality. Timing depends on channel and your area.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-head">
+        <h2 data-lang="fr">Audit offert (15 minutes)</h2>
+        <h2 data-lang="en">Free audit (15 minutes)</h2>
+        <div class="lead" data-lang="fr">Validation de la pertinence, puis proposition d’un plan d’action concret.</div>
+        <div class="lead" data-lang="en">We validate relevance, then provide a concrete action plan.</div>
+      </div>
+
+      <div class="contact">
+        <div class="panel">
+          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">Demande d’audit</div>
+          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">Audit request</div>
+
+          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="fr">
+            Décrivez brièvement votre cabinet et vos critères. Nous reviendrons vers vous avec les prochaines étapes.
+          </p>
+          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="en">
+            Briefly describe your firm and criteria. We’ll follow up with the next steps.
+          </p>
+
+          <!-- ✅ FORM SUBMIT (GRATUIT) + NEW FIELDS -->
+          <form class="form" action="https://formsubmit.co/contact@lead2value.com" method="POST">
+            <!-- FormSubmit config -->
+            <input type="hidden" name="_subject" value="Nouvelle demande d’audit — Lead2Value">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="./?sent=1#contact">
+
+            <!-- New fields (Name + Phone) -->
+            <div class="two">
+              <input name="person_name" required placeholder="Nom de la personne">
+              <input name="phone" type="tel" required placeholder="Numéro de téléphone">
+            </div>
+
+            <input name="firm" required placeholder="Nom du cabinet / Firm name" />
+            <input name="email" required type="email" placeholder="Email professionnel / Business email" />
+            <input name="website" placeholder="Site web (optionnel) / Website (optional)" />
+            <textarea name="message" placeholder="Critères du dossier idéal + exclusions (budget, secteur, complexité…) / Ideal criteria + exclusions"></textarea>
+
+            <button class="btn primary" type="submit" data-lang="fr">Envoyer</button>
+            <button class="btn primary" type="submit" data-lang="en">Send</button>
+
+            <div id="sentMsgFr" class="mini" hidden data-lang="fr">
+              Merci. Votre demande a bien été envoyée.
+            </div>
+            <div id="sentMsgEn" class="mini" hidden data-lang="en">
+              Thank you. Your request has been sent.
+            </div>
+
+            <div class="mini" data-lang="fr">Réponse sous 24–48h ouvrées.</div>
+            <div class="mini" data-lang="en">Reply within 24–48 business hours.</div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">À l’issue de l’audit</div>
+          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">After the audit</div>
+
+          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="fr">
+            Même si nous ne poursuivons pas, vous repartez avec une vision claire.
+          </p>
+          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="en">
+            Even if we don’t move forward, you leave with clarity.
+          </p>
+
+          <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:760;" data-lang="fr">
+            <li>Critères précis : dossiers à accepter / à refuser</li>
+            <li>Dispositif minimal adapté à votre positionnement</li>
+            <li>Optimisations prioritaires sur la qualification</li>
+            <li>Verdict clair sur la pertinence</li>
+          </ul>
+
+          <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:760;" data-lang="en">
+            <li>Clear criteria: accept / refuse engagements</li>
+            <li>Minimal system aligned with your positioning</li>
+            <li>Priority qualification optimizations</li>
+            <li>Clear relevance verdict</li>
+          </ul>
+
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="#top" data-lang="fr">Retour en haut</a>
+            <a class="btn" href="#top" data-lang="en">Back to top</a>
+            <a class="btn ghost" href="#offre" data-lang="fr">Revoir l’offre</a>
+            <a class="btn ghost" href="#offre" data-lang="en">Review the offer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-left">
+        <img id="logoFooter" class="footer-logo" alt="Lead2Value logo" />
+        <div>© <span id="y"></span> Lead2Value</div>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#offre" data-lang="fr">Offre</a><a href="#offre" data-lang="en">Offer</a>
+        <a href="#process" data-lang="fr">Méthode</a><a href="#process" data-lang="en">Method</a>
+        <a href="#faq" data-lang="fr">FAQ</a><a href="#faq" data-lang="en">FAQ</a>
+        <a href="#contact" data-lang="fr">Contact</a><a href="#contact" data-lang="en">Contact</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // logo: put logo.png next to index.html (no assets folder)
+    const LOGO_URL = "./logo.png";
+    const navLogo = document.getElementById("logoNav");
+    const footerLogo = document.getElementById("logoFooter");
+    navLogo.src = LOGO_URL;
+    footerLogo.src = LOGO_URL;
+    [navLogo, footerLogo].forEach(img => { img.onerror = () => { img.style.display = "none"; }; });
+
+    // year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // show confirmation message after redirect
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sent") === "1") {
+      document.getElementById("sentMsgFr")?.removeAttribute("hidden");
+      document.getElementById("sentMsgEn")?.removeAttribute("hidden");
+    }
+
+    // language system (bulletproof) + remember choice
+    const KEY = "l2v_lang";
+    const browser = (navigator.language || "").toLowerCase();
+
+    function applyLang(lang){
+      document.body.classList.remove("lang-fr","lang-en");
+      document.body.classList.add("lang-" + lang);
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-lang]").forEach(el => {
+        el.hidden = (el.getAttribute("data-lang") !== lang);
+      });
+
+      localStorage.setItem(KEY, lang);
+    }
+
+    const saved = localStorage.getItem(KEY);
+    const initial = (saved === "en" || saved === "fr")
+      ? saved
+      : (browser.startsWith("en") ? "en" : "fr");
+
+    applyLang(initial);
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      const isEN = document.body.classList.contains("lang-en");
+      applyLang(isEN ? "fr" : "en");
+    });
+  </script>
 </body>
 </html>
