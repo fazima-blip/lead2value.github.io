@@ -8,79 +8,102 @@
 
   <style>
     :root{
-      --bg: #0b1220;
-      --panel: rgba(255,255,255,.06);
-      --panel-2: rgba(255,255,255,.04);
-      --border: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --muted2: rgba(255,255,255,.58);
-      --accent: #67b7ff;
-      --accent2: #7c4dff;
-      --accent3: #ffd166;
-      --shadow: 0 18px 48px rgba(0,0,0,.35);
-      --radius: 16px;
-      --max: 1120px;
+      /* Core */
+      --bg0:#070B14;
+      --bg1:#0B1220;
+      --txt:#EAF0FF;
+      --mut:#B8C1D9;
+      --mut2:#97A3BF;
+
+      /* Accents */
+      --a1:#4FD1C5;
+      --a2:#6C63FF;
+      --a3:#F5C542;
+
+      /* Surfaces */
+      --glass: rgba(255,255,255,.06);
+      --glass2: rgba(255,255,255,.045);
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(255,255,255,.08);
+
+      /* Radii & shadows */
+      --r: 18px;
+      --r2: 24px;
+      --sh: 0 18px 60px rgba(0,0,0,.45);
+      --sh2: 0 10px 30px rgba(0,0,0,.30);
+
+      /* Layout */
+      --max: 1160px;
     }
 
     *{ box-sizing:border-box; }
-    html, body { height: 100%; }
+    html,body{ height:100%; }
     body{
       margin:0;
+      color:var(--txt);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 700px at 15% 10%, rgba(103,183,255,.18), transparent 55%),
-        radial-gradient(900px 650px at 85% 20%, rgba(124,77,255,.16), transparent 50%),
-        radial-gradient(900px 650px at 65% 95%, rgba(255,209,102,.10), transparent 50%),
-        var(--bg);
-      line-height: 1.55;
-      scroll-behavior: smooth;
+      line-height:1.55;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(79,209,197,.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 15%, rgba(108,99,255,.18), transparent 55%),
+        radial-gradient(900px 550px at 65% 95%, rgba(245,197,66,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+      scroll-behavior:smooth;
     }
 
-    a{ color: inherit; }
-    img{ max-width: 100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
 
-    /* ===== LAYOUT ===== */
+    /* ===== Layout ===== */
     .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 22px; }
-    .section{ padding: 84px 0; }
-    .section.compact{ padding: 64px 0; }
+    .section{ padding: 86px 0; }
+    .section.tight{ padding: 70px 0; }
 
-    /* ===== TOP NAV ===== */
+    /* ===== Topbar (no overflow artifacts) ===== */
     .top{
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(11,18,32,.80), rgba(11,18,32,.40));
+      z-index: 60;
+      background: rgba(7,11,20,.72);
       border-bottom: 1px solid rgba(255,255,255,.06);
+      backdrop-filter: blur(14px);
     }
-
+    .top::before{
+      /* subtle inner highlight, doesn't overflow */
+      content:"";
+      position:absolute; left:0; right:0; top:0;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      pointer-events:none;
+    }
     .topbar{
       display:flex;
       align-items:center;
-      justify-content: space-between;
+      justify-content:space-between;
+      gap:16px;
       padding: 14px 0;
-      gap: 16px;
+      position:relative;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap: 12px;
-      min-width: 220px;
+      gap:12px;
+      min-width: 250px;
     }
-
-    /* mini logo container */
     .brandMark{
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(103,183,255,.35), rgba(124,77,255,.30));
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background:
+        radial-gradient(16px 16px at 30% 30%, rgba(79,209,197,.28), transparent 70%),
+        radial-gradient(18px 18px at 70% 70%, rgba(108,99,255,.26), transparent 70%),
+        rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--sh2);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -88,108 +111,134 @@
       flex: 0 0 auto;
     }
     .brandMark img{
-      width: 80%;
-      height: 80%;
+      width: 78%;
+      height: 78%;
       object-fit: contain;
-      filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,.25));
     }
-
-    .brandText{
-      display:flex;
-      flex-direction: column;
-      line-height: 1.1;
+    .brandText{ line-height:1.05; }
+    .brandText strong{
+      display:block;
+      font-size: 14px;
+      letter-spacing: .3px;
     }
-    .brandText strong{ font-size: 14px; letter-spacing:.3px; }
-    .brandText span{ font-size: 12px; color: var(--muted2); }
+    .brandText span{
+      display:block;
+      font-size: 12px;
+      color: var(--mut2);
+      margin-top: 2px;
+    }
 
     .nav{
       display:flex;
       align-items:center;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 10px;
+      justify-content:center;
+      flex-wrap:wrap;
     }
     .nav a{
-      text-decoration:none;
-      color: var(--muted);
+      color: var(--mut);
       font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 10px;
+      padding: 9px 11px;
+      border-radius: 12px;
       border: 1px solid transparent;
+      background: transparent;
     }
     .nav a:hover{
-      color: var(--text);
+      color: var(--txt);
       border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.05);
     }
 
     .lang{
       display:flex;
       align-items:center;
       gap: 8px;
-      min-width: 120px;
-      justify-content: flex-end;
     }
     .lang button{
       appearance:none;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--txt);
+      padding: 9px 12px;
       border-radius: 12px;
       cursor:pointer;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13px;
       letter-spacing: .2px;
     }
     .lang button.active{
       background: rgba(255,255,255,.92);
-      color: #0b1220;
+      color: #0B1220;
       border-color: rgba(255,255,255,.92);
     }
 
-    /* ===== HERO ===== */
+    /* ===== Hero ===== */
     .hero{
-      padding: 72px 0 40px;
+      padding: 74px 0 34px;
+      position:relative;
     }
-
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 36px;
-      align-items: center;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 28px;
+      align-items:center;
     }
 
     .kicker{
-      color: var(--muted);
-      font-size: 14px;
-      letter-spacing: .14em;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--mut);
+      font-size: 13px;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 99px;
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: 0 0 0 6px rgba(79,209,197,.08);
     }
 
     h1{
-      margin: 0 0 14px;
-      font-size: clamp(34px, 4vw, 52px);
-      letter-spacing: -0.02em;
+      margin: 14px 0 12px;
+      font-size: clamp(36px, 4.2vw, 56px);
       line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .sub{
+      margin:0;
+      color: var(--mut);
+      font-size: 18px;
+      max-width: 64ch;
     }
 
-    .sub{
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 62ch;
-      margin: 0 0 22px;
+    .chips{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+    .chip{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--mut);
+      font-size: 13px;
     }
 
     .actions{
+      margin-top: 22px;
       display:flex;
       gap: 12px;
       flex-wrap: wrap;
-      align-items: center;
-      margin-top: 6px;
+      align-items:center;
     }
-
     .btn{
       display:inline-flex;
       align-items:center;
@@ -197,231 +246,239 @@
       gap: 10px;
       padding: 12px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.08);
-      color: var(--text);
-      text-decoration:none;
-      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--txt);
+      font-weight: 900;
       font-size: 14px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      box-shadow: 0 12px 34px rgba(0,0,0,.20);
       white-space: nowrap;
     }
-    .btn:hover{ background: rgba(255,255,255,.12); }
-
+    .btn:hover{ background: rgba(255,255,255,.08); }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(103,183,255,.95), rgba(124,77,255,.90));
-      border-color: rgba(255,255,255,.18);
-      color: #0b1220;
+      background: linear-gradient(135deg, rgba(79,209,197,.95), rgba(108,99,255,.92));
+      color: #071019;
+      border-color: rgba(255,255,255,.12);
     }
-    .btn.primary:hover{ filter: brightness(1.02); }
-
-    .note{
-      color: var(--muted2);
-      font-size: 13px;
-      margin-top: 14px;
-    }
+    .btn.primary:hover{ filter: brightness(1.03); }
 
     .heroCard{
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
+      border-radius: var(--r2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      box-shadow: var(--sh);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+      isolation: isolate;
     }
-    .heroCard:before{
+    .heroCard::before{
       content:"";
-      position:absolute; inset:-120px -140px auto auto;
-      width: 260px; height: 260px;
-      background: radial-gradient(circle at 30% 30%, rgba(103,183,255,.25), transparent 65%);
+      position:absolute;
+      inset:-160px -200px auto auto;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle at 30% 30%, rgba(79,209,197,.24), transparent 60%);
       transform: rotate(14deg);
+      z-index:-1;
+    }
+    .heroCard::after{
+      content:"";
+      position:absolute;
+      inset:auto -220px -220px auto;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle at 30% 30%, rgba(108,99,255,.22), transparent 60%);
+      z-index:-1;
     }
 
-    .logoWrap{
+    .logoBig{
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 18px 0 12px;
+      padding: 18px 0 10px;
     }
-
-    .logoWrap img{
-      width: min(300px, 78%);
+    .logoBig img{
+      width: min(320px, 82%);
       height:auto;
-      filter: drop-shadow(0 14px 30px rgba(0,0,0,.25));
+      filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));
     }
 
-    .mini{
+    .statGrid{
       margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,.10);
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .mini div{
-      background: rgba(255,255,255,.06);
+    .stat{
+      border-radius: var(--r);
       border: 1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      padding: 12px 12px;
+      background: rgba(255,255,255,.045);
+      padding: 14px 14px;
     }
-    .mini strong{ display:block; font-size: 13px; }
-    .mini span{ display:block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .stat strong{
+      display:block;
+      font-size: 13px;
+      letter-spacing: -.01em;
+    }
+    .stat span{
+      display:block;
+      margin-top: 6px;
+      color: var(--mut);
+      font-size: 12px;
+      line-height: 1.55;
+    }
 
-    /* ===== SECTIONS CONTENT ===== */
+    /* ===== Panels ===== */
     .panel{
-      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
       border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: 0 18px 50px rgba(0,0,0,.22);
       padding: 26px;
     }
-
     .h2{
-      font-size: 26px;
-      margin: 0 0 12px;
-      letter-spacing: -0.01em;
+      margin:0 0 10px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
     }
     .lead{
-      margin: 0;
-      color: var(--muted);
+      margin:0;
+      color: var(--mut);
       font-size: 16px;
-      max-width: 90ch;
+      max-width: 92ch;
     }
 
-    .cards{
-      margin-top: 22px;
+    .grid3{
+      margin-top: 18px;
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 14px;
     }
-
     .card{
-      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
       border: 1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
+      background: rgba(255,255,255,.045);
       padding: 18px;
-      min-height: 140px;
+      min-height: 138px;
     }
     .card h3{
-      margin: 0 0 8px;
+      margin:0 0 8px;
       font-size: 15px;
-      letter-spacing: -0.01em;
+      letter-spacing: -.01em;
     }
     .card p{
       margin:0;
-      color: var(--muted);
+      color: var(--mut);
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    .twoCol{
+    .grid2{
+      margin-top: 16px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 18px;
+      gap: 14px;
     }
-
-    .list{
+    .box{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 18px;
+    }
+    .box .t{
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    ul{
       margin: 10px 0 0;
       padding: 0 0 0 18px;
-      color: var(--muted);
+      color: var(--mut);
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    /* ===== CONTACT ===== */
+    /* ===== Contact (no halos) ===== */
     .contact{
-      background: linear-gradient(135deg, rgba(103,183,255,.18), rgba(124,77,255,.12));
-      border-top: 1px solid rgba(255,255,255,.08);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      position:relative;
     }
-
+    .contact .panel{
+      background: rgba(7,11,20,.55);
+      border-color: rgba(255,255,255,.12);
+    }
     .contactGrid{
       display:grid;
-      grid-template-columns: 1fr .9fr;
-      gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
       align-items: start;
     }
 
-    .contactBox{
-      background: rgba(11,18,32,.55);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .emailLine{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .emailLine a{
-      color: var(--text);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-    }
-
-    /* Important: style only the main CTA button, not all links */
-    .contactBtn{
+    .ctaBtn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       padding: 12px 16px;
       border-radius: 14px;
       background: rgba(255,255,255,.92);
-      color: #0b1220;
+      color: #071019;
       border: 1px solid rgba(255,255,255,.92);
-      font-weight: 900;
-      text-decoration:none;
+      font-weight: 950;
       margin-top: 14px;
       width: fit-content;
     }
-    .contactBtn:hover{ filter: brightness(1.02); }
+    .ctaBtn:hover{ filter: brightness(1.02); }
 
-    /* ===== FOOTER ===== */
-    footer{
-      padding: 22px 0 30px;
-      color: rgba(255,255,255,.58);
-      font-size: 13px;
-      text-align: center;
+    .emailLine{
+      margin-top: 10px;
+      color: var(--mut);
+      font-size: 14px;
+    }
+    .emailLine a{
+      color: var(--txt);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
     }
 
-    /* ===== LANGUAGE ===== */
+    /* ===== Footer ===== */
+    footer{
+      padding: 28px 0 34px;
+      text-align:center;
+      color: rgba(234,240,255,.60);
+      font-size: 13px;
+    }
+
+    /* ===== Language ===== */
     [data-lang]{ display:none; }
     body.lang-fr [data-lang="fr"]{ display:block; }
     body.lang-en [data-lang="en"]{ display:block; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px){
+    /* ===== Responsive ===== */
+    @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
-      .cards{ grid-template-columns: 1fr; }
-      .twoCol{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
       .nav{ display:none; }
       .brand{ min-width: 0; }
-      .lang{ min-width: 0; }
-      .logoWrap img{ width: min(280px, 76%); }
     }
 
     @media (prefers-reduced-motion: reduce){
       body{ scroll-behavior: auto; }
-      *{ transition: none !important; animation: none !important; }
+      *{ animation: none !important; transition:none !important; }
     }
   </style>
 </head>
 
 <body class="lang-fr">
 
-  <!-- TOP -->
+  <!-- TOP BAR -->
   <div class="top">
     <div class="wrap">
       <div class="topbar">
         <div class="brand" aria-label="Lead2Value">
           <div class="brandMark">
-            <img src="./logo.png?v=4" alt="Lead2Value logo mini">
+            <img src="./logo.png?v=7" alt="Lead2Value logo mini" />
           </div>
           <div class="brandText">
             <strong>Lead2Value</strong>
@@ -449,121 +506,124 @@
   </div>
 
   <!-- HERO -->
-  <div class="hero">
+  <header class="hero">
     <div class="wrap">
       <div class="heroGrid">
 
         <div>
-          <div class="kicker" data-lang="fr">De la demande à la valeur</div>
-          <div class="kicker" data-lang="en">From demand to value</div>
+          <div class="kicker" data-lang="fr"><span class="dot"></span> Cabinets d’expertise comptable</div>
+          <div class="kicker" data-lang="en"><span class="dot"></span> Accounting firms</div>
 
           <div data-lang="fr">
             <h1>Attirez des dossiers à plus forte valeur, sans augmenter la charge.</h1>
             <p class="sub">
-              Lead2Value accompagne les cabinets d’expertise comptable qui sont déjà bien demandés,
-              mais saturés par un mix client peu rentable. Objectif : attirer des dossiers B2B mieux qualifiés,
-              alignés avec vos critères (taille, complexité, honoraires) — sans alourdir l’organisation.
+              Pour les cabinets déjà demandés, mais saturés par un mix client peu rentable.
+              Nous structurons une acquisition sélective et une pré-qualification stricte
+              pour générer des opportunités B2B alignées (taille, complexité, honoraires, récurrence).
             </p>
           </div>
 
           <div data-lang="en">
             <h1>Attract higher-value engagements, without increasing workload.</h1>
             <p class="sub">
-              Lead2Value supports established accounting firms with strong demand but limited capacity.
-              We help attract better-fit B2B engagements aligned with your value criteria—without adding operational burden.
+              For established firms with strong demand and limited capacity.
+              We build selective acquisition and strict pre-qualification to generate aligned B2B opportunities
+              (size, complexity, fees, recurring work).
             </p>
+          </div>
+
+          <div class="chips">
+            <span class="chip" data-lang="fr">Qualité &gt; volume</span>
+            <span class="chip" data-lang="fr">Capacité protégée</span>
+            <span class="chip" data-lang="fr">Pré-qualification</span>
+
+            <span class="chip" data-lang="en">Quality &gt; volume</span>
+            <span class="chip" data-lang="en">Capacity protected</span>
+            <span class="chip" data-lang="en">Pre-qualification</span>
           </div>
 
           <div class="actions">
             <a class="btn primary" href="#contact" data-lang="fr">Prendre contact</a>
             <a class="btn primary" href="#contact" data-lang="en">Get in touch</a>
-
             <a class="btn" href="mailto:contact@lead2value.com">contact@lead2value.com</a>
           </div>
-
-          <div class="note" data-lang="fr">Capacité protégée • Qualification stricte • Qualité > volume</div>
-          <div class="note" data-lang="en">Capacity protected • Strict qualification • Quality > volume</div>
         </div>
 
         <aside class="heroCard" aria-label="Brand card">
-          <div class="logoWrap">
-            <img src="./logo.png?v=4" alt="Lead2Value logo">
+          <div class="logoBig">
+            <img src="./logo.png?v=7" alt="Lead2Value logo" />
           </div>
-
-          <div class="mini">
-            <div>
+          <div class="statGrid">
+            <div class="stat">
               <strong data-lang="fr">Mix client</strong>
               <strong data-lang="en">Client mix</strong>
-              <span data-lang="fr">Moins de “petits dossiers” chronophages</span>
-              <span data-lang="en">Fewer low-margin time sinks</span>
+              <span data-lang="fr">Réduire les “petits dossiers” chronophages, augmenter la valeur par dossier.</span>
+              <span data-lang="en">Reduce low-margin time sinks and increase value per engagement.</span>
             </div>
-            <div>
-              <strong data-lang="fr">Valeur / dossier</strong>
-              <strong data-lang="en">Value per engagement</strong>
-              <span data-lang="fr">Plus de B2B récurrent et rentable</span>
-              <span data-lang="en">More recurring, profitable B2B</span>
+            <div class="stat">
+              <strong data-lang="fr">Pré-qualification</strong>
+              <strong data-lang="en">Pre-qualification</strong>
+              <span data-lang="fr">Contexte, besoin, timing, budget — filtrés avant RDV.</span>
+              <span data-lang="en">Context, need, timing, budget — filtered before meetings.</span>
             </div>
           </div>
         </aside>
 
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- APPROACH -->
-  <section id="approach" class="section compact">
+  <section id="approach" class="section tight">
     <div class="wrap">
       <div class="panel">
         <div data-lang="fr">
-          <div class="h2">Une approche adaptée aux cabinets</div>
+          <h2 class="h2">Une approche réellement adaptée aux cabinets</h2>
           <p class="lead">
-            Nous connaissons les contraintes d’un cabinet : pics de charge (clôtures, TVA), production prioritaire,
-            arbitrage permanent entre “répondre à tout” et préserver la capacité. L’enjeu n’est pas d’avoir plus de demandes,
-            mais d’avoir <b>les bons dossiers</b> : meilleure qualité, meilleure rentabilité, meilleure stabilité.
-            <br><br>
-            Notre rôle : créer un flux d’opportunités cohérent (taille, secteur, complexité) et filtrer avant toute mise en relation.
+            Pics de charge (clôtures, TVA), production prioritaire, et arbitrage permanent sur la capacité :
+            l’enjeu n’est pas “plus de demandes”, mais <b>les bons dossiers</b>.
+            Nous travaillons avec des critères simples et concrets : seuil d’honoraires, complexité, récurrence, secteur,
+            taille d’entreprise et qualité de la tenue.
           </p>
         </div>
 
         <div data-lang="en">
-          <div class="h2">An approach built for accounting firms</div>
+          <h2 class="h2">An approach built for accounting firms</h2>
           <p class="lead">
-            We understand the reality of an accounting firm: seasonal peaks (close, VAT), delivery first,
-            constant trade-offs between saying yes and protecting capacity. The goal isn’t more demand—
-            it’s <b>better-fit engagements</b>: higher value, better margins, and stability.
-            <br><br>
-            Our role: create a coherent flow of opportunities and qualify before any introduction.
+            Seasonal peaks, delivery-first operations, constant capacity trade-offs:
+            the goal isn’t “more demand” — it’s <b>better-fit engagements</b>.
+            We use practical criteria: fee threshold, complexity, recurring work, industry, company size, and bookkeeping quality.
           </p>
         </div>
 
-        <div class="twoCol">
-          <div>
-            <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="fr">Ce que vous obtenez</div>
-            <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="en">What you get</div>
-            <ul class="list" data-lang="fr">
-              <li>Des prospects B2B alignés avec vos critères (honoraires, complexité, récurrence)</li>
-              <li>Une qualification stricte avant RDV (fit, besoin, timing)</li>
-              <li>Moins de bruit, plus de qualité dans le pipe</li>
+        <div class="grid2">
+          <div class="box">
+            <div class="t" data-lang="fr">Ce que vous obtenez</div>
+            <div class="t" data-lang="en">What you get</div>
+            <ul data-lang="fr">
+              <li>Opportunités B2B alignées avec vos critères</li>
+              <li>Moins de bruit, plus de qualité dans le pipeline</li>
+              <li>Décision finale côté cabinet (vous gardez le contrôle)</li>
             </ul>
-            <ul class="list" data-lang="en">
-              <li>B2B prospects aligned with your value criteria (fees, complexity, recurring work)</li>
-              <li>Strict qualification before meetings (fit, need, timing)</li>
+            <ul data-lang="en">
+              <li>B2B opportunities aligned with your criteria</li>
               <li>Less noise, higher-quality pipeline</li>
+              <li>Final decision stays with the firm</li>
             </ul>
           </div>
 
-          <div>
-            <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="fr">Ce que nous évitons</div>
-            <div class="h2" style="font-size:18px;margin-bottom:8px" data-lang="en">What we avoid</div>
-            <ul class="list" data-lang="fr">
-              <li>Les demandes “petites missions” non rentables</li>
-              <li>Les volumes artificiels et les leads non qualifiés</li>
-              <li>La complexité opérationnelle inutile</li>
+          <div class="box">
+            <div class="t" data-lang="fr">Ce que nous évitons</div>
+            <div class="t" data-lang="en">What we avoid</div>
+            <ul data-lang="fr">
+              <li>Leads non qualifiés et volumes artificiels</li>
+              <li>Complexité et outils inutiles</li>
+              <li>Charge supplémentaire côté production</li>
             </ul>
-            <ul class="list" data-lang="en">
-              <li>Low-margin small engagements</li>
-              <li>Artificial volume and unqualified leads</li>
-              <li>Unnecessary operational complexity</li>
+            <ul data-lang="en">
+              <li>Unqualified leads and artificial volume</li>
+              <li>Unnecessary tools and complexity</li>
+              <li>Extra burden on delivery teams</li>
             </ul>
           </div>
         </div>
@@ -573,44 +633,44 @@
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="section compact">
+  <section id="services" class="section tight">
     <div class="wrap">
       <div class="panel">
         <div data-lang="fr">
-          <div class="h2">Services</div>
+          <h2 class="h2">Services</h2>
           <p class="lead">
-            Un dispositif simple, pensé pour un cabinet : ciblage précis, messages sobres, qualification en amont.
-            Vous gardez le contrôle sur les critères et l’acceptation des dossiers.
+            Un dispositif simple et propre : ciblage précis, messages sobres, pré-qualification stricte.
+            Conçu pour un cabinet qui veut remplacer progressivement les dossiers faibles par des dossiers solides.
           </p>
         </div>
         <div data-lang="en">
-          <div class="h2">Services</div>
+          <h2 class="h2">Services</h2>
           <p class="lead">
-            A simple system designed for accounting firms: precise targeting, concise messaging, upfront qualification.
-            You stay in control of criteria and acceptance.
+            A clean, simple system: precise targeting, concise messaging, strict pre-qualification.
+            Built to progressively replace low-value work with strong engagements.
           </p>
         </div>
 
-        <div class="cards">
+        <div class="grid3">
           <div class="card">
             <h3 data-lang="fr">Acquisition ciblée</h3>
             <h3 data-lang="en">Targeted acquisition</h3>
-            <p data-lang="fr">Prospection alignée sur vos “bons dossiers” (taille, secteur, complexité, récurrence).</p>
-            <p data-lang="en">Outreach aligned with your “ideal engagements” (size, industry, complexity, recurring).</p>
+            <p data-lang="fr">Prospection alignée sur vos critères : honoraires, complexité, secteur, récurrence.</p>
+            <p data-lang="en">Outreach aligned with your criteria: fees, complexity, industry, recurring work.</p>
           </div>
 
           <div class="card">
             <h3 data-lang="fr">Pré-qualification</h3>
             <h3 data-lang="en">Pre-qualification</h3>
-            <p data-lang="fr">Filtrage avant RDV : contexte, besoins, budget, calendrier, fit cabinet.</p>
-            <p data-lang="en">Filtering before meetings: context, needs, budget, timing, firm fit.</p>
+            <p data-lang="fr">Contexte, besoin, timing, budget, fit cabinet — filtrés avant mise en relation.</p>
+            <p data-lang="en">Context, need, timing, budget, firm fit — filtered before introductions.</p>
           </div>
 
           <div class="card">
             <h3 data-lang="fr">Exécution légère</h3>
-            <h3 data-lang="en">Lightweight execution</h3>
-            <p data-lang="fr">Reporting utile, ajustements progressifs, sans multiplier les outils ni la charge interne.</p>
-            <p data-lang="en">Useful reporting, iterative improvements—without piling on tools or internal workload.</p>
+            <h3 data-lang="en">Lightweight delivery</h3>
+            <p data-lang="fr">Reporting utile et ajustements progressifs — sans alourdir l’organisation.</p>
+            <p data-lang="en">Useful reporting and iteration — without adding operational burden.</p>
           </div>
         </div>
 
@@ -619,46 +679,47 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section contact">
+  <section id="contact" class="section tight contact">
     <div class="wrap">
       <div class="contactGrid">
-        <div class="contactBox">
+        <div class="panel">
           <div data-lang="fr">
-            <div class="h2">Contact</div>
+            <h2 class="h2">Contact</h2>
             <p class="lead">
-              Dites-nous votre cible (secteurs, taille, type de dossiers, seuil d’honoraires) et vos contraintes de capacité.
-              Nous vous répondrons rapidement.
+              Partagez vos critères (secteurs, taille, seuil d’honoraires, type de dossiers) et vos contraintes de capacité.
+              Nous vous répondons rapidement.
             </p>
-            <a class="contactBtn" href="mailto:contact@lead2value.com">Écrire à Lead2Value</a>
+            <a class="ctaBtn" href="mailto:contact@lead2value.com">Écrire à Lead2Value</a>
             <div class="emailLine">Email : <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
           </div>
 
           <div data-lang="en">
-            <div class="h2">Contact</div>
+            <h2 class="h2">Contact</h2>
             <p class="lead">
-              Share your target (industries, size, engagement types, fee threshold) and capacity constraints.
+              Share your criteria (industries, size, fee threshold, engagement types) and capacity constraints.
               We’ll respond quickly.
             </p>
-            <a class="contactBtn" href="mailto:contact@lead2value.com">Email Lead2Value</a>
+            <a class="ctaBtn" href="mailto:contact@lead2value.com">Email Lead2Value</a>
             <div class="emailLine">Email: <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
           </div>
         </div>
 
-        <div class="contactBox">
+        <div class="panel">
           <div data-lang="fr">
-            <div class="h2">Exemples de dossiers souvent recherchés</div>
-            <ul class="list">
-              <li>PME/TPE B2B structurées (récurrence, volume stable)</li>
-              <li>Groupes / holdings (consolidation, management fees, structuration)</li>
-              <li>Services pro : B2B récurrent, facturation claire, process</li>
+            <h2 class="h2">Exemples de dossiers souvent recherchés</h2>
+            <ul>
+              <li>PME B2B structurées : récurrence et volume stable</li>
+              <li>Holdings / groupes : reporting, structuration, complexité</li>
+              <li>Services pro : facturation claire, process, suivi</li>
             </ul>
           </div>
+
           <div data-lang="en">
-            <div class="h2">Typical engagements often targeted</div>
-            <ul class="list">
-              <li>Structured B2B SMEs (recurring work, stable volume)</li>
-              <li>Groups / holdings (structuring, reporting, complexity)</li>
-              <li>Professional services with clear recurring needs</li>
+            <h2 class="h2">Typical engagements often targeted</h2>
+            <ul>
+              <li>Structured B2B SMEs: recurring work and stable volume</li>
+              <li>Holdings / groups: reporting, structuring, complexity</li>
+              <li>Professional services: clear billing, processes, follow-up</li>
             </ul>
           </div>
         </div>
