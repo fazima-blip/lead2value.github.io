@@ -14,7 +14,7 @@
       --line:rgba(255,255,255,.12);
       --text:#f3f6ff;
       --muted:#bac3e6;
-      --accent:#f6c445; /* jaune */
+      --accent:#f6c445;
       --blue:#6aa7ff;
       --max:1120px;
       --r:22px;
@@ -40,7 +40,6 @@
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding: 18px 18px 70px;}
-
     .bg-grid{
       position:fixed; inset:0;
       background:
@@ -56,56 +55,58 @@
     .nav{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(12px);
-      background: rgba(7,10,18,.62);
+      background: rgba(7,10,18,.66);
       border-bottom:1px solid rgba(255,255,255,.08);
       box-shadow: 0 14px 40px rgba(0,0,0,.35);
     }
     .nav-inner{
       max-width:var(--max);
       margin:0 auto;
-      padding: 14px 18px;
+      padding: 16px 18px; /* a bit taller */
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:14px;
     }
 
-    /* BRAND (logo très clair => backplate plus sombre + halo) */
+    /* BRAND (logo très clair => backplate sombre + halo) */
     .brand{
-      display:flex; align-items:center; gap:12px;
+      display:flex; align-items:center; gap:16px;
       font-weight:980;
       letter-spacing:.2px;
-      min-width: 200px;
+      min-width: 260px;
     }
     .brand-text{
-      font-size:16px;
+      font-size:18px;
       line-height:1;
+      letter-spacing:.2px;
     }
 
+    /* ✅ 2–3x bigger */
     .brand-mark{
       position:relative;
-      width:52px;
-      height:52px;
-      border-radius: 18px;
+      width:130px;
+      height:130px;
+      border-radius: 34px;
       display:flex;
       align-items:center;
       justify-content:center;
       background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.12), transparent 70%),
-        linear-gradient(180deg, rgba(0,0,0,.40), rgba(0,0,0,.22));
+        radial-gradient(40px 40px at 30% 30%, rgba(255,255,255,.12), transparent 70%),
+        linear-gradient(180deg, rgba(0,0,0,.46), rgba(0,0,0,.22));
       border: 1px solid rgba(255,255,255,.18);
       box-shadow:
-        0 18px 40px rgba(0,0,0,.40),
-        0 0 0 7px rgba(246,196,69,.12),
-        0 0 55px rgba(106,167,255,.20);
+        0 22px 55px rgba(0,0,0,.45),
+        0 0 0 9px rgba(246,196,69,.12),
+        0 0 70px rgba(106,167,255,.20);
       overflow:hidden;
       flex: 0 0 auto;
     }
     .brand-logo{
-      width:40px;
-      height:40px;
+      width:100px;
+      height:100px;
       object-fit:contain;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.40));
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,.42));
     }
 
     .navlinks{
@@ -185,7 +186,6 @@
     body.lang-en .chip-fr{opacity:.55}
     body.lang-fr .chip-en{opacity:.55}
 
-    /* Bulletproof language hiding */
     [data-lang][hidden]{ display:none !important; }
 
     /* HERO */
@@ -257,7 +257,7 @@
       gap:16px;
       align-items:stretch;
     }
-    @media (max-width: 920px){ .hero-split{grid-template-columns:1fr} }
+    @media (max-width: 980px){ .hero-split{grid-template-columns:1fr} }
 
     .panel{
       background: rgba(255,255,255,.06);
@@ -422,7 +422,7 @@
       grid-template-columns:1fr 1fr;
       gap:10px;
     }
-    @media (max-width: 520px){ .two{grid-template-columns:1fr} }
+    @media (max-width: 560px){ .two{grid-template-columns:1fr} }
 
     input, textarea{
       width:100%;
@@ -463,11 +463,17 @@
       flex: 0 0 auto;
     }
 
-    @media (max-width: 520px){
+    /* responsive nav with huge logo */
+    @media (max-width: 980px){
       .navlinks{display:none}
-      h1{max-width: 100%}
       .brand{min-width:auto}
-      .footer-left{min-width:auto}
+      .brand-text{display:none} /* keep only large mark on small screens */
+      .brand-mark{width:110px;height:110px;border-radius:30px}
+      .brand-logo{width:86px;height:86px}
+    }
+    @media (max-width: 520px){
+      .brand-mark{width:92px;height:92px;border-radius:26px}
+      .brand-logo{width:72px;height:72px}
     }
   </style>
 </head>
@@ -698,79 +704,6 @@
       </div>
     </section>
 
-    <!-- COMMITMENT -->
-    <section class="section" id="engagement">
-      <div class="commit">
-        <div class="commit-inner">
-          <h2 data-lang="fr">Votre investissement, notre engagement</h2>
-          <h2 data-lang="en">Your investment, our commitment</h2>
-
-          <div class="subpill" data-lang="fr">objectif défini lors de l’audit</div>
-          <div class="subpill" data-lang="en">goal defined during the audit</div>
-
-          <div class="twopills">
-            <div class="pillbox blue">
-              <div data-lang="fr">Objectif : un flux de demandes qualifiées<br/><span style="opacity:.9;">(défini selon votre marché)</span></div>
-              <div data-lang="en">Goal: a flow of qualified requests<br/><span style="opacity:.9;">(defined for your market)</span></div>
-            </div>
-            <div class="pillbox gold">
-              <div data-lang="fr">Si l’objectif n’est pas atteint :<br/><span style="font-weight:980;">prolongation sans frais</span></div>
-              <div data-lang="en">If the goal isn’t met:<br/><span style="font-weight:980;">we extend at no cost</span></div>
-            </div>
-          </div>
-
-          <div class="cond" data-lang="fr">*Conditions : cadrage et objectif validés lors de l’audit, en fonction de votre capacité et de la pertinence du dispositif.</div>
-          <div class="cond" data-lang="en">*Conditions: scope and goal validated during the audit, based on your capacity and overall fit.</div>
-
-          <div class="benefits">
-            <span data-lang="fr">💶 Rentabilité</span><span data-lang="en">💶 Profitability</span>
-            <span data-lang="fr">⏱️ Temps associé</span><span data-lang="en">⏱️ Partner time</span>
-            <span data-lang="fr">🧠 Sérénité</span><span data-lang="en">🧠 Peace of mind</span>
-          </div>
-
-          <div style="margin-top:18px;">
-            <a class="btn primary" href="#contact" data-lang="fr">Réserver l’audit</a>
-            <a class="btn primary" href="#contact" data-lang="en">Book the audit</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="section-head">
-        <h2>FAQ</h2>
-        <div class="lead" data-lang="fr">Les questions fréquentes, côté cabinet.</div>
-        <div class="lead" data-lang="en">Common questions from accounting firms.</div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">❓</div>
-          <h3 data-lang="fr">Quels canaux utilisez-vous ?</h3>
-          <h3 data-lang="en">Which channels do you use?</h3>
-          <p data-lang="fr">Le canal dépend de votre positionnement, de votre zone et de votre marché. Nous priorisons la stabilité et la qualité.</p>
-          <p data-lang="en">It depends on your positioning, area, and market. We prioritize stability and lead quality.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🧾</div>
-          <h3 data-lang="fr">Comment assurez-vous la qualité ?</h3>
-          <h3 data-lang="en">How do you ensure quality?</h3>
-          <p data-lang="fr">Critères d’exclusion, scoring et orientation adaptée. L’objectif est de protéger votre temps.</p>
-          <p data-lang="en">Exclusion criteria, scoring, and proper routing. The objective is to protect your time.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">⏱️</div>
-          <h3 data-lang="fr">Quand voyez-vous un impact ?</h3>
-          <h3 data-lang="en">When do you see impact?</h3>
-          <p data-lang="fr">Après installation, l’optimisation porte sur la qualité des demandes. Le délai dépend du canal et de votre zone.</p>
-          <p data-lang="en">After setup, optimization focuses on demand quality. Timing depends on channel and your area.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
     <section class="section" id="contact">
       <div class="section-head">
@@ -785,14 +718,6 @@
           <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">Demande d’audit</div>
           <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">Audit request</div>
 
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="fr">
-            Décrivez brièvement votre cabinet et vos critères. Nous reviendrons vers vous avec les prochaines étapes.
-          </p>
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="en">
-            Briefly describe your firm and criteria. We’ll follow up with the next steps.
-          </p>
-
-          <!-- ✅ FORM SUBMIT (GRATUIT) + Nom personne + téléphone -->
           <form class="form" action="https://formsubmit.co/contact@lead2value.com" method="POST">
             <input type="hidden" name="_subject" value="Nouvelle demande d’audit — Lead2Value">
             <input type="hidden" name="_captcha" value="true">
@@ -817,22 +742,15 @@
 
             <div id="sentMsgFr" class="mini" hidden data-lang="fr">Merci. Votre demande a bien été envoyée.</div>
             <div id="sentMsgEn" class="mini" hidden data-lang="en">Thank you. Your request has been sent.</div>
-
-            <div class="mini" data-lang="fr">Réponse sous 24–48h ouvrées.</div>
-            <div class="mini" data-lang="en">Reply within 24–48 business hours.</div>
           </form>
+
+          <div class="mini" data-lang="fr" style="margin-top:10px;">Réponse sous 24–48h ouvrées.</div>
+          <div class="mini" data-lang="en" style="margin-top:10px;">Reply within 24–48 business hours.</div>
         </div>
 
         <div class="panel">
           <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">À l’issue de l’audit</div>
           <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">After the audit</div>
-
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="fr">
-            Même si nous ne poursuivons pas, vous repartez avec une vision claire.
-          </p>
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="en">
-            Even if we don’t move forward, you leave with clarity.
-          </p>
 
           <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:760;" data-lang="fr">
             <li>Critères précis : dossiers à accepter / à refuser</li>
@@ -847,13 +765,6 @@
             <li>Priority qualification optimizations</li>
             <li>Clear relevance verdict</li>
           </ul>
-
-          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="#top" data-lang="fr">Retour en haut</a>
-            <a class="btn" href="#top" data-lang="en">Back to top</a>
-            <a class="btn ghost" href="#offre" data-lang="fr">Revoir l’offre</a>
-            <a class="btn ghost" href="#offre" data-lang="en">Review the offer</a>
-          </div>
         </div>
       </div>
     </section>
@@ -868,7 +779,6 @@
       <div style="display:flex; gap:14px; flex-wrap:wrap;">
         <a href="#offre" data-lang="fr">Offre</a><a href="#offre" data-lang="en">Offer</a>
         <a href="#process" data-lang="fr">Méthode</a><a href="#process" data-lang="en">Method</a>
-        <a href="#faq" data-lang="fr">FAQ</a><a href="#faq" data-lang="en">FAQ</a>
         <a href="#contact" data-lang="fr">Contact</a><a href="#contact" data-lang="en">Contact</a>
       </div>
     </footer>
@@ -876,28 +786,21 @@
   </div>
 
   <script>
-    // logo: put logo.png next to index.html (no assets folder)
     const LOGO_URL = "./logo.png";
     const navLogo = document.getElementById("logoNav");
     const footerLogo = document.getElementById("logoFooter");
     navLogo.src = LOGO_URL;
     footerLogo.src = LOGO_URL;
+    [navLogo, footerLogo].forEach(img => { img.onerror = () => { img.style.display = "none"; }; });
 
-    [navLogo, footerLogo].forEach(img => {
-      img.onerror = () => { img.style.display = "none"; };
-    });
-
-    // year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // show confirmation message after redirect
     const params = new URLSearchParams(window.location.search);
     if (params.get("sent") === "1") {
       document.getElementById("sentMsgFr")?.removeAttribute("hidden");
       document.getElementById("sentMsgEn")?.removeAttribute("hidden");
     }
 
-    // language system (bulletproof) + remember choice
     const KEY = "l2v_lang";
     const browser = (navigator.language || "").toLowerCase();
 
