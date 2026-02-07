@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lead2Value — Clients B2B rentables pour cabinets comptables</title>
-  <meta name="description" content="Lead2Value installe un système d’acquisition pour attirer et pré-qualifier des clients B2B plus rentables, sans surcharge interne." />
+  <title>Lead2Value — Développer un portefeuille clients B2B plus rentable</title>
+  <meta name="description" content="Lead2Value installe un système d’acquisition et de qualification pour attirer des clients B2B plus rentables pour votre cabinet comptable, sans alourdir l’organisation." />
 
   <style>
     :root{
       --bg:#070a12;
       --bg2:#0b1022;
       --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
       --line:rgba(255,255,255,.12);
       --text:#f3f6ff;
       --muted:#bac3e6;
@@ -46,7 +45,6 @@
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding: 18px 18px 70px;}
 
-    /* subtle grid */
     .bg-grid{
       position:fixed; inset:0;
       background:
@@ -74,10 +72,7 @@
       justify-content:space-between;
       gap:14px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:950; letter-spacing:.2px;
-    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:950; letter-spacing:.2px;}
     .logo{
       width:36px; height:36px; border-radius:14px;
       background: linear-gradient(135deg, rgba(246,196,69,1), rgba(106,167,255,.9));
@@ -117,9 +112,7 @@
     .btn.ghost{background: transparent}
 
     /* Language toggle */
-    .right{
-      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-    }
+    .right{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
     .lang-toggle{
       display:inline-flex;
       align-items:center;
@@ -130,6 +123,7 @@
       background: rgba(255,255,255,.05);
       box-shadow: 0 12px 28px rgba(0,0,0,.18);
       user-select:none;
+      cursor:pointer;
     }
     .lang-toggle .lbl{
       font-weight:950;
@@ -143,8 +137,6 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(0,0,0,.25);
       position:relative;
-      cursor:pointer;
-      transition: background .15s ease;
     }
     .knob{
       width: 24px; height: 24px;
@@ -195,14 +187,8 @@
         radial-gradient(1200px 650px at 50% 10%, rgba(255,255,255,.06), transparent 55%);
       pointer-events:none;
     }
-    .hero-inner{
-      position:relative;
-      padding: 58px 24px 48px;
-      text-align:left;
-    }
-    .hero-top{
-      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
-    }
+    .hero-inner{position:relative; padding: 58px 24px 48px; text-align:left;}
+    .hero-top{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding: 10px 14px;
@@ -222,7 +208,7 @@
       line-height: 1.03;
       font-weight: 980;
       letter-spacing:-.02em;
-      max-width: 18ch;
+      max-width: 20ch;
       text-shadow: 0 18px 45px rgba(0,0,0,.45);
     }
     .hero-accent{
@@ -233,19 +219,14 @@
       color: rgba(246,196,69,.98);
     }
     .sub{
-      max-width: 75ch;
+      max-width: 80ch;
       color: rgba(243,246,255,.85);
-      font-weight: 750;
+      font-weight: 740;
       font-size: 16px;
       margin: 0 0 18px;
     }
     .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
-    .note{
-      margin-top: 12px;
-      color: rgba(186,195,230,.90);
-      font-size: 13px;
-      font-weight: 750;
-    }
+    .note{margin-top: 12px; color: rgba(186,195,230,.90); font-size: 13px; font-weight: 740;}
     .hero-split{
       margin-top: 22px;
       display:grid;
@@ -273,19 +254,13 @@
       padding: 14px;
     }
     .kpi .big{font-size:18px; font-weight:980}
-    .kpi .small{font-size:12px; color:rgba(186,195,230,.9); font-weight:850}
+    .kpi .small{font-size:12px; color:rgba(186,195,230,.9); font-weight:840}
 
     /* sections */
     .section{padding: 54px 0 0}
     .section-head{text-align:center; margin-bottom: 26px;}
     h2{margin:0; font-size:var(--h2); font-weight:980; letter-spacing:-.01em}
-    .lead{
-      margin: 10px auto 0;
-      max-width: 85ch;
-      color: var(--muted);
-      font-weight: 760;
-      font-size: 15px;
-    }
+    .lead{margin: 10px auto 0; max-width: 90ch; color: var(--muted); font-weight: 740; font-size: 15px;}
 
     /* cards */
     .grid3{
@@ -394,13 +369,7 @@
       color:#0a0e18;
       background: linear-gradient(135deg, rgba(246,196,69,.95), rgba(255,220,120,.70));
     }
-    .cond{
-      margin-top: 10px;
-      color: rgba(186,195,230,.86);
-      font-size: 12px;
-      font-style: italic;
-      font-weight: 720;
-    }
+    .cond{margin-top: 10px; color: rgba(186,195,230,.86); font-size: 12px; font-style: italic; font-weight: 700;}
     .benefits{
       margin: 18px auto 0;
       display:flex; justify-content:center;
@@ -433,10 +402,10 @@
       background: rgba(0,0,0,.22);
       color: var(--text);
       outline:none;
-      font-weight: 750;
+      font-weight: 760;
     }
     textarea{min-height:110px; resize:vertical}
-    .mini{font-size:12px; color: rgba(186,195,230,.85); font-weight:720}
+    .mini{font-size:12px; color: rgba(186,195,230,.85); font-weight:700}
 
     /* footer */
     .footer{
@@ -444,12 +413,11 @@
       padding-top: 18px;
       border-top: 1px solid rgba(255,255,255,.10);
       color: rgba(186,195,230,.92);
-      font-weight: 720;
+      font-weight: 700;
       font-size: 14px;
       display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap;
     }
 
-    /* small */
     @media (max-width: 520px){
       .navlinks{display:none}
       h1{max-width: 100%}
@@ -468,381 +436,4 @@
         <div>Lead2Value</div>
       </div>
 
-      <div class="navlinks">
-        <a href="#offre" data-lang="fr">Offre</a>
-        <a href="#offre" data-lang="en">Offer</a>
-
-        <a href="#process" data-lang="fr">Process</a>
-        <a href="#process" data-lang="en">Process</a>
-
-        <a href="#faq" data-lang="fr">FAQ</a>
-        <a href="#faq" data-lang="en">FAQ</a>
-
-        <a href="#contact" data-lang="fr">Contact</a>
-        <a href="#contact" data-lang="en">Contact</a>
-      </div>
-
-      <div class="right">
-        <div class="lang-toggle" id="langToggle" role="button" aria-label="Toggle language">
-          <div class="lang-chip chip-fr">FR</div>
-          <div class="switch" aria-hidden="true"><div class="knob"></div></div>
-          <div class="lang-chip chip-en">EN</div>
-        </div>
-        <a class="btn primary" href="#contact" data-lang="fr">Réserver un audit</a>
-        <a class="btn primary" href="#contact" data-lang="en">Book a free audit</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap">
-
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <div class="hero-inner">
-        <div class="hero-top">
-          <div class="pill" data-lang="fr"><b>Lead2Value</b> <span>— Prospects B2B rentables</span></div>
-          <div class="pill" data-lang="en"><b>Lead2Value</b> <span>— Higher-value B2B leads</span></div>
-
-          <a class="btn ghost" href="#offre" data-lang="fr">Voir l’offre</a>
-          <a class="btn ghost" href="#offre" data-lang="en">See the offer</a>
-        </div>
-
-        <div data-lang="fr">
-          <h1>
-            Des prospects B2B <span style="color:rgba(106,167,255,.95)">qualifiés</span> pour votre cabinet,
-            <span class="hero-accent">sans surcharge interne.</span>
-          </h1>
-          <p class="sub">
-            Lead2Value aide les cabinets comptables (10–50 employés) à remplacer progressivement les dossiers peu rentables
-            par des clients B2B mieux qualifiés — via un système d’acquisition simple, mesurable et maîtrisé.
-          </p>
-          <div class="ctaRow">
-            <a class="btn primary" href="#contact">Obtenir un audit gratuit</a>
-            <a class="btn" href="#process">Voir le process</a>
-          </div>
-          <div class="note">⏱️ 15 min · Verdict direct · Si ce n’est pas un fit, on te le dit.</div>
-        </div>
-
-        <div data-lang="en">
-          <h1>
-            Qualified <span style="color:rgba(106,167,255,.95)">B2B leads</span> for your firm,
-            <span class="hero-accent">without adding internal workload.</span>
-          </h1>
-          <p class="sub">
-            Lead2Value helps accounting firms (10–50 employees) gradually replace low-margin clients
-            with higher-value B2B accounts — through a simple, measurable acquisition system.
-          </p>
-          <div class="ctaRow">
-            <a class="btn primary" href="#contact">Get a free audit</a>
-            <a class="btn" href="#process">See the process</a>
-          </div>
-          <div class="note">⏱️ 15 min · Clear verdict · If it’s not a fit, we’ll tell you.</div>
-        </div>
-
-        <div class="hero-split">
-          <div class="panel">
-            <div style="font-weight:980; font-size:18px;" data-lang="fr">Ce que vous obtenez</div>
-            <div style="font-weight:980; font-size:18px;" data-lang="en">What you get</div>
-
-            <p style="margin:8px 0 0; color:var(--muted); font-weight:740;" data-lang="fr">
-              Un flux stable de demandes filtrées, avec une prise de RDV simple et traçable.
-            </p>
-            <p style="margin:8px 0 0; color:var(--muted); font-weight:740;" data-lang="en">
-              A steady flow of filtered demand with simple, trackable appointment booking.
-            </p>
-
-            <div class="kpi">
-              <div class="box">
-                <div class="big" data-lang="fr">+ Qualité</div><div class="big" data-lang="en">Higher quality</div>
-                <div class="small" data-lang="fr">Moins de “petits dossiers”</div><div class="small" data-lang="en">Fewer low-margin clients</div>
-              </div>
-              <div class="box">
-                <div class="big" data-lang="fr">+ Pipeline</div><div class="big" data-lang="en">More pipeline</div>
-                <div class="small" data-lang="fr">RDV bookés sans chasing</div><div class="small" data-lang="en">Booked calls, no chasing</div>
-              </div>
-              <div class="box">
-                <div class="big" data-lang="fr">+ Contrôle</div><div class="big" data-lang="en">More control</div>
-                <div class="small" data-lang="fr">Critères ICP & scoring</div><div class="small" data-lang="en">ICP criteria & scoring</div>
-              </div>
-              <div class="box">
-                <div class="big" data-lang="fr">+ Mesure</div><div class="big" data-lang="en">Measurable</div>
-                <div class="small" data-lang="fr">Tracking & reporting</div><div class="small" data-lang="en">Tracking & reporting</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">Positionnement</div>
-            <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">Positioning</div>
-
-            <p style="margin:0; color:var(--muted); font-weight:740;" data-lang="fr">
-              <b>J’aide les cabinets comptables (10–50 employés) à attirer des clients B2B plus rentables</b>
-              et à pré-qualifier les demandes, pour remplacer progressivement les dossiers à faible marge — sans augmenter la charge interne.
-            </p>
-
-            <p style="margin:0; color:var(--muted); font-weight:740;" data-lang="en">
-              <b>I help accounting firms (10–50 employees) attract higher-value B2B clients</b>
-              and pre-qualify inbound demand, so partners can gradually replace low-margin work — without adding internal workload.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- OFFER -->
-    <section class="section" id="offre">
-      <div class="section-head">
-        <h2 data-lang="fr">Ce qu’on installe chez vous</h2>
-        <h2 data-lang="en">What we install for you</h2>
-        <div class="lead" data-lang="fr">Un mini-système complet : acquisition → qualification → prise de RDV → suivi.</div>
-        <div class="lead" data-lang="en">A complete mini-system: acquisition → qualification → booking → follow-up.</div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">🧩</div>
-          <h3 data-lang="fr">Landing page haute conversion</h3>
-          <h3 data-lang="en">High-converting landing page</h3>
-          <p data-lang="fr">Une page simple, crédible, orientée décision : promesse claire, preuves, objections, CTA net.</p>
-          <p data-lang="en">A clear, credible page built for decisions: message, proof, objections handled, strong CTA.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🧠</div>
-          <h3 data-lang="fr">Formulaire de qualification</h3>
-          <h3 data-lang="en">Qualification form</h3>
-          <p data-lang="fr">Questions + scoring : on filtre les demandes non rentables et on priorise les “bons fits”.</p>
-          <p data-lang="en">Questions + scoring: filter out poor-fit requests and prioritize high-value prospects.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">📅</div>
-          <h3 data-lang="fr">Calendrier + automations</h3>
-          <h3 data-lang="en">Calendar + automations</h3>
-          <p data-lang="fr">RDV instantanés + confirmations/relances. Pensé pour réduire la friction et le no-show.</p>
-          <p data-lang="en">Instant booking + confirmations/follow-ups. Designed to reduce friction and no-shows.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section" id="process">
-      <div class="section-head">
-        <h2 data-lang="fr">Process en 3 étapes</h2>
-        <h2 data-lang="en">3-step process</h2>
-        <div class="lead" data-lang="fr">Rapide, cadré, sans blabla.</div>
-        <div class="lead" data-lang="en">Fast, structured, no fluff.</div>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3 data-lang="fr">Cadrage ICP + critères d’exclusion</h3>
-          <h3 data-lang="en">ICP + exclusion criteria</h3>
-          <p data-lang="fr">On définit le dossier idéal, ce qu’on refuse, et le message le plus clair pour attirer les bons prospects.</p>
-          <p data-lang="en">Define your ideal client, what you refuse, and the clearest message to attract the right prospects.</p>
-        </div>
-
-        <div class="step">
-          <div class="num">2</div>
-          <h3 data-lang="fr">Installation du système</h3>
-          <h3 data-lang="en">System setup</h3>
-          <p data-lang="fr">Landing + formulaire + calendrier + automations + tracking. Mise en place rapide et propre.</p>
-          <p data-lang="en">Landing + form + calendar + automations + tracking. Clean and fast implementation.</p>
-        </div>
-
-        <div class="step">
-          <div class="num">3</div>
-          <h3 data-lang="fr">Lancement + optimisation</h3>
-          <h3 data-lang="en">Launch + optimization</h3>
-          <p data-lang="fr">On analyse la qualité, on ajuste le tri et le message pour augmenter la rentabilité.</p>
-          <p data-lang="en">We review quality and refine filtering + messaging to increase profitability.</p>
-        </div>
-
-        <div class="step">
-          <div class="num">+</div>
-          <h3 data-lang="fr">Reporting clair</h3>
-          <h3 data-lang="en">Clear reporting</h3>
-          <p data-lang="fr">Sources, taux de qualif, RDV, no-show, qualité des dossiers — tu vois ce qui marche.</p>
-          <p data-lang="en">Sources, qualification rate, bookings, no-shows, lead quality — you see what works.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMMITMENT -->
-    <section class="section" id="engagement">
-      <div class="commit">
-        <div class="commit-inner">
-          <h2 data-lang="fr">Votre investissement, notre engagement</h2>
-          <h2 data-lang="en">Your investment, our commitment</h2>
-
-          <div class="subpill" data-lang="fr">objectif défini à l’audit</div>
-          <div class="subpill" data-lang="en">goal defined in the audit</div>
-
-          <div class="twopills">
-            <div class="pillbox blue">
-              <div data-lang="fr">Objectif : pipeline de RDV qualifiés<br/><span style="opacity:.9;">(cadre + volume réaliste)</span></div>
-              <div data-lang="en">Goal: a pipeline of qualified booked calls<br/><span style="opacity:.9;">(realistic volume + criteria)</span></div>
-            </div>
-            <div class="pillbox gold">
-              <div data-lang="fr">Si objectif non atteint :<br/><span style="font-weight:980;">prolongation sans frais</span></div>
-              <div data-lang="en">If the goal isn’t met:<br/><span style="font-weight:980;">we extend at no cost</span></div>
-            </div>
-          </div>
-
-          <div class="cond" data-lang="fr">*Conditions : basées sur l’audit initial, votre zone, votre capacité et le fit.</div>
-          <div class="cond" data-lang="en">*Conditions: based on the initial audit, your area, capacity, and overall fit.</div>
-
-          <div class="benefits">
-            <span data-lang="fr">💶 + Marge</span><span data-lang="en">💶 More margin</span>
-            <span data-lang="fr">⏱️ + Temps</span><span data-lang="en">⏱️ More time</span>
-            <span data-lang="fr">🧠 + Sérénité</span><span data-lang="en">🧠 Peace of mind</span>
-          </div>
-
-          <div style="margin-top:18px;">
-            <a class="btn primary" href="#contact" data-lang="fr">Réserver l’audit</a>
-            <a class="btn primary" href="#contact" data-lang="en">Book the audit</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="section-head">
-        <h2>FAQ</h2>
-        <div class="lead" data-lang="fr">Les questions qu’on te posera (et celles que tu devrais poser).</div>
-        <div class="lead" data-lang="en">Common questions (and the ones you should ask).</div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <div class="icon">❓</div>
-          <h3 data-lang="fr">Vous faites LinkedIn, Ads, ou autre ?</h3>
-          <h3 data-lang="en">Do you do LinkedIn, ads, or something else?</h3>
-          <p data-lang="fr">On choisit le canal selon ta zone, ton offre et ton cycle. Le système reste : attirer → qualifier → booker.</p>
-          <p data-lang="en">We pick the channel based on your area, offer, and sales cycle. Same system: attract → qualify → book.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🧾</div>
-          <h3 data-lang="fr">Comment vous évitez les mauvais leads ?</h3>
-          <h3 data-lang="en">How do you avoid bad leads?</h3>
-          <p data-lang="fr">Tri intelligent : critères d’exclusion, scoring, cadrage, routage. Le but : protéger ton temps.</p>
-          <p data-lang="en">Smart filtering: exclusion criteria, scoring, framing, routing. Goal: protect your time.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">⏱️</div>
-          <h3 data-lang="fr">Combien de temps pour voir des résultats ?</h3>
-          <h3 data-lang="en">How long until results?</h3>
-          <p data-lang="fr">Ça dépend du canal et de ta zone. Installation rapide, puis optimisation sur la qualité.</p>
-          <p data-lang="en">Depends on the channel and area. Fast setup, then quality optimization.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="section-head">
-        <h2 data-lang="fr">Audit offert (15 minutes)</h2>
-        <h2 data-lang="en">Free audit (15 minutes)</h2>
-        <div class="lead" data-lang="fr">On valide le fit, on te donne un plan, et tu décides.</div>
-        <div class="lead" data-lang="en">We validate fit, give you a plan, and you decide.</div>
-      </div>
-
-      <div class="contact">
-        <div class="panel">
-          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">Demande d’audit</div>
-          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">Audit request</div>
-
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="fr">
-            Remplis ça. Ensuite tu mets ton lien Calendly (ou je te l’intègre).
-          </p>
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="en">
-            Fill this out. Then add your Calendly link (or we can embed it).
-          </p>
-
-          <form class="form" onsubmit="event.preventDefault(); alert('OK — connect your email / Calendly here (or embed Tally/Typeform).');">
-            <input required placeholder="Nom du cabinet / Firm name" />
-            <input required type="email" placeholder="Email pro / Business email" />
-            <input placeholder="Ville / région (optionnel) — City/Area (optional)" />
-            <textarea placeholder="Dossier idéal + ce que tu refuses (budget, taille, secteur…) / Ideal client + what you refuse"></textarea>
-            <button class="btn primary" type="submit" data-lang="fr">Envoyer</button>
-            <button class="btn primary" type="submit" data-lang="en">Send</button>
-            <div class="mini" data-lang="fr">Astuce : je peux remplacer ce formulaire par un embed (Tally/Typeform) + Calendly.</div>
-            <div class="mini" data-lang="en">Tip: we can replace this with a Tally/Typeform embed + Calendly.</div>
-          </form>
-        </div>
-
-        <div class="panel">
-          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="fr">Ce que tu repars avec</div>
-          <div style="font-weight:980; font-size:18px; margin-bottom:8px;" data-lang="en">What you’ll leave with</div>
-
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="fr">
-            Même si on ne bosse pas ensemble, tu ressors avec un plan clair.
-          </p>
-          <p style="margin:0 0 14px; color:var(--muted); font-weight:740;" data-lang="en">
-            Even if we don’t work together, you’ll leave with a clear plan.
-          </p>
-
-          <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:760;" data-lang="fr">
-            <li>Critères “bon lead / mauvais lead”</li>
-            <li>Un tunnel minimal adapté à ton cabinet</li>
-            <li>Les 3 optimisations qui augmentent la qualité</li>
-            <li>Un verdict fit / no-fit sans perte de temps</li>
-          </ul>
-
-          <ul style="margin:0; padding-left:18px; color:var(--muted); font-weight:760;" data-lang="en">
-            <li>Clear “good lead / bad lead” criteria</li>
-            <li>A minimal funnel tailored to your firm</li>
-            <li>The 3 optimizations that increase lead quality</li>
-            <li>A fit / no-fit verdict with no wasted time</li>
-          </ul>
-
-          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="#top" data-lang="fr">Retour en haut</a>
-            <a class="btn" href="#top" data-lang="en">Back to top</a>
-            <a class="btn ghost" href="#offre" data-lang="fr">Voir l’offre</a>
-            <a class="btn ghost" href="#offre" data-lang="en">See the offer</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div>© <span id="y"></span> Lead2Value</div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
-        <a href="#offre" data-lang="fr">Offre</a><a href="#offre" data-lang="en">Offer</a>
-        <a href="#process" data-lang="fr">Process</a><a href="#process" data-lang="en">Process</a>
-        <a href="#faq" data-lang="fr">FAQ</a><a href="#faq" data-lang="en">FAQ</a>
-        <a href="#contact" data-lang="fr">Contact</a><a href="#contact" data-lang="en">Contact</a>
-      </div>
-    </footer>
-
-  </div>
-
-  <script>
-    // year
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // language preference
-    const KEY = "l2v_lang";
-    const saved = localStorage.getItem(KEY);
-    const initial = (saved === "en" || saved === "fr") ? saved : "fr";
-    document.body.classList.remove("lang-fr","lang-en");
-    document.body.classList.add("lang-" + initial);
-
-    const toggle = document.getElementById("langToggle");
-    toggle.addEventListener("click", () => {
-      const isEN = document.body.classList.contains("lang-en");
-      const next = isEN ? "fr" : "en";
-      document.body.classList.remove("lang-fr","lang-en");
-      document.body.classList.add("lang-" + next);
-      localStorage.setItem(KEY, next);
-      document.documentElement.lang = next;
-    });
-  </script>
-</body>
-</html>
+      <div c
