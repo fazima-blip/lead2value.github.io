@@ -1,941 +1,274 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Lead2Value — Acquisition B2B sélective pour cabinets d’expertise comptable : attirer des dossiers à plus forte valeur sans augmenter la charge de travail." />
-  <title>Lead2Value</title>
-
+  <title>Lead2Value — Acquisition B2B pour cabinets comptables</title>
+  <meta name="description" content="Lead2Value installe un système d'acquisition complet : landing page, formulaire de qualification, calendrier, automatisations." />
   <style>
     :root{
-      --bg0:#070B14;
-      --bg1:#0B1220;
-
-      --txt:#EAF0FF;
-      --mut:#B8C1D9;
-      --mut2:#97A3BF;
-
-      --a1:#4FD1C5;
-      --a2:#6C63FF;
-      --a3:#F5C542;
-
-      --glass: rgba(255,255,255,.06);
-      --glass2: rgba(255,255,255,.045);
-      --stroke: rgba(255,255,255,.12);
-      --stroke2: rgba(255,255,255,.08);
-
-      --r: 18px;
-      --r2: 24px;
-
-      --sh: 0 18px 60px rgba(0,0,0,.45);
-      --sh2: 0 10px 30px rgba(0,0,0,.30);
-
-      --max: 1160px;
-
-      --ease: cubic-bezier(.2,.8,.2,1);
-      --dur: 420ms;
+      --bg:#0b1220; --panel:#0f1a33; --text:#e9eefc; --muted:#b9c3e6;
+      --line:rgba(255,255,255,.12);
+      --accent:#f6c445; /* jaune */
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+      --pad: 18px;
+      --pad2: 28px;
+      --h1: clamp(32px, 5vw, 56px);
+      --h2: clamp(22px, 3vw, 34px);
     }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
     body{
-      margin:0;
-      color:var(--txt);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      line-height:1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background:
-        radial-gradient(900px 500px at 10% 10%, rgba(79,209,197,.18), transparent 55%),
-        radial-gradient(900px 500px at 85% 15%, rgba(108,99,255,.18), transparent 55%),
-        radial-gradient(900px 550px at 65% 95%, rgba(245,197,66,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-      scroll-behavior:smooth;
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(1100px 600px at 20% -10%, rgba(106,167,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 85% 5%, rgba(246,196,69,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
     }
-
-    a{ color:inherit; text-decoration:none; }
-    img{ display:block; max-width:100%; }
-
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 22px; }
-    .section{ padding: 86px 0; }
-    .section.tight{ padding: 70px 0; }
-
-    /* ===== Motion (subtle, premium) ===== */
-    .lift{
-      transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease);
-      will-change: transform;
-    }
-    .lift:hover{
-      transform: translateY(-4px);
-      filter: brightness(1.02);
-    }
-
-    /* ===== Topbar ===== */
-    .top{
-      position: sticky;
-      top: 0;
-      z-index: 60;
-      background: rgba(7,11,20,.74);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      backdrop-filter: blur(14px);
-    }
-    .top::before{
-      content:"";
-      position:absolute; left:0; right:0; top:0;
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
-      pointer-events:none;
-    }
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding: 14px 0;
-      position:relative;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 250px;
-    }
-    .brandMark{
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background:
-        radial-gradient(16px 16px at 30% 30%, rgba(79,209,197,.28), transparent 70%),
-        radial-gradient(18px 18px at 70% 70%, rgba(108,99,255,.26), transparent 70%),
-        rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.14);
-      box-shadow: var(--sh2);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      flex: 0 0 auto;
-    }
-    .brandMark img{
-      width: 78%;
-      height: 78%;
-      object-fit: contain;
-      filter: drop-shadow(0 6px 14px rgba(0,0,0,.25));
-    }
-    .brandText{ line-height:1.05; }
-    .brandText strong{
-      display:block;
-      font-size: 14px;
-      letter-spacing: .3px;
-    }
-    .brandText span{
-      display:block;
-      font-size: 12px;
-      color: var(--mut2);
-      margin-top: 2px;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .nav a{
-      color: var(--mut);
-      font-size: 14px;
-      padding: 9px 11px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      background: transparent;
-      transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
-    }
-    .nav a:hover{
-      color: var(--txt);
-      border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-    }
-
-    .lang{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .lang button{
-      appearance:none;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color: var(--txt);
-      padding: 9px 12px;
-      border-radius: 12px;
-      cursor:pointer;
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: .2px;
-      transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
-    }
-    .lang button:hover{ transform: translateY(-1px); }
-    .lang button.active{
-      background: rgba(255,255,255,.92);
-      color: #0B1220;
-      border-color: rgba(255,255,255,.92);
-    }
-
-    /* ===== Hero ===== */
-    .hero{
-      padding: 74px 0 34px;
-      position:relative;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 28px;
-      align-items:center;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      color: var(--mut);
-      font-size: 13px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .dot{
-      width: 8px; height: 8px; border-radius: 99px;
-      background: linear-gradient(135deg, var(--a1), var(--a2));
-      box-shadow: 0 0 0 6px rgba(79,209,197,.08);
-    }
-
-    h1{
-      margin: 14px 0 12px;
-      font-size: clamp(36px, 4.2vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-    .sub{
-      margin:0;
-      color: var(--mut);
-      font-size: 18px;
-      max-width: 64ch;
-    }
-
-    .chips{
-      margin-top: 18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-    }
-    .chip{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: var(--mut);
-      font-size: 13px;
-    }
-
-    .actions{
-      margin-top: 22px;
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 22px var(--pad);}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding: 10px 0;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
+    .logo{width:38px; height:38px; border-radius:12px; background: linear-gradient(135deg, rgba(246,196,69,.95), rgba(106,167,255,.85)); box-shadow: 0 10px 24px rgba(0,0,0,.25);}
+    .navlinks{display:flex; gap:16px; flex-wrap:wrap; color:var(--muted); font-weight:700; font-size:14px}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color: var(--txt);
-      font-weight: 900;
-      font-size: 14px;
-      box-shadow: 0 12px 34px rgba(0,0,0,.20);
-      white-space: nowrap;
-      transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), filter var(--dur) var(--ease);
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 16px; border-radius: 14px; border:1px solid var(--line);
+      background: rgba(255,255,255,.06); color:var(--text); font-weight:800;
+      transition: transform .15s ease, background .15s ease;
+      cursor:pointer;
     }
-    .btn:hover{ transform: translateY(-2px); background: rgba(255,255,255,.08); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(79,209,197,.95), rgba(108,99,255,.92));
-      color: #071019;
-      border-color: rgba(255,255,255,.12);
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09)}
+    .btn.primary{background: linear-gradient(135deg, rgba(246,196,69,1), rgba(246,196,69,.88)); color:#10131a; border-color: transparent;}
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(246,196,69,1), rgba(255,210,92,1))}
+    .hero{padding: 40px 0 14px}
+    .grid{display:grid; gap: 18px; grid-template-columns: 1.15fr .85fr; align-items:stretch;}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .card{border:1px solid var(--line); background: rgba(255,255,255,.05); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;}
+    .card .inner{padding: var(--pad2)}
+    h1{margin:0 0 10px; font-size:var(--h1); line-height:1.05}
+    .sub{color:var(--muted); font-size:16px; max-width: 62ch}
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px}
+    .pill{font-size:13px; font-weight:800; border:1px solid var(--line); padding:8px 10px; border-radius:999px; background: rgba(255,255,255,.04);}
+    .pill b{color:var(--accent)}
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin-top: 22px}
+    .note{margin-top: 10px; font-size:13px; color:var(--muted)}
+    .panel{height:100%; background: linear-gradient(180deg, rgba(15,26,51,.9), rgba(15,26,51,.55)); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);}
+    .panel .inner{padding: var(--pad2)}
+    .kpi{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px}
+    .kpi .box{border:1px solid var(--line); background: rgba(255,255,255,.04); border-radius: 16px; padding: 14px;}
+    .kpi .big{font-size:20px; font-weight:950}
+    .kpi .small{color:var(--muted); font-size:12px; font-weight:800}
+    .section{padding: 24px 0}
+    h2{font-size:var(--h2); margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .cols4{display:grid; gap:14px; grid-template-columns:repeat(4,1fr);}
+    @media (max-width: 1100px){ .cols4{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 650px){ .cols4{grid-template-columns:1fr} }
+    .feature{border:1px solid var(--line); background: rgba(255,255,255,.04); border-radius: var(--radius); padding: 18px; height:100%;}
+    .badge{display:inline-block; font-size:12px; font-weight:950; color:#10131a; background: var(--accent); padding:6px 10px; border-radius:999px; margin-bottom: 10px;}
+    .feature h3{margin:0 0 6px; font-size:18px}
+    .feature p{margin:0; color:var(--muted); font-size:14px}
+    .two{display:grid; gap:16px; grid-template-columns:1fr 1fr; align-items:stretch;}
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+    .form{display:grid; gap:10px;}
+    input, textarea{
+      width:100%; padding: 12px 12px; border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+      font-weight:700;
     }
-    .btn.primary:hover{ filter: brightness(1.03); }
-
-    .heroCard{
-      border-radius: var(--r2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
-      box-shadow: var(--sh);
-      padding: 22px;
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
-    .heroCard::before{
-      content:"";
-      position:absolute;
-      inset:-160px -200px auto auto;
-      width: 360px; height: 360px;
-      background: radial-gradient(circle at 30% 30%, rgba(79,209,197,.24), transparent 60%);
-      transform: rotate(14deg);
-      z-index:-1;
-    }
-    .heroCard::after{
-      content:"";
-      position:absolute;
-      inset:auto -220px -220px auto;
-      width: 420px; height: 420px;
-      background: radial-gradient(circle at 30% 30%, rgba(108,99,255,.22), transparent 60%);
-      z-index:-1;
-    }
-
-    .logoBig{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 18px 0 10px;
-    }
-    .logoBig img{
-      width: min(320px, 82%);
-      height:auto;
-      filter: drop-shadow(0 18px 40px rgba(0,0,0,.35));
-    }
-
-    .statGrid{
-      margin-top: 14px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .stat{
-      border-radius: var(--r);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.045);
-      padding: 14px 14px;
-      transition: transform var(--dur) var(--ease);
-    }
-    .stat:hover{ transform: translateY(-3px); }
-    .stat strong{
-      display:block;
-      font-size: 13px;
-      letter-spacing: -.01em;
-    }
-    .stat span{
-      display:block;
-      margin-top: 6px;
-      color: var(--mut);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    /* ===== Panels ===== */
-    .panel{
-      border-radius: var(--r2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      box-shadow: 0 18px 50px rgba(0,0,0,.22);
-      padding: 26px;
-    }
-    .h2{
-      margin:0 0 10px;
-      font-size: 28px;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-    .lead{
-      margin:0;
-      color: var(--mut);
-      font-size: 16px;
-      max-width: 92ch;
-    }
-
-    .grid3{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .card{
-      border-radius: var(--r);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.045);
-      padding: 18px;
-      min-height: 138px;
-    }
-    .card h3{
-      margin:0 0 8px;
-      font-size: 15px;
-      letter-spacing: -.01em;
-    }
-    .card p{
-      margin:0;
-      color: var(--mut);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    /* ===== Process (3 steps + CSS icons) ===== */
-    .process{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .step{
-      border-radius: var(--r);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.045);
-      padding: 18px;
-      min-height: 150px;
-      position: relative;
-      overflow:hidden;
-    }
-    .step::before{
-      content:"";
-      position:absolute;
-      inset:auto -120px -120px auto;
-      width: 220px; height: 220px;
-      background: radial-gradient(circle at 30% 30%, rgba(79,209,197,.12), transparent 65%);
-      pointer-events:none;
-    }
-    .stepTop{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-    .icon{
-      width: 40px; height: 40px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(79,209,197,.22), transparent 70%),
-        radial-gradient(18px 18px at 70% 70%, rgba(108,99,255,.18), transparent 70%),
-        rgba(255,255,255,.05);
-      position:relative;
-      flex: 0 0 auto;
-      box-shadow: 0 12px 30px rgba(0,0,0,.22);
-    }
-
-    /* CSS Icons */
-    .icon.target::after{
-      content:"";
-      position:absolute; inset: 10px;
-      border-radius: 999px;
-      border: 2px solid rgba(234,240,255,.85);
-      box-shadow: inset 0 0 0 6px rgba(79,209,197,.14);
-    }
-    .icon.target::before{
-      content:"";
-      position:absolute; left:50%; top:50%;
-      width: 6px; height: 6px; border-radius: 99px;
-      transform: translate(-50%,-50%);
-      background: linear-gradient(135deg, var(--a1), var(--a2));
-    }
-
-    .icon.filter::after{
-      content:"";
-      position:absolute;
-      left: 11px; top: 10px;
-      width: 18px; height: 18px;
-      border: 2px solid rgba(234,240,255,.85);
-      border-top: none; border-left:none;
-      transform: rotate(45deg);
-      border-radius: 4px;
-    }
-    .icon.filter::before{
-      content:"";
-      position:absolute;
-      left: 10px; top: 22px;
-      width: 20px; height: 2px;
-      background: rgba(234,240,255,.85);
-      border-radius: 999px;
-      transform: rotate(45deg);
-      opacity: .9;
-    }
-
-    .icon.sync::after{
-      content:"";
-      position:absolute;
-      left: 11px; top: 11px;
-      width: 18px; height: 18px;
-      border-radius: 999px;
-      border: 2px solid rgba(234,240,255,.80);
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      transform: rotate(-25deg);
-    }
-    .icon.sync::before{
-      content:"";
-      position:absolute;
-      right: 9px; top: 12px;
-      width: 0; height: 0;
-      border-left: 6px solid rgba(234,240,255,.85);
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      transform: rotate(12deg);
-    }
-
-    .stepTitle{
-      font-weight: 950;
-      font-size: 14px;
-      letter-spacing: -.01em;
-    }
-    .stepText{
-      color: var(--mut);
-      font-size: 14px;
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    /* ===== Contact ===== */
-    .contact .panel{
-      background: rgba(7,11,20,.55);
-      border-color: rgba(255,255,255,.12);
-    }
-    .contactGrid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .ctaBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 16px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.92);
-      color: #071019;
-      border: 1px solid rgba(255,255,255,.92);
-      font-weight: 950;
-      margin-top: 14px;
-      width: fit-content;
-      transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease);
-    }
-    .ctaBtn:hover{ transform: translateY(-2px); filter: brightness(1.02); }
-
-    .emailLine{
-      margin-top: 10px;
-      color: var(--mut);
-      font-size: 14px;
-    }
-    .emailLine a{
-      color: var(--txt);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-    }
-
-    footer{
-      padding: 28px 0 34px;
-      text-align:center;
-      color: rgba(234,240,255,.60);
-      font-size: 13px;
-    }
-
-    [data-lang]{ display:none; }
-    body.lang-fr [data-lang="fr"]{ display:block; }
-    body.lang-en [data-lang="en"]{ display:block; }
-
-    /* ===== Scroll reveal ===== */
-    .reveal{
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 560ms var(--ease), transform 560ms var(--ease);
-    }
-    .reveal.in{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .grid3{ grid-template-columns: 1fr; }
-      .process{ grid-template-columns: 1fr; }
-      .contactGrid{ grid-template-columns: 1fr; }
-      .nav{ display:none; }
-      .brand{ min-width: 0; }
-      .statGrid{ grid-template-columns: 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      body{ scroll-behavior: auto; }
-      .reveal{ opacity: 1; transform:none; transition:none; }
-      *{ animation:none !important; transition:none !important; }
-    }
+    textarea{min-height:110px; resize:vertical}
+    .mini{font-size:12px; color:var(--muted)}
+    .footer{border-top:1px solid var(--line); padding: 22px 0 40px; color:var(--muted); font-size:14px;}
   </style>
 </head>
 
-<body class="lang-fr">
-
-  <!-- TOP BAR -->
-  <div class="top">
-    <div class="wrap">
-      <div class="topbar">
-        <div class="brand" aria-label="Lead2Value">
-          <div class="brandMark lift">
-            <img src="./logo.png?v=9" alt="Lead2Value logo mini" />
-          </div>
-          <div class="brandText">
-            <strong>Lead2Value</strong>
-            <span data-lang="fr">Acquisition B2B sélective — Cabinets d’expertise comptable</span>
-            <span data-lang="en">Selective B2B acquisition — Accounting firms</span>
-          </div>
-        </div>
-
-        <nav class="nav" aria-label="Navigation">
-          <a href="#approach" data-lang="fr">Approche</a>
-          <a href="#services" data-lang="fr">Services</a>
-          <a href="#process" data-lang="fr">Process</a>
-          <a href="#contact" data-lang="fr">Contact</a>
-
-          <a href="#approach" data-lang="en">Approach</a>
-          <a href="#services" data-lang="en">Services</a>
-          <a href="#process" data-lang="en">Process</a>
-          <a href="#contact" data-lang="en">Contact</a>
-        </nav>
-
-        <div class="lang" aria-label="Language selector">
-          <button id="btn-fr" class="active" type="button">FR</button>
-          <button id="btn-en" type="button">EN</button>
-        </div>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Lead2Value</div>
       </div>
-    </div>
-  </div>
+      <nav class="navlinks">
+        <a href="#install">Features</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn primary" href="#contact">Réserver un audit</a>
+    </header>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="wrap">
-      <div class="heroGrid">
-
-        <div class="reveal">
-          <div class="kicker" data-lang="fr"><span class="dot"></span> Cabinets d’expertise comptable</div>
-          <div class="kicker" data-lang="en"><span class="dot"></span> Accounting firms</div>
-
-          <div data-lang="fr">
-            <h1>Attirez des dossiers à plus forte valeur, sans augmenter la charge.</h1>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="grid">
+        <div class="card">
+          <div class="inner">
+            <h1>On installe un système qui transforme vos demandes en <span style="color:var(--accent)">RDV qualifiés</span>.</h1>
             <p class="sub">
-              Pour les cabinets déjà demandés, mais saturés par un mix client peu rentable.
-              Acquisition sélective + pré-qualification stricte : des opportunités B2B alignées
-              (taille, complexité, honoraires, récurrence) sans alourdir la production.
+              Pour cabinets comptables (10–50 employés) : on attire des B2B plus rentables,
+              on pré-qualifie, puis on fait booker des RDV — sans ajouter de charge à l’équipe.
             </p>
-          </div>
 
-          <div data-lang="en">
-            <h1>Attract higher-value engagements, without increasing workload.</h1>
-            <p class="sub">
-              For established firms with strong demand and limited capacity.
-              Selective acquisition + strict pre-qualification to generate aligned B2B opportunities
-              (size, complexity, fees, recurring work) without burdening delivery.
-            </p>
-          </div>
+            <div class="pillrow">
+              <div class="pill"><b>Landing</b> haute conversion</div>
+              <div class="pill"><b>Formulaire</b> qualifiant</div>
+              <div class="pill"><b>Calendrier</b> instant</div>
+              <div class="pill"><b>Automations</b> & suivi</div>
+            </div>
 
-          <div class="chips">
-            <span class="chip" data-lang="fr">Qualité &gt; volume</span>
-            <span class="chip" data-lang="fr">Capacité protégée</span>
-            <span class="chip" data-lang="fr">Pré-qualification</span>
-
-            <span class="chip" data-lang="en">Quality &gt; volume</span>
-            <span class="chip" data-lang="en">Capacity protected</span>
-            <span class="chip" data-lang="en">Pre-qualification</span>
-          </div>
-
-          <div class="actions">
-            <a class="btn primary" href="#contact" data-lang="fr">Prendre contact</a>
-            <a class="btn primary" href="#contact" data-lang="en">Get in touch</a>
-            <a class="btn" href="mailto:contact@lead2value.com">contact@lead2value.com</a>
+            <div class="ctaRow">
+              <a class="btn primary" href="#contact">Voir si c’est un fit</a>
+              <a class="btn" href="#install">Voir les features</a>
+            </div>
+            <div class="note">Audit offert 15 min. Si ce n’est pas pertinent pour ton cabinet, on stop net.</div>
           </div>
         </div>
 
-        <aside class="heroCard lift reveal" aria-label="Brand card">
-          <div class="logoBig">
-            <img src="./logo.png?v=9" alt="Lead2Value logo" />
-          </div>
-          <div class="statGrid">
-            <div class="stat">
-              <strong data-lang="fr">Mix client</strong>
-              <strong data-lang="en">Client mix</strong>
-              <span data-lang="fr">Réduire les “petits dossiers” chronophages, augmenter la valeur par dossier.</span>
-              <span data-lang="en">Reduce low-margin time sinks and increase value per engagement.</span>
+        <aside class="panel">
+          <div class="inner">
+            <div style="font-weight:950; font-size:18px;">Résultat visé</div>
+            <div class="muted" style="margin-top:6px;">
+              Un flux régulier de demandes filtrées, avec une prise de RDV simple et traçable.
             </div>
-            <div class="stat">
-              <strong data-lang="fr">Pré-qualification</strong>
-              <strong data-lang="en">Pre-qualification</strong>
-              <span data-lang="fr">Contexte, besoin, timing, budget — filtrés avant RDV.</span>
-              <span data-lang="en">Context, need, timing, budget — filtered before meetings.</span>
+            <div class="kpi">
+              <div class="box">
+                <div class="big">+ Qualité</div>
+                <div class="small">Moins de dossiers “chronophages”</div>
+              </div>
+              <div class="box">
+                <div class="big">+ Pipeline</div>
+                <div class="small">RDV bookés sans chasing</div>
+              </div>
+              <div class="box">
+                <div class="big">+ Contrôle</div>
+                <div class="small">Critères ICP & scoring</div>
+              </div>
+              <div class="box">
+                <div class="big">+ Mesure</div>
+                <div class="small">Tracking & reporting</div>
+              </div>
             </div>
           </div>
         </aside>
-
       </div>
-    </div>
-  </header>
+    </section>
 
-  <!-- APPROACH -->
-  <section id="approach" class="section tight">
-    <div class="wrap">
-      <div class="panel reveal">
-        <div data-lang="fr">
-          <h2 class="h2">Une approche réellement adaptée aux cabinets</h2>
-          <p class="lead">
-            Pics de charge (clôtures, TVA), production prioritaire, arbitrage permanent sur la capacité :
-            l’enjeu n’est pas “plus de demandes”, mais <b>les bons dossiers</b>.
-            Nous travaillons avec des critères concrets : seuil d’honoraires, complexité, récurrence, secteur,
-            taille d’entreprise et qualité de la tenue.
-          </p>
+    <!-- FEATURES (comme Scalint) -->
+    <section class="section" id="install">
+      <h2>Ce qu’on installe chez vous</h2>
+      <p class="muted">Un “mini-système” complet : acquisition → qualification → prise de RDV → suivi.</p>
+
+      <div class="cols4" style="margin-top:14px;">
+        <div class="feature">
+          <span class="badge">Landing page</span>
+          <h3>Design haute conversion</h3>
+          <p>Une page simple, crédible, orientée décision : promesse claire, preuve, CTA, objections traitées.</p>
         </div>
 
-        <div data-lang="en">
-          <h2 class="h2">An approach built for accounting firms</h2>
-          <p class="lead">
-            Seasonal peaks, delivery-first operations, constant capacity trade-offs:
-            the goal isn’t “more demand” — it’s <b>better-fit engagements</b>.
-            We use practical criteria: fee threshold, complexity, recurring work, industry, company size, and bookkeeping quality.
-          </p>
+        <div class="feature">
+          <span class="badge">Formulaire</span>
+          <h3>Qualification automatique</h3>
+          <p>Questions + scoring : on filtre les “petits dossiers” et on laisse passer les prospects rentables.</p>
         </div>
 
-        <div class="grid3">
-          <div class="card lift">
-            <h3 data-lang="fr">Ciblage clair</h3>
-            <h3 data-lang="en">Clear targeting</h3>
-            <p data-lang="fr">Un ICP défini avec vos critères : taille, secteur, seuil d’honoraires, récurrence.</p>
-            <p data-lang="en">An ICP built on your criteria: size, industry, fee threshold, recurring work.</p>
-          </div>
-          <div class="card lift">
-            <h3 data-lang="fr">Qualif stricte</h3>
-            <h3 data-lang="en">Strict qualification</h3>
-            <p data-lang="fr">Contexte, besoin, timing, budget — filtrés avant mise en relation.</p>
-            <p data-lang="en">Context, need, timing, budget — filtered before introductions.</p>
-          </div>
-          <div class="card lift">
-            <h3 data-lang="fr">Exécution légère</h3>
-            <h3 data-lang="en">Light delivery</h3>
-            <p data-lang="fr">Process propre et reporting utile, sans alourdir l’organisation.</p>
-            <p data-lang="en">Clean process and useful reporting without adding operational burden.</p>
-          </div>
+        <div class="feature">
+          <span class="badge">Calendrier</span>
+          <h3>RDV instantanés</h3>
+          <p>Les bons prospects bookent directement un créneau (sans aller-retour), avec confirmations.</p>
         </div>
 
+        <div class="feature">
+          <span class="badge">Automatisations</span>
+          <h3>Suivi & relances</h3>
+          <p>Emails/SMS, rappels, routing interne, tagging CRM/Sheet, notifications… tout ce qui évite la friction.</p>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section tight">
-    <div class="wrap">
-      <div class="panel reveal">
-        <div data-lang="fr">
-          <h2 class="h2">Services</h2>
-          <p class="lead">
-            Un dispositif simple : ciblage précis, messages sobres, pré-qualification stricte.
-            Conçu pour remplacer progressivement les dossiers faibles par des dossiers solides.
-          </p>
-        </div>
-        <div data-lang="en">
-          <h2 class="h2">Services</h2>
-          <p class="lead">
-            A clean system: precise targeting, concise messaging, strict pre-qualification.
-            Built to progressively replace low-value work with strong engagements.
-          </p>
-        </div>
-
-        <div class="grid3">
-          <div class="card lift">
-            <h3 data-lang="fr">Acquisition ciblée</h3>
-            <h3 data-lang="en">Targeted acquisition</h3>
-            <p data-lang="fr">Prospection alignée sur vos critères : honoraires, complexité, secteur, récurrence.</p>
-            <p data-lang="en">Outreach aligned with your criteria: fees, complexity, industry, recurring work.</p>
-          </div>
-
-          <div class="card lift">
-            <h3 data-lang="fr">Pré-qualification</h3>
-            <h3 data-lang="en">Pre-qualification</h3>
-            <p data-lang="fr">Contexte, besoin, timing, budget, fit cabinet — filtrés avant RDV.</p>
-            <p data-lang="en">Context, need, timing, budget, firm fit — filtered before meetings.</p>
-          </div>
-
-          <div class="card lift">
-            <h3 data-lang="fr">Pilotage</h3>
-            <h3 data-lang="en">Control</h3>
-            <p data-lang="fr">Ajustements progressifs : critères, messages, qualité — sans complexité.</p>
-            <p data-lang="en">Iterate on criteria, messaging, and quality—without complexity.</p>
-          </div>
-        </div>
-
+      <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn primary" href="#contact">Je veux installer ça</a>
+        <a class="btn" href="#process">Voir le process</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROCESS -->
-  <section id="process" class="section tight">
-    <div class="wrap">
-      <div class="panel reveal">
-        <div data-lang="fr">
-          <h2 class="h2">Process en 3 étapes</h2>
-          <p class="lead">Clair, rapide à mettre en place, et pensé pour protéger la capacité du cabinet.</p>
-        </div>
-        <div data-lang="en">
-          <h2 class="h2">3-step process</h2>
-          <p class="lead">Clear, quick to set up, and designed to protect firm capacity.</p>
-        </div>
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <h2>Process en 3 étapes</h2>
+      <p class="muted">Rapide, cadré, sans blabla.</p>
 
-        <div class="process">
-          <div class="step lift">
-            <div class="stepTop">
-              <div class="icon target" aria-hidden="true"></div>
-              <div class="stepTitle" data-lang="fr">1) Définir “le bon dossier”</div>
-              <div class="stepTitle" data-lang="en">1) Define the ideal engagement</div>
-            </div>
-            <p class="stepText" data-lang="fr">
-              Critères simples : seuil d’honoraires, récurrence, secteur, complexité, taille d’entreprise.
-            </p>
-            <p class="stepText" data-lang="en">
-              Practical criteria: fee threshold, recurring work, industry, complexity, company size.
-            </p>
-          </div>
+      <div class="two" style="margin-top:14px;">
+        <div class="card"><div class="inner">
+          <div style="font-weight:950;">1) Cadrage ICP + offre</div>
+          <p class="muted">On définit qui on vise, qui on exclut, et les critères “rentables”.</p>
+          <div style="font-weight:950; margin-top:10px;">2) Installation</div>
+          <p class="muted">Landing + formulaire + calendrier + automations. Mise en place des tracking.</p>
+          <div style="font-weight:950; margin-top:10px;">3) Lancement + optimisation</div>
+          <p class="muted">On lance, on analyse, on ajuste pour augmenter la qualité des RDV.</p>
+        </div></div>
 
-          <div class="step lift">
-            <div class="stepTop">
-              <div class="icon filter" aria-hidden="true"></div>
-              <div class="stepTitle" data-lang="fr">2) Attirer + qualifier</div>
-              <div class="stepTitle" data-lang="en">2) Attract + qualify</div>
-            </div>
-            <p class="stepText" data-lang="fr">
-              Messages sobres orientés besoin. Qualification avant RDV : contexte, besoin, timing, budget.
-            </p>
-            <p class="stepText" data-lang="en">
-              Concise messaging focused on need. Pre-qualify before meetings: context, timing, budget.
-            </p>
-          </div>
-
-          <div class="step lift">
-            <div class="stepTop">
-              <div class="icon sync" aria-hidden="true"></div>
-              <div class="stepTitle" data-lang="fr">3) Ajuster & sécuriser la qualité</div>
-              <div class="stepTitle" data-lang="en">3) Iterate & protect quality</div>
-            </div>
-            <p class="stepText" data-lang="fr">
-              On optimise ce qui fonctionne. Vous gardez la décision finale sur l’acceptation des dossiers.
-            </p>
-            <p class="stepText" data-lang="en">
-              We optimize what works. You keep the final decision on which engagements to accept.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section tight contact">
-    <div class="wrap">
-      <div class="panel reveal">
-        <div data-lang="fr">
-          <h2 class="h2">Contact</h2>
-          <p class="lead">
-            Partagez vos critères (secteurs, taille, seuil d’honoraires, type de dossiers) et vos contraintes de capacité.
-            Nous vous répondons rapidement.
+        <div class="card"><div class="inner">
+          <div style="font-weight:950;">À quoi ressemble “un bon lead” ?</div>
+          <p class="muted">
+            Entreprise B2B, besoin clair, capacité de paiement, décisionnaire accessible,
+            et un scope qui ne détruit pas vos marges.
           </p>
-        </div>
-        <div data-lang="en">
-          <h2 class="h2">Contact</h2>
-          <p class="lead">
-            Share your criteria (industries, size, fee threshold, engagement types) and capacity constraints.
-            We’ll respond quickly.
-          </p>
-        </div>
-
-        <div class="contactGrid">
-          <div class="card lift">
-            <div data-lang="fr">
-              <h3>Écrire</h3>
-              <p style="margin:0;color:var(--mut);font-size:14px;line-height:1.65;">
-                Un message suffit. Vous pouvez préciser : seuil d’honoraires, secteurs, capacité, type de dossiers visés.
-              </p>
-              <a class="ctaBtn" href="mailto:contact@lead2value.com">Écrire à Lead2Value</a>
-              <div class="emailLine">Email : <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
-            </div>
-
-            <div data-lang="en">
-              <h3>Email</h3>
-              <p style="margin:0;color:var(--mut);font-size:14px;line-height:1.65;">
-                A short message is enough. Share your criteria and capacity constraints.
-              </p>
-              <a class="ctaBtn" href="mailto:contact@lead2value.com">Email Lead2Value</a>
-              <div class="emailLine">Email: <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
-            </div>
-          </div>
-
-          <div class="card lift">
-            <div data-lang="fr">
-              <h3>Exemples de dossiers recherchés</h3>
-              <ul>
-                <li>PME B2B structurées : récurrence et volume stable</li>
-                <li>Holdings / groupes : reporting, structuration, complexité</li>
-                <li>Services pro : facturation claire, process, suivi</li>
-              </ul>
-            </div>
-
-            <div data-lang="en">
-              <h3>Typical engagements</h3>
-              <ul>
-                <li>Structured B2B SMEs: recurring work and stable volume</li>
-                <li>Holdings / groups: reporting, structuring, complexity</li>
-                <li>Professional services: clear billing, processes, follow-up</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
+          <div style="border-top:1px solid var(--line); margin:14px 0;"></div>
+          <div style="font-weight:950;">Ce qu’on refuse</div>
+          <p class="muted">Demandes floues, budgets bas, projets “support illimité”, urgence + faible valeur.</p>
+        </div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>© 2026 Lead2Value</footer>
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <h2>Réserver l’audit (15 min)</h2>
+      <p class="muted">Dis-moi ton cabinet, ta cible idéale, et ton problème n°1 sur la qualité des dossiers.</p>
+
+      <div class="two" style="margin-top:14px;">
+        <div class="card"><div class="inner">
+          <form class="form" onsubmit="event.preventDefault(); alert('OK — envoie-moi ce message par email ou ajoute un lien Calendly ici.');">
+            <input required placeholder="Nom du cabinet" />
+            <input required type="email" placeholder="Email" />
+            <input placeholder="Site web (optionnel)" />
+            <textarea placeholder="Ta cible idéale + le problème principal (2 lignes)"></textarea>
+            <button class="btn primary" type="submit">Envoyer</button>
+            <div class="mini">Astuce : remplace ce formulaire par ton outil (Tally, Typeform, etc.) + Calendly.</div>
+          </form>
+        </div></div>
+
+        <div class="panel"><div class="inner">
+          <div style="font-weight:950; font-size:18px;">Ce que tu reçois après l’audit</div>
+          <ul style="color:var(--muted); margin-top:10px; padding-left:18px;">
+            <li>Verdict “fit / not fit” en direct</li>
+            <li>Critères ICP (qui exclure en priorité)</li>
+            <li>Proposition de funnel : landing → formulaire → RDV</li>
+            <li>Prochaines actions concrètes (même si on ne bosse pas ensemble)</li>
+          </ul>
+          <div style="margin-top:14px;">
+            <a class="btn" href="#install">Revoir les features</a>
+          </div>
+        </div></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div>© <span id="y"></span> Lead2Value</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#install">Features</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script>
-    // Language toggle
-    const btnFr = document.getElementById("btn-fr");
-    const btnEn = document.getElementById("btn-en");
-
-    function setLang(lang){
-      document.body.classList.remove("lang-fr","lang-en");
-      document.body.classList.add(lang === "en" ? "lang-en" : "lang-fr");
-      btnFr.classList.toggle("active", lang !== "en");
-      btnEn.classList.toggle("active", lang === "en");
-    }
-    btnFr.addEventListener("click", () => setLang("fr"));
-    btnEn.addEventListener("click", () => setLang("en"));
-
-    // Scroll reveal (tiny, premium)
-    const items = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    items.forEach(el => io.observe(el));
+    document.getElementById("y").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
