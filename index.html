@@ -1,48 +1,64 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lead2Value — Développer un portefeuille clients B2B plus rentable</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lead2Value — Clients B2B plus rentables pour cabinets comptables</title>
 
   <style>
     :root{
       --bg:#070a12;
       --bg2:#0b1022;
-      --card:rgba(255,255,255,.06);
-      --line:rgba(255,255,255,.12);
       --text:#f3f6ff;
       --muted:#bac3e6;
       --accent:#f6c445;
-      --blue:#6aa7ff;
+      --line:rgba(255,255,255,.15);
+      --card:rgba(255,255,255,.06);
       --max:1120px;
       --r:22px;
-      --shadow:0 18px 55px rgba(0,0,0,.45);
-      --h1:clamp(34px,5.2vw,64px);
-      --h2:clamp(22px,3vw,34px);
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:system-ui,Segoe UI,Roboto,Arial;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       background:linear-gradient(180deg,var(--bg),var(--bg2));
       color:var(--text);
+      line-height:1.55;
     }
     a{text-decoration:none;color:inherit}
+    [data-lang][hidden]{display:none!important}
+
     .wrap{max-width:var(--max);margin:auto;padding:24px}
 
     /* NAV */
-    .nav{position:sticky;top:0;background:#070a12cc;backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:900}
-    .brand img{width:34px;height:34px;padding:6px;border-radius:10px;background:#ffffff10;border:1px solid #ffffff20}
+    .nav{
+      position:sticky;top:0;z-index:10;
+      background:rgba(7,10,18,.78);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .brand img{
+      width:34px;height:34px;
+      padding:6px;
+      border-radius:10px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+    }
 
     .btn{
-      padding:12px 16px;
+      padding:12px 18px;
       border-radius:999px;
-      border:1px solid #ffffff22;
-      background:#ffffff10;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.08);
       font-weight:800;
       cursor:pointer;
     }
@@ -52,28 +68,35 @@
       border:none;
     }
 
-    [data-lang][hidden]{display:none!important}
-
     /* HERO */
-    .hero{margin-top:32px}
-    h1{font-size:var(--h1);line-height:1.05}
-    .sub{max-width:780px;color:var(--muted)}
+    h1{
+      font-size:clamp(34px,5vw,64px);
+      line-height:1.05;
+      margin-bottom:12px;
+    }
+    .sub{
+      max-width:820px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    /* PANELS */
+    .panel{
+      margin-top:40px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      padding:26px;
+    }
 
     /* FORM */
-    .panel{
-      margin-top:32px;
-      background:#ffffff08;
-      border:1px solid #ffffff18;
-      border-radius:22px;
-      padding:24px;
-    }
     form{display:grid;gap:12px}
     input,textarea{
       padding:12px 14px;
       border-radius:14px;
-      border:1px solid #ffffff22;
-      background:#00000033;
-      color:white;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
       font-weight:600;
     }
     textarea{min-height:120px}
@@ -83,107 +106,125 @@
     footer{
       margin-top:64px;
       padding-top:24px;
-      border-top:1px solid #ffffff18;
+      border-top:1px solid var(--line);
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:16px;
       flex-wrap:wrap;
     }
-    footer img{width:28px;height:28px;padding:5px;border-radius:8px;background:#ffffff10;border:1px solid #ffffff20}
+    footer img{
+      width:28px;height:28px;
+      padding:5px;
+      border-radius:8px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+    }
   </style>
 </head>
 
 <body class="lang-fr">
 
-  <!-- NAV -->
-  <div class="nav">
-    <div class="wrap nav-inner">
-      <div class="brand">
-        <img src="./logo.png" onerror="this.style.display='none'">
-        Lead2Value
-      </div>
-      <a class="btn primary" href="#contact" data-lang="fr">Audit offert</a>
-      <a class="btn primary" href="#contact" data-lang="en">Free audit</a>
+<!-- NAV -->
+<div class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <img src="./logo.png" alt="Lead2Value" onerror="this.style.display='none'">
+      Lead2Value
     </div>
+    <a href="#contact" class="btn primary" data-lang="fr">Audit offert</a>
+    <a href="#contact" class="btn primary" data-lang="en">Free audit</a>
   </div>
+</div>
 
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div data-lang="fr">
-        <h1>Attirez des clients B2B plus rentables<br>sans alourdir votre organisation.</h1>
-        <p class="sub">
-          Nous mettons en place un système d’acquisition et de qualification
-          permettant aux cabinets comptables de sélectionner de meilleurs dossiers
-          et d’améliorer leur marge, sans complexité.
-        </p>
-      </div>
+  <!-- HERO -->
+  <section>
+    <div data-lang="fr">
+      <h1>
+        Attirez des clients B2B plus rentables<br>
+        sans alourdir votre organisation.
+      </h1>
+      <p class="sub">
+        Lead2Value met en place un système d’acquisition et de qualification
+        permettant aux cabinets comptables de sélectionner de meilleurs dossiers,
+        d’améliorer la rentabilité et de préserver le temps des associés.
+      </p>
+    </div>
 
-      <div data-lang="en">
-        <h1>Attract higher-value B2B clients<br>without operational overload.</h1>
-        <p class="sub">
-          We implement a clear acquisition and qualification system
-          so accounting firms can select better engagements and improve margins.
-        </p>
-      </div>
-    </section>
+    <div data-lang="en">
+      <h1>
+        Attract higher-value B2B clients<br>
+        without operational overload.
+      </h1>
+      <p class="sub">
+        Lead2Value implements an acquisition and qualification system
+        that helps accounting firms select better engagements
+        and improve profitability.
+      </p>
+    </div>
+  </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="panel">
-      <h2 data-lang="fr">Audit offert (15 minutes)</h2>
-      <h2 data-lang="en">Free audit (15 minutes)</h2>
+  <!-- CONTACT -->
+  <section id="contact" class="panel">
+    <h2 data-lang="fr">Audit offert (15 minutes)</h2>
+    <h2 data-lang="en">Free audit (15 minutes)</h2>
 
-      <!-- ✅ FORMULAIRE GRATUIT FONCTIONNEL -->
-      <form action="https://formsubmit.co/CONTACT_EMAIL" method="POST">
-        <input type="hidden" name="_subject" value="Nouvelle demande d’audit — Lead2Value">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="./?sent=1#contact">
+    <!-- ✅ FORMULAIRE GRATUIT FONCTIONNEL -->
+    <form action="https://formsubmit.co/contact@lead2value.com" method="POST">
 
-        <input name="firm" required placeholder="Nom du cabinet / Firm name">
-        <input name="email" type="email" required placeholder="Email professionnel / Business email">
-        <input name="website" placeholder="Site web (optionnel)">
-        <textarea name="message" placeholder="Critères du dossier idéal, exclusions, contexte…"></textarea>
+      <!-- CONFIG FORMSUBMIT -->
+      <input type="hidden" name="_subject" value="Nouvelle demande d’audit — Lead2Value">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="./?sent=1#contact">
 
-        <button class="btn primary" type="submit" data-lang="fr">Envoyer</button>
-        <button class="btn primary" type="submit" data-lang="en">Send</button>
+      <!-- FIELDS -->
+      <input name="firm" required placeholder="Nom du cabinet">
+      <input name="email" type="email" required placeholder="Email professionnel">
+      <input name="website" placeholder="Site web (optionnel)">
+      <textarea name="message" placeholder="Critères du dossier idéal, exclusions, contexte…"></textarea>
 
-        <p id="sentFr" class="mini" hidden data-lang="fr">
-          Merci. Votre demande a bien été envoyée.
-        </p>
-        <p id="sentEn" class="mini" hidden data-lang="en">
-          Thank you. Your request has been sent.
-        </p>
-      </form>
-    </section>
+      <button type="submit" class="btn primary" data-lang="fr">Envoyer</button>
+      <button type="submit" class="btn primary" data-lang="en">Send</button>
 
-    <!-- FOOTER -->
-    <footer>
-      <div style="display:flex;align-items:center;gap:10px">
-        <img src="./logo.png" onerror="this.style.display='none'">
-        © <span id="year"></span> Lead2Value
-      </div>
-    </footer>
+      <p id="sent-fr" class="mini" hidden data-lang="fr">
+        Merci. Votre demande a bien été envoyée. Nous revenons vers vous rapidement.
+      </p>
+      <p id="sent-en" class="mini" hidden data-lang="en">
+        Thank you. Your request has been sent. We’ll get back to you shortly.
+      </p>
+    </form>
+  </section>
 
-  </div>
+  <!-- FOOTER -->
+  <footer>
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="./logo.png" alt="Lead2Value" onerror="this.style.display='none'">
+      © <span id="year"></span> Lead2Value
+    </div>
+  </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+</div>
 
-    // show confirmation
-    const p=new URLSearchParams(location.search);
-    if(p.get("sent")==="1"){
-      document.getElementById("sentFr")?.removeAttribute("hidden");
-      document.getElementById("sentEn")?.removeAttribute("hidden");
-    }
+<script>
+  // year
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    // language
-    const lang=navigator.language.startsWith("en")?"en":"fr";
-    document.querySelectorAll("[data-lang]").forEach(e=>{
-      e.hidden=e.getAttribute("data-lang")!==lang;
-    });
-  </script>
+  // confirmation message
+  const params = new URLSearchParams(window.location.search);
+  if(params.get("sent")==="1"){
+    document.getElementById("sent-fr")?.removeAttribute("hidden");
+    document.getElementById("sent-en")?.removeAttribute("hidden");
+  }
+
+  // language auto
+  const lang = navigator.language.startsWith("en") ? "en" : "fr";
+  document.querySelectorAll("[data-lang]").forEach(el=>{
+    el.hidden = el.getAttribute("data-lang") !== lang;
+  });
+</script>
+
 </body>
 </html>
