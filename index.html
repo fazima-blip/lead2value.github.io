@@ -58,6 +58,7 @@
       backdrop-filter: blur(12px);
       background: rgba(7,10,18,.62);
       border-bottom:1px solid rgba(255,255,255,.08);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
     }
     .nav-inner{
       max-width:var(--max);
@@ -69,20 +70,42 @@
       gap:14px;
     }
 
+    /* BRAND (logo très clair => backplate plus sombre + halo) */
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:950; letter-spacing:.2px;
-      min-width: 170px;
+      display:flex; align-items:center; gap:12px;
+      font-weight:980;
+      letter-spacing:.2px;
+      min-width: 200px;
+    }
+    .brand-text{
+      font-size:16px;
+      line-height:1;
+    }
+
+    .brand-mark{
+      position:relative;
+      width:52px;
+      height:52px;
+      border-radius: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.12), transparent 70%),
+        linear-gradient(180deg, rgba(0,0,0,.40), rgba(0,0,0,.22));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.40),
+        0 0 0 7px rgba(246,196,69,.12),
+        0 0 55px rgba(106,167,255,.20);
+      overflow:hidden;
+      flex: 0 0 auto;
     }
     .brand-logo{
-      width:34px; height:34px;
-      border-radius: 12px;
-      object-fit: contain;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      padding: 6px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.30);
-      flex: 0 0 auto;
+      width:40px;
+      height:40px;
+      object-fit:contain;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.40));
     }
 
     .navlinks{
@@ -456,8 +479,10 @@
   <div class="nav">
     <div class="nav-inner">
       <div class="brand">
-        <img id="logoNav" class="brand-logo" alt="Lead2Value logo" />
-        <div>Lead2Value</div>
+        <div class="brand-mark" aria-hidden="true">
+          <img id="logoNav" class="brand-logo" alt="Lead2Value logo" />
+        </div>
+        <div class="brand-text">Lead2Value</div>
       </div>
 
       <div class="navlinks">
@@ -767,18 +792,19 @@
             Briefly describe your firm and criteria. We’ll follow up with the next steps.
           </p>
 
-          <!-- ✅ FORM SUBMIT (GRATUIT) + NEW FIELDS -->
+          <!-- ✅ FORM SUBMIT (GRATUIT) + Nom personne + téléphone -->
           <form class="form" action="https://formsubmit.co/contact@lead2value.com" method="POST">
-            <!-- FormSubmit config -->
             <input type="hidden" name="_subject" value="Nouvelle demande d’audit — Lead2Value">
             <input type="hidden" name="_captcha" value="true">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="./?sent=1#contact">
 
-            <!-- New fields (Name + Phone) -->
             <div class="two">
-              <input name="person_name" required placeholder="Nom de la personne">
-              <input name="phone" type="tel" required placeholder="Numéro de téléphone">
+              <input name="person_name" required placeholder="Nom de la personne" data-lang="fr">
+              <input name="person_name" required placeholder="Full name" data-lang="en">
+
+              <input name="phone" type="tel" required placeholder="Numéro de téléphone" data-lang="fr">
+              <input name="phone" type="tel" required placeholder="Phone number" data-lang="en">
             </div>
 
             <input name="firm" required placeholder="Nom du cabinet / Firm name" />
@@ -789,12 +815,8 @@
             <button class="btn primary" type="submit" data-lang="fr">Envoyer</button>
             <button class="btn primary" type="submit" data-lang="en">Send</button>
 
-            <div id="sentMsgFr" class="mini" hidden data-lang="fr">
-              Merci. Votre demande a bien été envoyée.
-            </div>
-            <div id="sentMsgEn" class="mini" hidden data-lang="en">
-              Thank you. Your request has been sent.
-            </div>
+            <div id="sentMsgFr" class="mini" hidden data-lang="fr">Merci. Votre demande a bien été envoyée.</div>
+            <div id="sentMsgEn" class="mini" hidden data-lang="en">Thank you. Your request has been sent.</div>
 
             <div class="mini" data-lang="fr">Réponse sous 24–48h ouvrées.</div>
             <div class="mini" data-lang="en">Reply within 24–48 business hours.</div>
@@ -860,7 +882,10 @@
     const footerLogo = document.getElementById("logoFooter");
     navLogo.src = LOGO_URL;
     footerLogo.src = LOGO_URL;
-    [navLogo, footerLogo].forEach(img => { img.onerror = () => { img.style.display = "none"; }; });
+
+    [navLogo, footerLogo].forEach(img => {
+      img.onerror = () => { img.style.display = "none"; };
+    });
 
     // year
     document.getElementById("y").textContent = new Date().getFullYear();
