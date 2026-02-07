@@ -6,181 +6,173 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    :root{
-      --primary:#0f1f3d;
-      --secondary:#4a6fa5;
-      --light:#f5f7fb;
-      --dark:#111;
-      --text:#333;
-      --muted:#6b7280;
-      --white:#fff;
-      --border: rgba(255,255,255,.18);
+    :root {
+      --primary: #0f1f3d;
+      --secondary: #4a6fa5;
+      --light: #f5f7fb;
+      --dark: #111;
+      --text: #333;
+      --white: #ffffff;
     }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-      color:var(--text);
-      background:var(--white);
-      scroll-behavior:smooth;
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      color: var(--text);
+      background: var(--white);
+      scroll-behavior: smooth;
     }
 
-    /* Top bar */
-    .topbar{
-      position:fixed;
-      top:0; left:0; right:0;
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      padding:14px 16px;
-      z-index:50;
-      background:rgba(15,31,61,.55);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .lang-btn{
-      border:1px solid var(--border);
-      background:transparent;
-      color:#fff;
-      padding:8px 12px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      letter-spacing:.2px;
-    }
-    .lang-btn.active{
-      background:#fff;
-      color:var(--primary);
-      border-color:#fff;
+    /* ===== TOP BAR (LANG SWITCH) ===== */
+    .topbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 14px 16px;
+      z-index: 10;
     }
 
-    header{
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color:#fff;
-      padding:120px 20px 90px;
-      text-align:center;
-    }
-    header h1{
-      font-size:48px;
-      margin:0 0 16px;
-      letter-spacing:-0.5px;
-    }
-    header p{
-      font-size:20px;
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.6;
-      opacity:.95;
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #ddd;
+      padding: 6px 12px;
+      margin-left: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
     }
 
-    section{padding:80px 20px}
-    .container{max-width:980px; margin:0 auto}
-
-    h2{
-      font-size:32px;
-      margin:0 0 24px;
-      color:var(--primary);
-    }
-
-    .lead{
-      font-size:18px;
-      line-height:1.75;
-      color:#2b2b2b;
-      max-width:900px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap:28px;
-      margin-top:28px;
-    }
-    .card{
-      background:var(--light);
-      padding:28px;
-      border-radius:14px;
-    }
-    .card h3{margin:0 0 10px; color:var(--dark)}
-    .card p{margin:0; line-height:1.6; color:#374151}
-
-    .cta{
-      text-align:center;
+    .lang-btn.active {
       background: var(--primary);
-      color:#fff;
+      color: white;
+      border-color: var(--primary);
     }
-    .cta p{max-width:760px; margin:0 auto; line-height:1.7; opacity:.95}
-    .cta .button{
-      display:inline-block;
-      margin-top:22px;
-      padding:14px 30px;
-      border-radius:10px;
-      background:#fff;
-      color:var(--primary);
-      text-decoration:none;
-      font-weight:700;
-    }
-    .cta .button:hover{opacity:.92}
-    .email{
-      margin-top:14px;
-      font-size:16px;
-      opacity:.9;
-    }
-    .email a{color:#fff; text-decoration:underline}
 
-    .legal{
+    /* ===== HERO ===== */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 140px 20px 100px;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 24px;
+    }
+
+    .logo img {
+      max-width: 220px;
+      height: auto;
+    }
+
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    header p {
+      font-size: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    /* ===== CARDS ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .card {
       background: var(--light);
-    }
-    .legal h3{
-      margin:0 0 12px;
-      color:var(--dark);
-      font-size:20px;
-    }
-    .legal .box{
-      background:#fff;
-      border-radius:14px;
-      padding:26px;
-      border:1px solid rgba(15,31,61,.08);
-    }
-    .legal p{
-      margin:0 0 12px;
-      line-height:1.7;
-      color:#374151;
-    }
-    .legal .muted{color:var(--muted); font-size:14px}
-
-    footer{
-      background:#0b162c;
-      color:#9aa3b2;
-      text-align:center;
-      padding:22px 16px;
-      font-size:14px;
+      padding: 32px;
+      border-radius: 12px;
     }
 
-    /* Language toggle */
-    [data-lang]{display:none;}
-    body.lang-fr [data-lang="fr"]{display:block;}
-    body.lang-en [data-lang="en"]{display:block;}
-
-    /* Small screens */
-    @media (max-width:480px){
-      header h1{font-size:40px}
-      header p{font-size:18px}
-      .topbar{justify-content:center}
+    /* ===== CTA ===== */
+    .cta {
+      background: var(--primary);
+      color: white;
+      text-align: center;
     }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 14px 30px;
+      background: white;
+      color: var(--primary);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .email {
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    .email a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b162c;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    /* ===== LANGUAGE TOGGLE ===== */
+    [data-lang] { display: none; }
+    body.lang-fr [data-lang="fr"] { display: block; }
+    body.lang-en [data-lang="en"] { display: block; }
   </style>
 </head>
 
 <body class="lang-fr">
 
-  <!-- LANG SWITCH -->
-  <div class="topbar" aria-label="Language selector">
-    <button id="btn-fr" class="lang-btn active" type="button">FR</button>
-    <button id="btn-en" class="lang-btn" type="button">EN</button>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <button class="lang-btn active" onclick="setLang('fr')" id="btn-fr">FR</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
   </div>
 
   <!-- HERO -->
   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Lead2Value logo">
+    </div>
+
     <div data-lang="fr">
       <h1>Lead2Value</h1>
       <p>
@@ -204,23 +196,21 @@
 
       <div data-lang="fr">
         <h2>Notre approche</h2>
-        <p class="lead">
-          Beaucoup d’entreprises disposent d’une demande réelle, mais avec un portefeuille clients déséquilibré :
-          trop d’engagements chronophages, peu rentables, et une pression opérationnelle constante.
+        <p>
+          De nombreuses entreprises disposent d’une forte demande, mais avec un
+          portefeuille clients déséquilibré : trop de dossiers chronophages et peu rentables.
           <br><br>
-          Lead2Value structure l’acquisition et la qualification en amont afin d’attirer des prospects plus pertinents,
-          à plus forte valeur, et de permettre une croissance saine, maîtrisée et durable.
+          Lead2Value structure l’acquisition et la qualification en amont afin d’attirer
+          des prospects plus pertinents, à plus forte valeur, pour une croissance saine et maîtrisée.
         </p>
       </div>
 
       <div data-lang="en">
         <h2>Our approach</h2>
-        <p class="lead">
-          Many firms have real demand, yet an unoptimized client mix:
-          too many time-consuming, low-margin engagements and constant operational pressure.
-          <br><br>
-          Lead2Value designs acquisition and upfront qualification to attract better-fit, higher-value prospects
-          and enable healthy, controlled, sustainable growth.
+        <p>
+          Many firms have real demand but an unoptimized client mix.
+          Lead2Value designs acquisition and upfront qualification
+          to attract better-fit, higher-value prospects and enable sustainable growth.
         </p>
       </div>
 
@@ -236,15 +226,15 @@
         <div class="grid">
           <div class="card">
             <h3>Acquisition ciblée</h3>
-            <p>Attraction de prospects B2B alignés avec vos critères de valeur, de secteur et de maturité.</p>
+            <p>Attraction de prospects B2B alignés avec vos critères de valeur.</p>
           </div>
           <div class="card">
             <h3>Qualification en amont</h3>
-            <p>Filtrage précis avant tout rendez-vous pour protéger votre temps et vos équipes.</p>
+            <p>Filtrage précis avant toute mise en relation.</p>
           </div>
           <div class="card">
             <h3>Simplicité opérationnelle</h3>
-            <p>Pas d’outils inutiles : uniquement ce qui génère de l’impact, avec une exécution propre.</p>
+            <p>Aucune complexité inutile, uniquement ce qui génère de l’impact.</p>
           </div>
         </div>
       </div>
@@ -254,15 +244,15 @@
         <div class="grid">
           <div class="card">
             <h3>Targeted acquisition</h3>
-            <p>We attract B2B prospects aligned with your value, industry, and maturity criteria.</p>
+            <p>We attract B2B prospects aligned with your value criteria.</p>
           </div>
           <div class="card">
             <h3>Upfront qualification</h3>
-            <p>We filter and qualify before any meeting to protect your time and your team’s capacity.</p>
+            <p>We filter before any meeting to protect your time.</p>
           </div>
           <div class="card">
             <h3>Operational simplicity</h3>
-            <p>No unnecessary tooling—only what drives outcomes, delivered with clean execution.</p>
+            <p>No unnecessary tools—only what drives outcomes.</p>
           </div>
         </div>
       </div>
@@ -270,53 +260,43 @@
     </div>
   </section>
 
-  <!-- CONTACT / CTA -->
-  <section class="cta" id="contact">
+  <!-- CONTACT -->
+  <section class="cta">
     <div class="container">
 
       <div data-lang="fr">
-        <h2 style="color:#fff; margin-bottom:16px;">Contact</h2>
-        <p>Pour échanger sur votre acquisition client ou explorer une collaboration :</p>
-        <a class="button" href="mailto:contact@lead2value.com">Nous écrire</a>
-        <div class="email">ou par email : <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
+        <h2 style="color:white;">Contact</h2>
+        <p>Pour échanger sur votre acquisition client :</p>
+        <a href="mailto:contact@lead2value.com">Nous écrire</a>
+        <div class="email">
+          ou par email : <a href="mailto:contact@lead2value.com">contact@lead2value.com</a>
+        </div>
       </div>
 
       <div data-lang="en">
-        <h2 style="color:#fff; margin-bottom:16px;">Contact</h2>
-        <p>If you’d like to discuss client acquisition or explore a collaboration:</p>
-        <a class="button" href="mailto:contact@lead2value.com">Email us</a>
-        <div class="email">or email: <a href="mailto:contact@lead2value.com">contact@lead2value.com</a></div>
+        <h2 style="color:white;">Contact</h2>
+        <p>To discuss client acquisition:</p>
+        <a href="mailto:contact@lead2value.com">Email us</a>
+        <div class="email">
+          or email: <a href="mailto:contact@lead2value.com">contact@lead2value.com</a>
+        </div>
       </div>
 
     </div>
   </section>
 
-
+  <!-- FOOTER -->
   <footer>
-    © 2026 Lead2Value — Tous droits réservés
+    © 2026 Lead2Value
   </footer>
 
+  <!-- SCRIPT -->
   <script>
-    const btnFr = document.getElementById("btn-fr");
-    const btnEn = document.getElementById("btn-en");
-
-    function setLang(lang){
-      document.body.classList.remove("lang-fr","lang-en");
-      document.body.classList.add(lang === "en" ? "lang-en" : "lang-fr");
-
-      btnFr.classList.toggle("active", lang !== "en");
-      btnEn.classList.toggle("active", lang === "en");
-
-      // Optional: keep language in URL hash (simple)
-      // location.hash = lang === "en" ? "#en" : "#fr";
+    function setLang(lang) {
+      document.body.className = lang === "en" ? "lang-en" : "lang-fr";
+      document.getElementById("btn-fr").classList.toggle("active", lang === "fr");
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
     }
-
-    btnFr.addEventListener("click", () => setLang("fr"));
-    btnEn.addEventListener("click", () => setLang("en"));
-
-    // Optional: auto language by browser
-    // const userLang = (navigator.language || "").toLowerCase();
-    // if(userLang.startsWith("en")) setLang("en");
   </script>
 
 </body>
