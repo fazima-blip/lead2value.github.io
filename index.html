@@ -27,13 +27,19 @@
       --r1: 22px;
       --r2: 16px;
 
-      /* LOGO: carré, visible, plus gros */
-      --logoSize: 86px;
+      --logoSize: 88px;
       --logoRadius: 0px;
+
+      --space1: 10px;
+      --space2: 16px;
+      --space3: 22px;
+      --space4: 34px;
+      --space5: 56px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -64,10 +70,9 @@
 
     .brand{
       display:flex; align-items:center; gap:14px;
-      min-width: 300px;
+      min-width: 280px;
     }
 
-    /* --- LOGO (inline, visible, carré) --- */
     .logoBox{
       width: var(--logoSize);
       height: var(--logoSize);
@@ -81,21 +86,21 @@
     }
     .logoBox svg{width: calc(var(--logoSize) - 16px); height: calc(var(--logoSize) - 16px); display:block}
 
-    .brandText{display:flex; flex-direction:column; line-height:1.1}
+    .brandText{display:flex; flex-direction:column; line-height:1.15}
     .brandText .name{
-      font-weight:900;
+      font-weight:950;
       letter-spacing:.2px;
       font-size:16px;
     }
     .brandText .sub{
-      margin-top:5px;
-      font-size:12.5px;
+      margin-top:6px;
+      font-size:12.8px;
       color:var(--muted);
       letter-spacing:.1px;
     }
     .forFirms{
       display:inline-flex; align-items:center; gap:8px;
-      margin-top:8px;
+      margin-top:10px;
       padding:7px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
@@ -103,6 +108,7 @@
       font-weight:900;
       font-size:12px;
       letter-spacing:.25px;
+      width:fit-content;
     }
     .spark{
       width:10px; height:10px; border-radius:999px;
@@ -112,7 +118,6 @@
 
     .navRight{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end}
 
-    /* Language switch (EN very visible) */
     .lang{
       display:flex; align-items:center; gap:6px;
       padding:6px;
@@ -171,10 +176,10 @@
     }
 
     /* Hero */
-    .hero{padding:56px 0 26px}
+    header.hero{padding:var(--space5) 0 var(--space4)}
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.18fr .82fr;
       gap:18px;
       align-items:stretch;
     }
@@ -186,10 +191,10 @@
       overflow:hidden;
       position:relative;
     }
-    .panelInner{padding:28px}
+    .panelInner{padding:30px}
     .glow{
       position:absolute; inset:auto -80px -90px -80px;
-      height:180px;
+      height:200px;
       background: radial-gradient(closest-side, rgba(124,199,255,.26), transparent 70%);
       filter: blur(6px);
       pointer-events:none;
@@ -201,10 +206,11 @@
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.04);
-      font-weight:900;
+      font-weight:950;
       font-size:12px;
       letter-spacing:.25px;
-      color: rgba(243,246,255,.90);
+      color: rgba(243,246,255,.92);
+      width:fit-content;
     }
     .kdot{
       width:9px; height:9px; border-radius:999px;
@@ -214,15 +220,23 @@
     h1{
       margin:16px 0 10px;
       font-size:44px;
-      line-height:1.05;
+      line-height:1.06;
       letter-spacing:-.9px;
+      max-width: 22ch;
     }
     .lead{
       margin:0;
       color: var(--muted);
-      font-size:16px;
-      line-height:1.6;
-      max-width: 62ch;
+      font-size:16.3px;
+      line-height:1.65;
+      max-width: 64ch;
+    }
+    .leadSmall{
+      margin:0;
+      color: var(--muted2);
+      font-size:13.8px;
+      line-height:1.65;
+      max-width: 78ch;
     }
 
     .valueRow{
@@ -236,8 +250,8 @@
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
       color: rgba(243,246,255,.84);
-      font-weight:800;
-      font-size:12.5px;
+      font-weight:900;
+      font-size:12.6px;
     }
     .tag .mini{
       width:18px; height:18px; border-radius:7px;
@@ -246,7 +260,7 @@
       background: rgba(255,210,74,.12);
       color: rgba(255,210,74,.95);
       font-size:12px;
-      font-weight:900;
+      font-weight:950;
     }
 
     .heroActions{
@@ -264,10 +278,10 @@
       padding:18px;
     }
     .miniCard h3{margin:0 0 10px; font-size:15px; letter-spacing:.2px}
-    .miniCard p{margin:0; color:var(--muted); font-size:13.5px; line-height:1.55}
+    .miniCard p{margin:0; color:var(--muted); font-size:13.7px; line-height:1.65}
 
     .metrics{
-      margin-top:12px;
+      margin-top:14px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:10px;
@@ -278,14 +292,15 @@
       background: rgba(255,255,255,.03);
       padding:12px;
     }
-    .metric .t{font-weight:900; letter-spacing:-.2px}
-    .metric .s{margin-top:4px; color:var(--muted2); font-size:12.5px; line-height:1.35}
+    .metric .t{font-weight:950; letter-spacing:-.2px}
+    .metric .s{margin-top:5px; color:var(--muted2); font-size:12.7px; line-height:1.45}
 
     /* Sections */
-    section{padding:26px 0}
+    section{padding:46px 0}
+    section.soft{padding:40px 0}
     .sectionHead{
       display:flex; align-items:flex-end; justify-content:space-between;
-      gap:16px; margin:0 0 14px;
+      gap:16px; margin:0 0 18px;
     }
     .sectionHead h2{
       margin:0;
@@ -294,8 +309,8 @@
     }
     .sectionHead .hint{
       color: var(--muted2);
-      font-weight:800;
-      font-size:12.5px;
+      font-weight:900;
+      font-size:12.7px;
       letter-spacing:.2px;
       white-space:nowrap;
     }
@@ -303,45 +318,45 @@
     .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:12px;
+      gap:14px;
     }
     .card{
       border-radius: var(--r1);
       border:1px solid rgba(255,255,255,.12);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       box-shadow: var(--shadow2);
-      padding:16px;
+      padding:18px;
     }
-    .cardTop{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+    .cardTop{display:flex; align-items:center; gap:12px; margin-bottom:10px}
     .step{
-      width:36px; height:36px;
+      width:38px; height:38px;
       border-radius: 12px;
       display:grid; place-items:center;
-      font-weight:900;
+      font-weight:950;
       background: rgba(124,199,255,.12);
       border:1px solid rgba(124,199,255,.25);
     }
-    .card h4{margin:0; font-size:14px; letter-spacing:.1px}
-    .card p{margin:0; color:var(--muted); font-size:13.5px; line-height:1.55}
+    .card h4{margin:0; font-size:14.2px; letter-spacing:.1px}
+    .card p{margin:0; color:var(--muted); font-size:13.7px; line-height:1.65}
 
     .split{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:12px;
+      gap:14px;
       align-items:stretch;
     }
 
     .list{
-      margin:10px 0 0; padding:0;
+      margin:12px 0 0; padding:0;
       list-style:none;
-      display:grid; gap:10px;
+      display:grid; gap:12px;
     }
     .li{
       display:flex; gap:10px;
       border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      padding:12px;
+      padding:13px;
     }
     .check{
       width:22px; height:22px; border-radius:999px;
@@ -349,17 +364,44 @@
       background: rgba(46,229,157,.12);
       border:1px solid rgba(46,229,157,.28);
       color: rgba(46,229,157,.95);
-      font-weight:900;
+      font-weight:950;
       font-size:12px;
       flex:0 0 auto;
+      margin-top:2px;
     }
-    .li b{display:block; font-size:13.5px}
-    .li span{display:block; margin-top:3px; color:var(--muted2); font-size:12.8px; line-height:1.45}
+    .li b{display:block; font-size:13.7px}
+    .li span{display:block; margin-top:5px; color:var(--muted2); font-size:12.9px; line-height:1.5}
 
     .divider{
       height:1px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
-      margin:16px 0;
+      margin:18px 0;
+    }
+
+    /* “Breather” strip to break the page rhythm */
+    .breather{
+      padding:18px;
+      border-radius: var(--r1);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow2);
+    }
+    .breather .row{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+      align-items:center;
+    }
+    .breather h3{margin:0; font-size:15px; letter-spacing:.2px}
+    .breather p{margin:6px 0 0; color:var(--muted); font-size:13.6px; line-height:1.65}
+    .breather .note{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      color:var(--muted2);
+      font-size:12.8px;
+      line-height:1.55;
     }
 
     /* Form */
@@ -370,40 +412,40 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .formInner{padding:18px}
-    form{display:grid; gap:12px; margin-top:10px}
+    .formInner{padding:20px}
+    form{display:grid; gap:12px; margin-top:12px}
     .row2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
 
     label{
       display:block;
-      font-weight:900;
-      font-size:12.5px;
+      font-weight:950;
+      font-size:12.6px;
       letter-spacing:.2px;
-      margin-bottom:6px;
-      color: rgba(243,246,255,.90);
+      margin-bottom:7px;
+      color: rgba(243,246,255,.92);
     }
     .field{
       width:100%;
       border-radius: 14px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.03);
-      padding:12px;
+      padding:12px 12px;
       color: var(--text);
       outline:none;
-      font-size:14px;
+      font-size:14.2px;
       transition: box-shadow .16s ease, border-color .16s ease;
     }
     .field:focus{
       border-color: rgba(124,199,255,.60);
       box-shadow: 0 0 0 4px rgba(124,199,255,.10);
     }
-    textarea.field{min-height:120px; resize:vertical}
+    textarea.field{min-height:130px; resize:vertical}
 
     .help{
-      margin-top:6px;
+      margin-top:7px;
       color: var(--muted2);
-      font-size:12.5px;
-      line-height:1.35;
+      font-size:12.6px;
+      line-height:1.45;
     }
 
     .submitRow{
@@ -412,7 +454,7 @@
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:2px;
+      margin-top:4px;
     }
     .submit{
       border:0;
@@ -425,24 +467,25 @@
       color:#0B1224;
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
       box-shadow: 0 22px 50px rgba(124,199,255,.14), 0 22px 50px rgba(255,210,74,.10);
-      transition: transform .18s ease, filter .18s ease;
+      transition: transform .18s ease, filter .18s ease, opacity .18s ease;
       display:inline-flex;
       align-items:center;
       gap:10px;
       white-space:nowrap;
     }
     .submit:hover{transform: translateY(-1px); filter: brightness(1.02)}
+    .submit:disabled{opacity:.75; cursor:not-allowed; transform:none}
     .fineprint{
       color: var(--muted2);
-      font-size:12.3px;
-      line-height:1.45;
-      max-width: 70ch;
+      font-size:12.4px;
+      line-height:1.5;
+      max-width: 72ch;
     }
 
     /* Footer */
     footer{
-      margin-top:26px;
-      padding:26px 0 34px;
+      margin-top:34px;
+      padding:28px 0 36px;
       border-top:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
     }
@@ -451,15 +494,15 @@
       gap:16px; flex-wrap:wrap;
     }
     .miniLogo{
-      width:54px; height:54px;
+      width:56px; height:56px;
       border-radius: var(--logoRadius);
       border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.03);
       display:grid; place-items:center;
       overflow:hidden;
     }
-    .miniLogo svg{width:44px; height:44px}
-    .footMeta{color:var(--muted2); font-size:12.5px; line-height:1.4}
+    .miniLogo svg{width:46px; height:46px}
+    .footMeta{color:var(--muted2); font-size:12.6px; line-height:1.45}
     .footLinks{display:flex; gap:10px; flex-wrap:wrap}
     .link{
       display:inline-flex; align-items:center; gap:8px;
@@ -468,8 +511,8 @@
       background: rgba(255,255,255,.02);
       color: rgba(243,246,255,.86);
       padding:9px 12px;
-      font-weight:900;
-      font-size:12px;
+      font-weight:950;
+      font-size:12.2px;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
     .link:hover{transform: translateY(-1px); background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.26)}
@@ -481,12 +524,13 @@
     /* Responsive */
     @media (max-width: 980px){
       .heroGrid{grid-template-columns:1fr}
-      h1{font-size:36px}
+      h1{font-size:36px; max-width:none}
       .grid3{grid-template-columns:1fr}
       .split{grid-template-columns:1fr}
       .row2{grid-template-columns:1fr}
       .brand{min-width:auto}
       :root{ --logoSize: 80px; }
+      .breather .row{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -499,12 +543,7 @@
       <div class="nav">
 
         <div class="brand" aria-label="Lead2Value">
-          <!-- LOGO visible (carré + gros) -->
           <div class="logoBox" title="Logo Lead2Value" aria-hidden="true">
-            <!-- IMPORTANT :
-                 Ceci est un logo intégré (SVG) pour que tu le VOIES.
-                 Quand tu m’envoies ton vrai logo (PNG/SVG), je le remplace ici sans créer d’assets.
-            -->
             <svg viewBox="0 0 64 64" role="img" aria-label="Lead2Value logo">
               <defs>
                 <linearGradient id="L2Vgrad" x1="0" y1="0" x2="1" y2="1">
@@ -525,7 +564,6 @@
             <div class="sub" data-lang="en">Accounting firms — acquisition & qualification</div>
             <div class="sub" data-lang="fr">Cabinets comptables — acquisition & qualification</div>
 
-            <!-- “Pour les cabinets” mis en avant -->
             <div class="forFirms">
               <span class="spark" aria-hidden="true"></span>
               <span data-lang="en">For accounting firms</span>
@@ -536,7 +574,6 @@
 
         <div class="navRight">
           <div class="lang" role="group" aria-label="Language switch">
-            <!-- EN par défaut et très visible -->
             <button type="button" id="btnEN" class="active" aria-pressed="true">
               <span class="pill">EN</span> English
             </button>
@@ -547,7 +584,7 @@
 
           <a class="btn" href="#how">
             <span aria-hidden="true">▸</span>
-            <span data-lang="en">How it works</span>
+            <span data-lang="en">Method</span>
             <span data-lang="fr">Méthode</span>
           </a>
 
@@ -573,24 +610,24 @@
             <div class="kicker">
               <span class="kdot" aria-hidden="true"></span>
               <span data-lang="en">Built for accounting firms in France</span>
-              <span data-lang="fr">Spécialement pour les cabinets comptables en France</span>
+              <span data-lang="fr">Pensé pour les cabinets comptables en France</span>
             </div>
 
-            <h1 data-lang="en">Attract better-fit B2B clients — and pre-qualify them before your team invests time.</h1>
-            <h1 data-lang="fr">Attirez des clients B2B plus rentables — et qualifiez-les avant d’y investir du temps.</h1>
+            <h1 data-lang="en">Attract better-fit B2B clients — and qualify them before your team invests time.</h1>
+            <h1 data-lang="fr">Attirez de meilleurs clients B2B — et filtrez avant d’y consacrer du temps.</h1>
 
             <p class="lead" data-lang="en">
-              Lead2Value focuses on <b>acquisition + qualification</b> for accounting firms: fewer unsuitable requests, faster decisions, and a cleaner handoff to your team.
+              Lead2Value helps you reduce unsuitable requests and keep only opportunities aligned with your fees, your scope, and your capacity — with a clean handoff to your team.
             </p>
             <p class="lead" data-lang="fr">
-              Lead2Value se concentre sur <b>l’acquisition + la qualification</b> pour les cabinets comptables : moins de demandes hors-cible, décisions plus rapides, et passation plus fluide.
+              Lead2Value réduit les demandes hors-cible et fait remonter uniquement les opportunités compatibles avec vos honoraires, votre périmètre et votre capacité — avec une passation claire pour l’équipe.
             </p>
 
             <div class="valueRow" aria-label="Key points">
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Qualification-first</span><span data-lang="fr">Qualification d’abord</span></div>
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Partner-friendly</span><span data-lang="fr">Pensé associés</span></div>
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Clear fit / no-fit</span><span data-lang="fr">Fit / no-fit clair</span></div>
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Clean handoff</span><span data-lang="fr">Passation propre</span></div>
+              <div class="tag"><span class="mini">✓</span><span data-lang="en">Qualification-first</span><span data-lang="fr">Filtrage en amont</span></div>
+              <div class="tag"><span class="mini">✓</span><span data-lang="en">Partner-friendly</span><span data-lang="fr">Pensé pour les associés</span></div>
+              <div class="tag"><span class="mini">✓</span><span data-lang="en">Clear accept/refuse rules</span><span data-lang="fr">Règles d’acceptation claires</span></div>
+              <div class="tag"><span class="mini">✓</span><span data-lang="en">Clean handoff</span><span data-lang="fr">Passation structurée</span></div>
             </div>
 
             <div class="heroActions">
@@ -602,17 +639,17 @@
               <a class="btn" href="#what">
                 <span aria-hidden="true">⟡</span>
                 <span data-lang="en">What you get</span>
-                <span data-lang="fr">Ce que vous recevez</span>
+                <span data-lang="fr">Concrètement, ce que vous recevez</span>
               </a>
             </div>
 
             <div class="divider" aria-hidden="true"></div>
 
-            <p class="lead" style="font-size:13.8px; color:var(--muted2); max-width: 78ch" data-lang="en">
-              We do not chase “volume”. We engineer a pipeline that respects your constraints: fees, complexity, responsiveness, and capacity.
+            <p class="leadSmall" data-lang="en">
+              No “volume for volume”. We build a pipeline that respects your constraints: fees, complexity, responsiveness, and capacity.
             </p>
-            <p class="lead" style="font-size:13.8px; color:var(--muted2); max-width: 78ch" data-lang="fr">
-              On ne cherche pas le “volume”. On construit un flux qui respecte vos contraintes : honoraires, complexité, réactivité, capacité.
+            <p class="leadSmall" data-lang="fr">
+              Pas de “volume pour le volume”. On construit un flux qui respecte vos contraintes : honoraires, complexité, réactivité et capacité.
             </p>
           </div>
         </div>
@@ -620,29 +657,29 @@
         <aside class="stack" aria-label="Highlights">
           <div class="miniCard">
             <h3 data-lang="en">Designed around your reality</h3>
-            <h3 data-lang="fr">Pensé pour votre réalité terrain</h3>
-            <p data-lang="en">Most firms aren’t missing leads. They’re missing <b>qualified</b> opportunities that match their positioning.</p>
-            <p data-lang="fr">La plupart des cabinets ne manquent pas de demandes. Ils manquent d’opportunités <b>qualifiées</b> alignées avec leur positionnement.</p>
+            <h3 data-lang="fr">Aligné avec votre réalité terrain</h3>
+            <p data-lang="en">Most firms don’t lack inquiries. They lack <b>properly qualified</b> opportunities that match their positioning.</p>
+            <p data-lang="fr">La plupart des cabinets ne manquent pas de demandes. Ils manquent d’opportunités <b>vraiment qualifiées</b>, alignées avec leur positionnement.</p>
 
             <div class="metrics">
               <div class="metric">
                 <div class="t" data-lang="en">Filtering</div><div class="t" data-lang="fr">Filtrage</div>
-                <div class="s" data-lang="en">Fewer micro-clients in your pipeline.</div>
-                <div class="s" data-lang="fr">Moins de petits dossiers hors-cible.</div>
+                <div class="s" data-lang="en">Fewer low-fee micro-clients in your pipeline.</div>
+                <div class="s" data-lang="fr">Moins de petits dossiers à faible valeur.</div>
               </div>
               <div class="metric">
                 <div class="t" data-lang="en">Clarity</div><div class="t" data-lang="fr">Clarté</div>
-                <div class="s" data-lang="en">A consistent intake path for the team.</div>
-                <div class="s" data-lang="fr">Un parcours d’entrée cohérent.</div>
+                <div class="s" data-lang="en">A consistent intake path for the whole team.</div>
+                <div class="s" data-lang="fr">Un parcours d’entrée cohérent pour l’équipe.</div>
               </div>
             </div>
           </div>
 
           <div class="miniCard" id="what">
-            <h3 data-lang="en">What you get (simple, usable)</h3>
-            <h3 data-lang="fr">Ce que vous recevez (simple, utilisable)</h3>
-            <p data-lang="en">Message angles, qualification form, fit rules, and a clean handoff — so partners only see relevant requests.</p>
-            <p data-lang="fr">Angles de message, formulaire de qualification, règles de fit, et passation propre — pour ne remonter que le pertinent.</p>
+            <h3 data-lang="en">What you get (usable, not theoretical)</h3>
+            <h3 data-lang="fr">Ce que vous recevez (utilisable, pas théorique)</h3>
+            <p data-lang="en">Messaging angles, a short qualification form, acceptance rules, and a clear handoff — so partners only see relevant requests.</p>
+            <p data-lang="fr">Angles de messages, questionnaire court de qualification, règles d’acceptation, et passation structurée — pour que les associés ne voient que l’essentiel.</p>
           </div>
         </aside>
 
@@ -650,84 +687,104 @@
     </div>
   </header>
 
+  <!-- BREATHER -->
+  <section class="soft">
+    <div class="container">
+      <div class="breather">
+        <div class="row">
+          <div>
+            <h3 data-lang="en">A simple goal: protect partner time.</h3>
+            <h3 data-lang="fr">Objectif simple : protéger le temps associé.</h3>
+            <p data-lang="en">Your pipeline stays active — but only with cases you would actually accept.</p>
+            <p data-lang="fr">Votre flux reste actif — mais uniquement avec des dossiers que vous accepteriez réellement.</p>
+          </div>
+          <div class="note">
+            <div data-lang="en"><b>Typical outcome:</b> fewer back-and-forth emails, fewer “wrong fit” calls, faster decisions.</div>
+            <div data-lang="fr"><b>Effet attendu :</b> moins d’allers-retours, moins d’appels “hors-cible”, décisions plus rapides.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section id="how">
     <div class="container">
       <div class="sectionHead">
-        <h2 data-lang="en">A clear method for accounting firms</h2>
-        <h2 data-lang="fr">Une méthode claire pour cabinets comptables</h2>
-        <div class="hint" data-lang="en">Acquisition + qualification + handoff</div>
-        <div class="hint" data-lang="fr">Acquisition + qualification + passation</div>
+        <h2 data-lang="en">A clear method</h2>
+        <h2 data-lang="fr">Une méthode claire</h2>
+        <div class="hint" data-lang="en">Acquisition → qualification → handoff</div>
+        <div class="hint" data-lang="fr">Acquisition → qualification → passation</div>
       </div>
 
       <div class="grid3">
         <div class="card">
           <div class="cardTop">
             <div class="step" aria-hidden="true">1</div>
-            <h4 data-lang="en">Positioning & targeting</h4>
-            <h4 data-lang="fr">Positionnement & ciblage</h4>
+            <h4 data-lang="en">Targeting & positioning</h4>
+            <h4 data-lang="fr">Ciblage & positionnement</h4>
           </div>
-          <p data-lang="en">We define the profiles you actually want (fees, complexity, sector, entity type) and build acquisition around them.</p>
-          <p data-lang="fr">On définit les profils que vous voulez vraiment (honoraires, complexité, secteur, forme) puis on aligne l’acquisition dessus.</p>
+          <p data-lang="en">Define the profiles you really want (fees, complexity, sector, entity type), then align acquisition around them.</p>
+          <p data-lang="fr">On précise les dossiers que vous souhaitez (honoraires, complexité, secteur, forme juridique), puis on aligne l’acquisition sur ces critères.</p>
         </div>
 
         <div class="card">
           <div class="cardTop">
             <div class="step" aria-hidden="true">2</div>
-            <h4 data-lang="en">Pre-qualification</h4>
-            <h4 data-lang="fr">Pré-qualification</h4>
+            <h4 data-lang="en">Short pre-qualification</h4>
+            <h4 data-lang="fr">Pré-qualification courte</h4>
           </div>
-          <p data-lang="en">A short intake that filters by budget, urgency, and fit — so your team doesn’t waste time early.</p>
-          <p data-lang="fr">Un intake court qui filtre budget, urgence et fit — pour éviter la perte de temps dès le départ.</p>
+          <p data-lang="en">A short intake filters by budget, scope, urgency and responsiveness — so your team avoids early time waste.</p>
+          <p data-lang="fr">Un questionnaire court filtre budget, périmètre, urgence et réactivité — pour éviter la perte de temps dès le départ.</p>
         </div>
 
         <div class="card">
           <div class="cardTop">
             <div class="step" aria-hidden="true">3</div>
-            <h4 data-lang="en">Clean handoff</h4>
-            <h4 data-lang="fr">Passation propre</h4>
+            <h4 data-lang="en">Structured handoff</h4>
+            <h4 data-lang="fr">Passation structurée</h4>
           </div>
-          <p data-lang="en">Each request arrives with context: who they are, why now, constraints, and next-step recommendation.</p>
-          <p data-lang="fr">Chaque demande arrive contextualisée : profil, besoin, contraintes, et recommandation de next step.</p>
+          <p data-lang="en">Each request arrives with context: who they are, why now, constraints, and recommended next step.</p>
+          <p data-lang="fr">Chaque demande remonte avec le contexte : profil, besoin, contraintes, et recommandation claire de suite à donner.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PAINS / QUALIFIED -->
-  <section>
+  <section class="soft">
     <div class="container">
       <div class="split">
         <div class="miniCard">
           <h3 data-lang="en">Common pain points (we fix)</h3>
-          <h3 data-lang="fr">Pains fréquents (que l’on corrige)</h3>
+          <h3 data-lang="fr">Problèmes fréquents (que l’on corrige)</h3>
 
           <ul class="list">
             <li class="li">
               <div class="check" aria-hidden="true">✓</div>
               <div>
                 <b data-lang="en">Too many low-fee requests</b>
-                <b data-lang="fr">Trop de demandes “petits honoraires”</b>
-                <span data-lang="en">Your pipeline is busy, but your economics suffer.</span>
-                <span data-lang="fr">Le flux existe, mais l’économie n’est pas satisfaisante.</span>
+                <b data-lang="fr">Trop de demandes à faible valeur</b>
+                <span data-lang="en">The pipeline is busy, but unit economics suffer.</span>
+                <span data-lang="fr">Le flux existe, mais la rentabilité par dossier se dégrade.</span>
               </div>
             </li>
             <li class="li">
               <div class="check" aria-hidden="true">✓</div>
               <div>
                 <b data-lang="en">Partner time gets consumed</b>
-                <b data-lang="fr">Le temps associé se fait aspirer</b>
+                <b data-lang="fr">Le temps associé est aspiré</b>
                 <span data-lang="en">Calls that should have been filtered earlier.</span>
-                <span data-lang="fr">Des échanges qui auraient dû être filtrés en amont.</span>
+                <span data-lang="fr">Des échanges qui auraient dû être filtrés avant.</span>
               </div>
             </li>
             <li class="li">
               <div class="check" aria-hidden="true">✓</div>
               <div>
                 <b data-lang="en">Unclear intake rules</b>
-                <b data-lang="fr">Règles d’entrée peu claires</b>
-                <span data-lang="en">A consistent fit/no-fit process reduces friction.</span>
-                <span data-lang="fr">Un process fit/no-fit cohérent réduit les frictions.</span>
+                <b data-lang="fr">Des règles d’entrée floues</b>
+                <span data-lang="en">Clear accept/refuse rules reduce friction across the team.</span>
+                <span data-lang="fr">Des critères d’acceptation refus clairs réduisent les frictions.</span>
               </div>
             </li>
           </ul>
@@ -735,22 +792,22 @@
 
         <div class="miniCard">
           <h3 data-lang="en">What “qualified” means</h3>
-          <h3 data-lang="fr">Ce que “qualifié” veut dire</h3>
+          <h3 data-lang="fr">Ce que “qualifié” signifie</h3>
 
-          <p data-lang="en" style="color:var(--muted); margin:0; line-height:1.6; font-size:13.5px">
-            Qualified does not mean “interested”. It means the prospect matches your constraints: acceptable fee level, complexity, responsiveness, and a clear problem to solve.
+          <p data-lang="en" style="color:var(--muted); margin:0; line-height:1.7; font-size:13.7px">
+            Qualified doesn’t mean “interested”. It means the prospect matches your constraints: acceptable fee level, scope/complexity, responsiveness, and a clear problem to solve.
           </p>
-          <p data-lang="fr" style="color:var(--muted); margin:0; line-height:1.6; font-size:13.5px">
-            Qualifié ne veut pas dire “intéressé”. Cela veut dire : compatible avec vos contraintes (honoraires, complexité, réactivité) et un besoin clair.
+          <p data-lang="fr" style="color:var(--muted); margin:0; line-height:1.7; font-size:13.7px">
+            “Qualifié” ne veut pas dire “intéressé”. Cela veut dire : compatible avec vos contraintes (niveau d’honoraires, périmètre/complexité, réactivité) et un besoin clair.
           </p>
 
           <div class="divider" aria-hidden="true"></div>
 
-          <p data-lang="en" style="color:var(--muted2); margin:0; line-height:1.6; font-size:13.3px">
-            The intake is adapted to your positioning (SME, groups, real estate, advisory-heavy, multi-entity…).
+          <p data-lang="en" style="color:var(--muted2); margin:0; line-height:1.7; font-size:13.4px">
+            The intake adapts to your positioning (SMEs, groups, real estate, advisory-heavy, multi-entity…).
           </p>
-          <p data-lang="fr" style="color:var(--muted2); margin:0; line-height:1.6; font-size:13.3px">
-            L’intake s’adapte à votre positionnement (PME, groupes, immobilier, conseil, multi-entités…).
+          <p data-lang="fr" style="color:var(--muted2); margin:0; line-height:1.7; font-size:13.4px">
+            Le questionnaire s’adapte à votre positionnement (PME, groupes, immobilier, forte part de conseil, multi-entités…).
           </p>
         </div>
       </div>
@@ -774,20 +831,20 @@
               <h3 style="margin:0 0 8px; font-size:15px" data-lang="en">Tell us your goal</h3>
               <h3 style="margin:0 0 8px; font-size:15px" data-lang="fr">Expliquez votre objectif</h3>
 
-              <p style="margin:0; color:var(--muted); line-height:1.6; font-size:13.5px" data-lang="en">
+              <p style="margin:0; color:var(--muted); line-height:1.7; font-size:13.7px" data-lang="en">
                 We’ll review your positioning and suggest the fastest qualification levers for your firm.
               </p>
-              <p style="margin:0; color:var(--muted); line-height:1.6; font-size:13.5px" data-lang="fr">
-                Nous analysons votre positionnement et proposons les leviers de qualification les plus rapides pour votre cabinet.
+              <p style="margin:0; color:var(--muted); line-height:1.7; font-size:13.7px" data-lang="fr">
+                Nous analysons votre positionnement et proposons des leviers simples pour qualifier plus tôt.
               </p>
 
               <div class="divider" aria-hidden="true"></div>
 
-              <p style="margin:0; color:var(--muted2); line-height:1.6; font-size:13.2px" data-lang="en">
-                Note: this page shows no “Thank you, message sent” banner. You’ll simply be redirected (configurable).
+              <p style="margin:0; color:var(--muted2); line-height:1.7; font-size:13.4px" data-lang="en">
+                Note: this page doesn’t show a “thank you” banner. After sending, you’ll be redirected (configurable).
               </p>
-              <p style="margin:0; color:var(--muted2); line-height:1.6; font-size:13.2px" data-lang="fr">
-                Note : cette page n’affiche pas de bannière “Merci, envoyé”. Redirection simple (configurable).
+              <p style="margin:0; color:var(--muted2); line-height:1.7; font-size:13.4px" data-lang="fr">
+                Note : cette page n’affiche pas de bannière “merci”. Après l’envoi, vous êtes redirigé(e) (configurable).
               </p>
             </div>
 
@@ -797,14 +854,13 @@
                 <input type="hidden" name="_subject" value="New request — Lead2Value" />
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_captcha" value="false" />
-                <!-- No "Merci..." message shown here. -->
                 <input type="hidden" name="_next" value="about:blank" />
 
                 <div class="row2">
                   <div>
                     <label for="name" data-lang="en">Your name</label>
                     <label for="name" data-lang="fr">Votre nom</label>
-                    <input class="field" id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom" />
+                    <input class="field" id="name" name="name" type="text" autocomplete="name" required />
                     <div class="help" data-lang="en">So we know how to address you.</div>
                     <div class="help" data-lang="fr">Pour savoir comment vous adresser.</div>
                   </div>
@@ -812,7 +868,7 @@
                   <div>
                     <label for="firm" data-lang="en">Firm / cabinet</label>
                     <label for="firm" data-lang="fr">Cabinet</label>
-                    <input class="field" id="firm" name="firm" type="text" autocomplete="organization" placeholder="Nom du cabinet (optionnel)" />
+                    <input class="field" id="firm" name="firm" type="text" autocomplete="organization" />
                     <div class="help" data-lang="en">Optional, but helpful for context.</div>
                     <div class="help" data-lang="fr">Optionnel, utile pour le contexte.</div>
                   </div>
@@ -822,7 +878,7 @@
                   <div>
                     <label for="email" data-lang="en">Email</label>
                     <label for="email" data-lang="fr">Email</label>
-                    <input class="field" id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com" />
+                    <input class="field" id="email" name="email" type="email" autocomplete="email" required />
                   </div>
 
                   <div>
@@ -836,7 +892,6 @@
                       inputmode="tel"
                       autocomplete="tel"
                       required
-                      placeholder="+33 6 12 34 56 78"
                       pattern="^(\+33|0)[1-9](?:[ .-]?\d{2}){4}$"
                       title="Format attendu : +33 6 12 34 56 78 ou 06 12 34 56 78"
                     />
@@ -848,10 +903,9 @@
                 <div>
                   <label for="message" data-lang="en">What do you want to improve?</label>
                   <label for="message" data-lang="fr">Que souhaitez-vous améliorer ?</label>
-                  <textarea class="field" id="message" name="message" required
-                    placeholder="Ex : Beaucoup de demandes hors-cible. Nous voulons filtrer plus tôt (taille, budget, complexité, secteur)."></textarea>
+                  <textarea class="field" id="message" name="message" required></textarea>
                   <div class="help" data-lang="en">A few lines are enough (current situation + goal).</div>
-                  <div class="help" data-lang="fr">Quelques lignes suffisent (situation + objectif).</div>
+                  <div class="help" data-lang="fr">Quelques lignes suffisent (situation actuelle + objectif).</div>
                 </div>
 
                 <div class="submitRow">
@@ -905,7 +959,7 @@
         <div class="footLinks">
           <a class="link" href="#how"><span data-lang="en">Method</span><span data-lang="fr">Méthode</span></a>
           <a class="link" href="#contact"><span data-lang="en">Contact</span><span data-lang="fr">Contact</span></a>
-          <a class="link" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
+          <a class="link" href="#top">
             <span data-lang="en">Back to top</span><span data-lang="fr">Haut de page</span>
           </a>
         </div>
@@ -914,9 +968,40 @@
   </footer>
 
   <script>
-    // ---------- Language handling (EN default & prominent) ----------
+    // ---------- Language handling ----------
     const btnEN = document.getElementById('btnEN');
     const btnFR = document.getElementById('btnFR');
+
+    const ph = {
+      en: {
+        name: "Your name",
+        firm: "Firm name (optional)",
+        email: "you@example.com",
+        phone: "+33 6 12 34 56 78",
+        message: "Example: We receive many small requests. We want to filter earlier (size, budget, complexity, sector)."
+      },
+      fr: {
+        name: "Votre nom",
+        firm: "Nom du cabinet (optionnel)",
+        email: "vous@exemple.com",
+        phone: "06 12 34 56 78",
+        message: "Exemple : beaucoup de demandes hors-cible. Nous voulons filtrer plus tôt (taille, budget, complexité, secteur)."
+      }
+    };
+
+    function applyPlaceholders(lang){
+      const p = ph[lang] || ph.en;
+      const name = document.getElementById('name');
+      const firm = document.getElementById('firm');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const msg = document.getElementById('message');
+      if(name) name.placeholder = p.name;
+      if(firm) firm.placeholder = p.firm;
+      if(email) email.placeholder = p.email;
+      if(phone) phone.placeholder = p.phone;
+      if(msg) msg.placeholder = p.message;
+    }
 
     function setLang(lang){
       document.querySelectorAll('[data-lang]').forEach(el=>{
@@ -934,6 +1019,8 @@
         ? 'Accounting firms — acquisition & qualification | Lead2Value'
         : 'Cabinets comptables — acquisition & qualification | Lead2Value';
 
+      applyPlaceholders(lang);
+
       try{ localStorage.setItem('l2v_lang', lang); }catch(e){}
     }
 
@@ -947,7 +1034,7 @@
       setLang(saved);
     })();
 
-    // ---------- Form validation (no "Merci..." banner) ----------
+    // ---------- Form validation ----------
     const form = document.getElementById('leadForm');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -977,23 +1064,13 @@
         return;
       }
 
-      // Micro feedback discret, sans afficher “Merci. Votre demande...”
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.9';
-      submitBtn.style.cursor = 'not-allowed';
       setTimeout(()=>{
         submitBtn.disabled = false;
         submitBtn.style.opacity = '';
-        submitBtn.style.cursor = '';
       }, 1800);
     });
   </script>
-
-  <!--
-    IMPORTANT pour TON VRAI LOGO (sans créer de fichier) :
-    - Si tu m’envoies le PNG, je l’intègre ici en base64 :
-      <img src="data:image/png;base64,...." />
-    - Ou si tu m’envoies le SVG, je remplace le SVG actuel par le tien.
-  -->
 </body>
 </html>
