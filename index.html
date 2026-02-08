@@ -1,40 +1,49 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Accounting firms — acquisition & qualification | Lead2Value</title>
-  <meta name="description" content="Lead2Value helps accounting firms attract and pre-qualify higher-value B2B clients — acquisition & qualification, with a clean handoff." />
+  <title>Lead2Value — Acquisition & qualification B2B pour cabinets comptables</title>
+  <meta name="description" content="Lead2Value aide les cabinets comptables à attirer des clients B2B à meilleure valeur et à les qualifier en amont — pour protéger le temps associé et maîtriser la rentabilité par dossier." />
 
   <style>
     :root{
-      --bg1:#070A12;
-      --bg2:#0B1224;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.04);
-      --line: rgba(255,255,255,.12);
-      --text:#F3F6FF;
-      --muted: rgba(243,246,255,.72);
-      --muted2: rgba(243,246,255,.58);
-      --shadow: 0 22px 60px rgba(0,0,0,.45);
-      --shadow2: 0 14px 40px rgba(0,0,0,.32);
-      --accent1:#7CC7FF;
-      --accent2:#FFD24A;
-      --ok:#2EE59D;
-      --danger:#FF6B6B;
+      /* Light, premium, coherent */
+      --bg:#F6F8FC;
+      --bg2:#FFFFFF;
+      --ink:#0B1B34;
+      --ink2:#1B2F55;
+      --muted:#4A5D7C;
+      --muted2:#6D7F9A;
+      --line: rgba(11,27,52,.12);
+
+      --card:#FFFFFF;
+      --card2: rgba(255,255,255,.74);
+
+      --shadow: 0 18px 55px rgba(11,27,52,.12);
+      --shadow2: 0 10px 28px rgba(11,27,52,.10);
+
+      --accent1:#2563EB;  /* premium blue */
+      --accent2:#F59E0B;  /* warm gold */
+      --accent3:#0EA5E9;  /* bright sky */
+      --ok:#10B981;
+      --danger:#EF4444;
 
       --max: 1160px;
       --r1: 22px;
       --r2: 16px;
 
-      --logoSize: 88px;
-      --logoRadius: 0px;
+      /* Logo visible */
+      --logoSize: 92px;
+      --logoRadius: 18px;
 
-      --space1: 10px;
-      --space2: 16px;
-      --space3: 22px;
-      --space4: 34px;
-      --space5: 56px;
+      /* Spacing */
+      --s1: 10px;
+      --s2: 16px;
+      --s3: 22px;
+      --s4: 34px;
+      --s5: 56px;
+      --s6: 76px;
     }
 
     *{box-sizing:border-box}
@@ -43,24 +52,25 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
+      color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 18% 10%, rgba(124,199,255,.22), transparent 56%),
-        radial-gradient(1000px 700px at 85% 22%, rgba(255,210,74,.16), transparent 54%),
-        radial-gradient(900px 600px at 55% 115%, rgba(124,199,255,.12), transparent 60%),
-        linear-gradient(180deg, var(--bg2) 0%, var(--bg1) 100%);
+        radial-gradient(900px 500px at 15% 0%, rgba(37,99,235,.12), transparent 55%),
+        radial-gradient(800px 520px at 80% 10%, rgba(245,158,11,.14), transparent 52%),
+        radial-gradient(900px 600px at 50% 120%, rgba(14,165,233,.10), transparent 58%),
+        linear-gradient(180deg, var(--bg) 0%, #FFFFFF 68%, #F7FAFF 100%);
       overflow-x:hidden;
     }
 
     .container{max-width:var(--max); margin:0 auto; padding:0 22px}
     a{color:inherit; text-decoration:none}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
 
-    /* Top */
+    /* Topbar */
     .topbar{
       position:sticky; top:0; z-index:60;
-      background: rgba(8,10,18,.62);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(11,27,52,.08);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
@@ -70,21 +80,22 @@
 
     .brand{
       display:flex; align-items:center; gap:14px;
-      min-width: 280px;
+      min-width: 320px;
     }
 
+    /* LOGO (clear + premium) */
     .logoBox{
       width: var(--logoSize);
       height: var(--logoSize);
       border-radius: var(--logoRadius);
-      border:1px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(11,27,52,.10);
+      background: linear-gradient(180deg, #FFFFFF, rgba(255,255,255,.72));
       box-shadow: var(--shadow2);
       display:grid; place-items:center;
       overflow:hidden;
       flex:0 0 auto;
     }
-    .logoBox svg{width: calc(var(--logoSize) - 16px); height: calc(var(--logoSize) - 16px); display:block}
+    .logoBox svg{width: calc(var(--logoSize) - 18px); height: calc(var(--logoSize) - 18px); display:block}
 
     .brandText{display:flex; flex-direction:column; line-height:1.15}
     .brandText .name{
@@ -94,122 +105,136 @@
     }
     .brandText .sub{
       margin-top:6px;
-      font-size:12.8px;
+      font-size:12.9px;
       color:var(--muted);
       letter-spacing:.1px;
     }
-    .forFirms{
+
+    /* Target emphasis: “Cabinets comptables” must be obvious */
+    .targetPill{
       display:inline-flex; align-items:center; gap:8px;
       margin-top:10px;
       padding:7px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      font-weight:900;
+      border:1px solid rgba(37,99,235,.18);
+      background: rgba(37,99,235,.06);
+      font-weight:950;
       font-size:12px;
-      letter-spacing:.25px;
+      letter-spacing:.22px;
       width:fit-content;
+      color: rgba(11,27,52,.92);
     }
-    .spark{
+    .targetDot{
       width:10px; height:10px; border-radius:999px;
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(124,199,255,.10);
+      box-shadow: 0 0 0 6px rgba(37,99,235,.10);
     }
 
     .navRight{display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end}
 
+    /* Language switch */
     .lang{
       display:flex; align-items:center; gap:6px;
       padding:6px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      box-shadow: 0 14px 34px rgba(0,0,0,.22);
+      border:1px solid rgba(11,27,52,.12);
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow2);
     }
     .lang button{
       border:0; cursor:pointer;
       padding:10px 12px;
       border-radius:999px;
       background: transparent;
-      color: rgba(243,246,255,.80);
-      font-weight:900;
+      color: rgba(11,27,52,.70);
+      font-weight:950;
       font-size:12px;
-      letter-spacing:.35px;
+      letter-spacing:.30px;
       display:flex; align-items:center; gap:8px;
     }
     .lang .pill{
       width:24px; height:24px; border-radius:999px;
       display:grid; place-items:center;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
+      border:1px solid rgba(11,27,52,.12);
+      background: rgba(11,27,52,.04);
       font-size:11px;
     }
     .lang button.active{
-      color:#0B1224;
-      background: linear-gradient(135deg, var(--accent2), #FFE49B);
-      box-shadow: 0 16px 34px rgba(255,210,74,.18);
+      color:#FFFFFF;
+      background: linear-gradient(135deg, var(--accent1), #1D4ED8);
+      box-shadow: 0 16px 34px rgba(37,99,235,.18);
     }
     .lang button.active .pill{
-      background: rgba(0,0,0,.08);
-      border-color: rgba(0,0,0,.14);
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.22);
     }
 
+    /* Buttons */
     .btn{
       display:inline-flex; align-items:center; gap:10px;
       padding:12px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      font-weight:900;
+      border:1px solid rgba(11,27,52,.12);
+      background: rgba(255,255,255,.78);
+      font-weight:950;
       font-size:13px;
-      letter-spacing:.12px;
-      box-shadow: 0 14px 34px rgba(0,0,0,.20);
+      letter-spacing:.10px;
+      box-shadow: var(--shadow2);
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
       white-space:nowrap;
+      color: rgba(11,27,52,.92);
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.26)}
+    .btn:hover{transform: translateY(-1px); background: #FFFFFF; border-color: rgba(11,27,52,.18)}
     .btnPrimary{
       border-color: transparent;
-      background: linear-gradient(135deg, rgba(124,199,255,.96), rgba(255,210,74,.92));
-      color:#0B1224;
-      box-shadow: 0 22px 50px rgba(124,199,255,.16), 0 22px 50px rgba(255,210,74,.10);
+      background: linear-gradient(135deg, var(--accent1), #1D4ED8);
+      color:#FFFFFF;
+      box-shadow: 0 20px 50px rgba(37,99,235,.22);
+    }
+    .btnPrimary:hover{background: linear-gradient(135deg, #1D4ED8, var(--accent1))}
+    .btnGold{
+      border-color: rgba(245,158,11,.22);
+      background: linear-gradient(135deg, rgba(245,158,11,.18), rgba(245,158,11,.08));
     }
 
     /* Hero */
-    header.hero{padding:var(--space5) 0 var(--space4)}
+    header.hero{padding: var(--s6) 0 var(--s5)}
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.18fr .82fr;
+      grid-template-columns: 1.20fr .80fr;
       gap:18px;
       align-items:stretch;
     }
+
     .panel{
       border-radius: var(--r1);
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid rgba(11,27,52,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70));
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
     }
-    .panelInner{padding:30px}
-    .glow{
-      position:absolute; inset:auto -80px -90px -80px;
-      height:200px;
-      background: radial-gradient(closest-side, rgba(124,199,255,.26), transparent 70%);
-      filter: blur(6px);
+    .panel::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(600px 220px at 16% 0%, rgba(37,99,235,.18), transparent 62%),
+        radial-gradient(560px 240px at 86% 0%, rgba(245,158,11,.18), transparent 62%);
+      opacity:.55;
       pointer-events:none;
     }
+    .panelInner{position:relative; padding:32px}
 
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding:9px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
+      border:1px solid rgba(37,99,235,.18);
+      background: rgba(37,99,235,.06);
       font-weight:950;
       font-size:12px;
       letter-spacing:.25px;
-      color: rgba(243,246,255,.92);
+      color: rgba(11,27,52,.92);
       width:fit-content;
     }
     .kdot{
@@ -218,67 +243,89 @@
     }
 
     h1{
-      margin:16px 0 10px;
+      margin:16px 0 12px;
       font-size:44px;
       line-height:1.06;
       letter-spacing:-.9px;
       max-width: 22ch;
+      color: rgba(11,27,52,.96);
     }
     .lead{
       margin:0;
       color: var(--muted);
-      font-size:16.3px;
-      line-height:1.65;
-      max-width: 64ch;
+      font-size:16.4px;
+      line-height:1.72;
+      max-width: 68ch;
     }
-    .leadSmall{
+
+    /* Hero “Accountant focus” block */
+    .focusBox{
+      margin-top:18px;
+      border-radius: 18px;
+      border:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.72);
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .focusTop{
+      display:flex; align-items:flex-start; gap:12px;
+    }
+    .iconBox{
+      width:38px; height:38px;
+      border-radius: 14px;
+      border:1px solid rgba(37,99,235,.18);
+      background: rgba(37,99,235,.07);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+    }
+    .iconBox svg{width:20px; height:20px}
+    .focusTitle{
       margin:0;
-      color: var(--muted2);
+      font-weight:950;
+      letter-spacing:.1px;
+      color: rgba(11,27,52,.94);
+    }
+    .focusText{
+      margin:2px 0 0;
+      color: var(--muted);
       font-size:13.8px;
       line-height:1.65;
-      max-width: 78ch;
     }
-
-    .valueRow{
-      margin-top:18px;
+    .chips{
       display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:2px;
     }
-    .tag{
-      display:inline-flex; align-items:center; gap:9px;
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
       padding:9px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: rgba(243,246,255,.84);
+      border:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.78);
+      color: rgba(11,27,52,.86);
       font-weight:900;
       font-size:12.6px;
+      letter-spacing:.1px;
+      box-shadow: 0 10px 24px rgba(11,27,52,.08);
     }
-    .tag .mini{
-      width:18px; height:18px; border-radius:7px;
-      display:grid; place-items:center;
-      border:1px solid rgba(255,210,74,.26);
-      background: rgba(255,210,74,.12);
-      color: rgba(255,210,74,.95);
-      font-size:12px;
-      font-weight:950;
-    }
+    .chip svg{width:16px; height:16px}
 
     .heroActions{
-      margin-top:20px;
+      margin-top:22px;
       display:flex; gap:12px; flex-wrap:wrap; align-items:center;
     }
 
-    /* Right side cards */
+    /* Right side */
     .stack{display:grid; gap:12px}
     .miniCard{
       border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(11,27,52,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
       box-shadow: var(--shadow2);
       padding:18px;
     }
-    .miniCard h3{margin:0 0 10px; font-size:15px; letter-spacing:.2px}
-    .miniCard p{margin:0; color:var(--muted); font-size:13.7px; line-height:1.65}
+    .miniCard h3{margin:0 0 10px; font-size:15px; letter-spacing:.2px; color: rgba(11,27,52,.94)}
+    .miniCard p{margin:0; color:var(--muted); font-size:13.8px; line-height:1.7}
 
     .metrics{
       margin-top:14px;
@@ -288,16 +335,16 @@
     }
     .metric{
       border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
+      border:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.78);
       padding:12px;
     }
-    .metric .t{font-weight:950; letter-spacing:-.2px}
-    .metric .s{margin-top:5px; color:var(--muted2); font-size:12.7px; line-height:1.45}
+    .metric .t{font-weight:950; letter-spacing:-.2px; color: rgba(11,27,52,.92)}
+    .metric .s{margin-top:6px; color:var(--muted2); font-size:12.8px; line-height:1.55}
 
     /* Sections */
-    section{padding:46px 0}
-    section.soft{padding:40px 0}
+    section{padding:54px 0}
+    section.soft{padding:42px 0}
     .sectionHead{
       display:flex; align-items:flex-end; justify-content:space-between;
       gap:16px; margin:0 0 18px;
@@ -306,10 +353,11 @@
       margin:0;
       font-size:22px;
       letter-spacing:-.25px;
+      color: rgba(11,27,52,.96);
     }
     .sectionHead .hint{
       color: var(--muted2);
-      font-weight:900;
+      font-weight:950;
       font-size:12.7px;
       letter-spacing:.2px;
       white-space:nowrap;
@@ -322,22 +370,23 @@
     }
     .card{
       border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(11,27,52,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
       box-shadow: var(--shadow2);
       padding:18px;
     }
     .cardTop{display:flex; align-items:center; gap:12px; margin-bottom:10px}
     .step{
       width:38px; height:38px;
-      border-radius: 12px;
+      border-radius: 14px;
       display:grid; place-items:center;
       font-weight:950;
-      background: rgba(124,199,255,.12);
-      border:1px solid rgba(124,199,255,.25);
+      background: rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.18);
+      color: rgba(11,27,52,.92);
     }
-    .card h4{margin:0; font-size:14.2px; letter-spacing:.1px}
-    .card p{margin:0; color:var(--muted); font-size:13.7px; line-height:1.65}
+    .card h4{margin:0; font-size:14.3px; letter-spacing:.1px; color: rgba(11,27,52,.94)}
+    .card p{margin:0; color:var(--muted); font-size:13.8px; line-height:1.7}
 
     .split{
       display:grid;
@@ -354,98 +403,105 @@
     .li{
       display:flex; gap:10px;
       border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
+      border:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.78);
       padding:13px;
     }
     .check{
       width:22px; height:22px; border-radius:999px;
       display:grid; place-items:center;
-      background: rgba(46,229,157,.12);
-      border:1px solid rgba(46,229,157,.28);
-      color: rgba(46,229,157,.95);
+      background: rgba(16,185,129,.10);
+      border:1px solid rgba(16,185,129,.18);
+      color: rgba(16,185,129,.95);
       font-weight:950;
       font-size:12px;
       flex:0 0 auto;
       margin-top:2px;
     }
-    .li b{display:block; font-size:13.7px}
-    .li span{display:block; margin-top:5px; color:var(--muted2); font-size:12.9px; line-height:1.5}
+    .li b{display:block; font-size:13.8px; color: rgba(11,27,52,.92)}
+    .li span{display:block; margin-top:6px; color:var(--muted2); font-size:12.9px; line-height:1.55}
 
     .divider{
       height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      background: linear-gradient(90deg, transparent, rgba(11,27,52,.16), transparent);
       margin:18px 0;
     }
 
-    /* “Breather” strip to break the page rhythm */
-    .breather{
-      padding:18px;
+    /* Proof strip */
+    .proofStrip{
       border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(11,27,52,.10);
+      background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(255,255,255,.82));
       box-shadow: var(--shadow2);
+      padding:18px;
     }
-    .breather .row{
+    .proofGrid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.2fr .8fr;
       gap:14px;
       align-items:center;
     }
-    .breather h3{margin:0; font-size:15px; letter-spacing:.2px}
-    .breather p{margin:6px 0 0; color:var(--muted); font-size:13.6px; line-height:1.65}
-    .breather .note{
-      border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      padding:12px;
-      color:var(--muted2);
-      font-size:12.8px;
-      line-height:1.55;
+    .proofStrip h3{margin:0; font-size:15px; letter-spacing:.2px; color: rgba(11,27,52,.94)}
+    .proofStrip p{margin:6px 0 0; color:var(--muted); font-size:13.8px; line-height:1.7}
+    .proofBadges{
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end;
     }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.82);
+      font-weight:950;
+      font-size:12.5px;
+      color: rgba(11,27,52,.86);
+      box-shadow: 0 10px 24px rgba(11,27,52,.08);
+    }
+    .badge svg{width:16px; height:16px}
 
     /* Form */
     .formWrap{
       border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(11,27,52,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.72));
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .formInner{padding:20px}
+    .formInner{padding:22px}
     form{display:grid; gap:12px; margin-top:12px}
     .row2{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
 
     label{
       display:block;
       font-weight:950;
-      font-size:12.6px;
+      font-size:12.7px;
       letter-spacing:.2px;
       margin-bottom:7px;
-      color: rgba(243,246,255,.92);
+      color: rgba(11,27,52,.92);
     }
     .field{
       width:100%;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
+      border:1px solid rgba(11,27,52,.14);
+      background: rgba(255,255,255,.90);
       padding:12px 12px;
-      color: var(--text);
+      color: rgba(11,27,52,.92);
       outline:none;
       font-size:14.2px;
-      transition: box-shadow .16s ease, border-color .16s ease;
+      transition: box-shadow .16s ease, border-color .16s ease, background .16s ease;
     }
     .field:focus{
-      border-color: rgba(124,199,255,.60);
-      box-shadow: 0 0 0 4px rgba(124,199,255,.10);
+      border-color: rgba(37,99,235,.55);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+      background: #FFFFFF;
     }
-    textarea.field{min-height:130px; resize:vertical}
+    textarea.field{min-height:135px; resize:vertical}
 
     .help{
       margin-top:7px;
       color: var(--muted2);
-      font-size:12.6px;
-      line-height:1.45;
+      font-size:12.7px;
+      line-height:1.55;
     }
 
     .submitRow{
@@ -464,9 +520,9 @@
       font-weight:950;
       letter-spacing:.2px;
       font-size:13px;
-      color:#0B1224;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      box-shadow: 0 22px 50px rgba(124,199,255,.14), 0 22px 50px rgba(255,210,74,.10);
+      color:#FFFFFF;
+      background: linear-gradient(135deg, var(--accent1), #1D4ED8);
+      box-shadow: 0 20px 50px rgba(37,99,235,.22);
       transition: transform .18s ease, filter .18s ease, opacity .18s ease;
       display:inline-flex;
       align-items:center;
@@ -477,8 +533,8 @@
     .submit:disabled{opacity:.75; cursor:not-allowed; transform:none}
     .fineprint{
       color: var(--muted2);
-      font-size:12.4px;
-      line-height:1.5;
+      font-size:12.5px;
+      line-height:1.55;
       max-width: 72ch;
     }
 
@@ -486,36 +542,39 @@
     footer{
       margin-top:34px;
       padding:28px 0 36px;
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+      border-top:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.60);
+      backdrop-filter: blur(10px);
     }
     .foot{
       display:flex; align-items:flex-start; justify-content:space-between;
       gap:16px; flex-wrap:wrap;
     }
     .miniLogo{
-      width:56px; height:56px;
-      border-radius: var(--logoRadius);
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.03);
+      width:58px; height:58px;
+      border-radius: 16px;
+      border:1px solid rgba(11,27,52,.10);
+      background: rgba(255,255,255,.86);
       display:grid; place-items:center;
       overflow:hidden;
+      box-shadow: var(--shadow2);
     }
     .miniLogo svg{width:46px; height:46px}
-    .footMeta{color:var(--muted2); font-size:12.6px; line-height:1.45}
+    .footMeta{color:var(--muted2); font-size:12.7px; line-height:1.5}
     .footLinks{display:flex; gap:10px; flex-wrap:wrap}
     .link{
       display:inline-flex; align-items:center; gap:8px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.02);
-      color: rgba(243,246,255,.86);
+      border:1px solid rgba(11,27,52,.12);
+      background: rgba(255,255,255,.78);
+      color: rgba(11,27,52,.88);
       padding:9px 12px;
       font-weight:950;
-      font-size:12.2px;
+      font-size:12.3px;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      box-shadow: var(--shadow2);
     }
-    .link:hover{transform: translateY(-1px); background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.26)}
+    .link:hover{transform: translateY(-1px); background:#FFFFFF; border-color: rgba(11,27,52,.18)}
 
     /* Bilingual blocks */
     [data-lang]{display:none}
@@ -529,8 +588,9 @@
       .split{grid-template-columns:1fr}
       .row2{grid-template-columns:1fr}
       .brand{min-width:auto}
-      :root{ --logoSize: 80px; }
-      .breather .row{grid-template-columns:1fr}
+      :root{ --logoSize: 82px; }
+      .proofGrid{grid-template-columns:1fr}
+      .proofBadges{justify-content:flex-start}
     }
   </style>
 </head>
@@ -543,55 +603,65 @@
       <div class="nav">
 
         <div class="brand" aria-label="Lead2Value">
+          <!-- LOGO clair + visible -->
           <div class="logoBox" title="Logo Lead2Value" aria-hidden="true">
+            <!-- Logo intégré (SVG) : propre, lisible, cohérent.
+                 Si tu m’envoies ton vrai logo (SVG ou PNG), je le remplace ici sans dossier assets. -->
             <svg viewBox="0 0 64 64" role="img" aria-label="Lead2Value logo">
               <defs>
-                <linearGradient id="L2Vgrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#7CC7FF"/>
-                  <stop offset="1" stop-color="#FFD24A"/>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#2563EB"/>
+                  <stop offset="1" stop-color="#F59E0B"/>
                 </linearGradient>
               </defs>
-              <rect x="8" y="8" width="48" height="48" rx="0" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.18)"/>
-              <path d="M18 42 L30 30 L38 36 L48 24" fill="none" stroke="url(#L2Vgrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="18" cy="42" r="2.6" fill="#FFD24A"/>
-              <circle cx="48" cy="24" r="2.6" fill="#7CC7FF"/>
-              <text x="32" y="54" text-anchor="middle" font-size="10" font-weight="950" fill="rgba(243,246,255,.86)">L2V</text>
+
+              <!-- Mark -->
+              <rect x="10" y="10" width="44" height="44" rx="14" fill="rgba(37,99,235,.08)" stroke="rgba(11,27,52,.12)"/>
+              <!-- Ledger lines -->
+              <path d="M22 26H42M22 32H40M22 38H36" stroke="rgba(11,27,52,.45)" stroke-width="2.6" stroke-linecap="round"/>
+              <!-- Upward path -->
+              <path d="M20 41 L30 33 L37 37 L46 26" fill="none" stroke="url(#g1)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="20" cy="41" r="2.4" fill="#F59E0B"/>
+              <circle cx="46" cy="26" r="2.4" fill="#2563EB"/>
+              <!-- L2V -->
+              <text x="32" y="54" text-anchor="middle" font-size="10.5" font-weight="950" fill="rgba(11,27,52,.86)">L2V</text>
             </svg>
           </div>
 
           <div class="brandText">
             <div class="name">Lead2Value</div>
-            <div class="sub" data-lang="en">Accounting firms — acquisition & qualification</div>
-            <div class="sub" data-lang="fr">Cabinets comptables — acquisition & qualification</div>
+            <div class="sub" data-lang="fr">Méthode d’acquisition & de qualification B2B</div>
+            <div class="sub" data-lang="en">Acquisition & qualification system for B2B</div>
 
-            <div class="forFirms">
-              <span class="spark" aria-hidden="true"></span>
+            <!-- Emphase ciblage : CABINETS COMPTABLES -->
+            <div class="targetPill">
+              <span class="targetDot" aria-hidden="true"></span>
+              <span data-lang="fr">Pour cabinets d’expertise comptable</span>
               <span data-lang="en">For accounting firms</span>
-              <span data-lang="fr">Pour les cabinets comptables</span>
             </div>
           </div>
         </div>
 
         <div class="navRight">
           <div class="lang" role="group" aria-label="Language switch">
-            <button type="button" id="btnEN" class="active" aria-pressed="true">
-              <span class="pill">EN</span> English
-            </button>
-            <button type="button" id="btnFR" aria-pressed="false">
+            <button type="button" id="btnFR" class="active" aria-pressed="true">
               <span class="pill">FR</span> Français
+            </button>
+            <button type="button" id="btnEN" aria-pressed="false">
+              <span class="pill">EN</span> English
             </button>
           </div>
 
-          <a class="btn" href="#how">
+          <a class="btn btnGold" href="#how">
             <span aria-hidden="true">▸</span>
+            <span data-lang="fr">La méthode</span>
             <span data-lang="en">Method</span>
-            <span data-lang="fr">Méthode</span>
           </a>
 
           <a class="btn btnPrimary" href="#contact">
             <span aria-hidden="true">✦</span>
-            <span data-lang="en">Free fit check</span>
             <span data-lang="fr">Diagnostic gratuit</span>
+            <span data-lang="en">Free fit check</span>
           </a>
         </div>
 
@@ -605,81 +675,128 @@
       <div class="heroGrid">
 
         <div class="panel">
-          <div class="glow" aria-hidden="true"></div>
           <div class="panelInner">
             <div class="kicker">
               <span class="kdot" aria-hidden="true"></span>
+              <span data-lang="fr">Conçu pour les cabinets comptables en France</span>
               <span data-lang="en">Built for accounting firms in France</span>
-              <span data-lang="fr">Pensé pour les cabinets comptables en France</span>
             </div>
 
-            <h1 data-lang="en">Attract better-fit B2B clients — and qualify them before your team invests time.</h1>
-            <h1 data-lang="fr">Attirez de meilleurs clients B2B — et filtrez avant d’y consacrer du temps.</h1>
+            <h1 data-lang="fr">Attirez des dossiers B2B à meilleure valeur — et filtrez en amont, avant de mobiliser l’équipe.</h1>
+            <h1 data-lang="en">Attract higher-value B2B clients — and qualify them before your team invests time.</h1>
 
-            <p class="lead" data-lang="en">
-              Lead2Value helps you reduce unsuitable requests and keep only opportunities aligned with your fees, your scope, and your capacity — with a clean handoff to your team.
-            </p>
             <p class="lead" data-lang="fr">
-              Lead2Value réduit les demandes hors-cible et fait remonter uniquement les opportunités compatibles avec vos honoraires, votre périmètre et votre capacité — avec une passation claire pour l’équipe.
+              Lead2Value met en place une acquisition <b>spécifique cabinets</b> + une qualification claire,
+              pour réduire les demandes hors-cible et protéger le temps associé — tout en améliorant la rentabilité par dossier.
+            </p>
+            <p class="lead" data-lang="en">
+              Lead2Value sets up an <b>accounting-firm specific</b> acquisition + a clear qualification layer,
+              to reduce wrong-fit inquiries, protect partner time, and improve profit per client.
             </p>
 
-            <div class="valueRow" aria-label="Key points">
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Qualification-first</span><span data-lang="fr">Filtrage en amont</span></div>
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Partner-friendly</span><span data-lang="fr">Pensé pour les associés</span></div>
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Clear accept/refuse rules</span><span data-lang="fr">Règles d’acceptation claires</span></div>
-              <div class="tag"><span class="mini">✓</span><span data-lang="en">Clean handoff</span><span data-lang="fr">Passation structurée</span></div>
+            <!-- Le focus cabinet doit “sauter aux yeux” -->
+            <div class="focusBox" aria-label="Cabinet focus">
+              <div class="focusTop">
+                <div class="iconBox" aria-hidden="true">
+                  <!-- Simple, consistent icon (line) -->
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 20V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 9h10M7 13h8M7 17h6" stroke="rgba(11,27,52,.65)" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="focusTitle" data-lang="fr">Pour cabinets saturés en demandes, mais pas en “bons” dossiers.</p>
+                  <p class="focusTitle" data-lang="en">For firms with inquiries — but not enough “right-fit” clients.</p>
+
+                  <p class="focusText" data-lang="fr">
+                    Vous n’avez pas besoin de “plus de leads”. Vous avez besoin de <b>meilleures demandes</b> — et d’un filtre net :
+                    honoraires, périmètre, complexité, réactivité, capacité.
+                  </p>
+                  <p class="focusText" data-lang="en">
+                    You don’t need “more leads”. You need <b>better inquiries</b> — and a crisp filter:
+                    fees, scope, complexity, responsiveness, and capacity.
+                  </p>
+                </div>
+              </div>
+
+              <div class="chips" aria-label="Key outcomes">
+                <div class="chip">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M20 7l-9 10-4-4" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span data-lang="fr">Moins d’appels hors-cible</span>
+                  <span data-lang="en">Fewer wrong-fit calls</span>
+                </div>
+                <div class="chip">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2v6m0 14v-6M2 12h6m14 0h-6" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                  <span data-lang="fr">Temps associé protégé</span>
+                  <span data-lang="en">Protected partner time</span>
+                </div>
+                <div class="chip">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 14l4-4 4 4 8-8" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span data-lang="fr">Rentabilité par dossier</span>
+                  <span data-lang="en">Profit per client</span>
+                </div>
+              </div>
             </div>
 
             <div class="heroActions">
               <a class="btn btnPrimary" href="#contact">
                 <span aria-hidden="true">✦</span>
+                <span data-lang="fr">Demander un diagnostic gratuit</span>
                 <span data-lang="en">Request a free audit</span>
-                <span data-lang="fr">Demander un audit gratuit</span>
               </a>
               <a class="btn" href="#what">
                 <span aria-hidden="true">⟡</span>
+                <span data-lang="fr">Ce que vous recevez</span>
                 <span data-lang="en">What you get</span>
-                <span data-lang="fr">Concrètement, ce que vous recevez</span>
               </a>
             </div>
-
-            <div class="divider" aria-hidden="true"></div>
-
-            <p class="leadSmall" data-lang="en">
-              No “volume for volume”. We build a pipeline that respects your constraints: fees, complexity, responsiveness, and capacity.
-            </p>
-            <p class="leadSmall" data-lang="fr">
-              Pas de “volume pour le volume”. On construit un flux qui respecte vos contraintes : honoraires, complexité, réactivité et capacité.
-            </p>
           </div>
         </div>
 
         <aside class="stack" aria-label="Highlights">
           <div class="miniCard">
-            <h3 data-lang="en">Designed around your reality</h3>
-            <h3 data-lang="fr">Aligné avec votre réalité terrain</h3>
-            <p data-lang="en">Most firms don’t lack inquiries. They lack <b>properly qualified</b> opportunities that match their positioning.</p>
-            <p data-lang="fr">La plupart des cabinets ne manquent pas de demandes. Ils manquent d’opportunités <b>vraiment qualifiées</b>, alignées avec leur positionnement.</p>
+            <h3 data-lang="fr">Une méthode “cabinet-first”</h3>
+            <h3 data-lang="en">A “firm-first” system</h3>
 
-            <div class="metrics">
+            <p data-lang="fr">
+              Tout est conçu autour de votre quotidien : surcharge en production, arbitrages d’honoraires, capacité des équipes,
+              et nécessité d’un processus d’entrée cohérent.
+            </p>
+            <p data-lang="en">
+              Built around your reality: delivery overload, fee trade-offs, team capacity, and the need for a consistent intake process.
+            </p>
+
+            <div class="metrics" aria-label="Outcomes">
               <div class="metric">
-                <div class="t" data-lang="en">Filtering</div><div class="t" data-lang="fr">Filtrage</div>
-                <div class="s" data-lang="en">Fewer low-fee micro-clients in your pipeline.</div>
-                <div class="s" data-lang="fr">Moins de petits dossiers à faible valeur.</div>
+                <div class="t" data-lang="fr">Filtre</div><div class="t" data-lang="en">Filter</div>
+                <div class="s" data-lang="fr">Un tri clair avant le rendez-vous associé.</div>
+                <div class="s" data-lang="en">Clear triage before partner calls.</div>
               </div>
               <div class="metric">
-                <div class="t" data-lang="en">Clarity</div><div class="t" data-lang="fr">Clarté</div>
-                <div class="s" data-lang="en">A consistent intake path for the whole team.</div>
-                <div class="s" data-lang="fr">Un parcours d’entrée cohérent pour l’équipe.</div>
+                <div class="t" data-lang="fr">Clarté</div><div class="t" data-lang="en">Clarity</div>
+                <div class="s" data-lang="fr">Des critères d’acceptation appliqués par l’équipe.</div>
+                <div class="s" data-lang="en">Acceptance rules the team can apply.</div>
               </div>
             </div>
           </div>
 
           <div class="miniCard" id="what">
-            <h3 data-lang="en">What you get (usable, not theoretical)</h3>
-            <h3 data-lang="fr">Ce que vous recevez (utilisable, pas théorique)</h3>
-            <p data-lang="en">Messaging angles, a short qualification form, acceptance rules, and a clear handoff — so partners only see relevant requests.</p>
-            <p data-lang="fr">Angles de messages, questionnaire court de qualification, règles d’acceptation, et passation structurée — pour que les associés ne voient que l’essentiel.</p>
+            <h3 data-lang="fr">Ce que vous recevez (prêt à l’emploi)</h3>
+            <h3 data-lang="en">What you get (ready-to-use)</h3>
+
+            <p data-lang="fr">
+              Angles de messages, ciblage, questionnaire de qualification, règles d’acceptation/refus,
+              et passation structurée — pour remonter uniquement les demandes pertinentes.
+            </p>
+            <p data-lang="en">
+              Messaging angles, targeting, qualification form, accept/reject rules, and a structured handoff — so only relevant inquiries reach partners.
+            </p>
           </div>
         </aside>
 
@@ -687,20 +804,48 @@
     </div>
   </header>
 
-  <!-- BREATHER -->
+  <!-- PROOF STRIP -->
   <section class="soft">
     <div class="container">
-      <div class="breather">
-        <div class="row">
+      <div class="proofStrip">
+        <div class="proofGrid">
           <div>
-            <h3 data-lang="en">A simple goal: protect partner time.</h3>
-            <h3 data-lang="fr">Objectif simple : protéger le temps associé.</h3>
-            <p data-lang="en">Your pipeline stays active — but only with cases you would actually accept.</p>
-            <p data-lang="fr">Votre flux reste actif — mais uniquement avec des dossiers que vous accepteriez réellement.</p>
+            <h3 data-lang="fr">Psychologiquement simple : “Des dossiers compatibles, ou rien.”</h3>
+            <h3 data-lang="en">Psychologically simple: “Right-fit cases, or nothing.”</h3>
+
+            <p data-lang="fr">
+              Le prospect comprend immédiatement vos critères. Votre équipe aussi.
+              Résultat : moins d’ambiguïté, moins de négociation, et des décisions plus rapides.
+            </p>
+            <p data-lang="en">
+              Prospects instantly understand your criteria. So does your team.
+              Result: less ambiguity, less negotiation, faster decisions.
+            </p>
           </div>
-          <div class="note">
-            <div data-lang="en"><b>Typical outcome:</b> fewer back-and-forth emails, fewer “wrong fit” calls, faster decisions.</div>
-            <div data-lang="fr"><b>Effet attendu :</b> moins d’allers-retours, moins d’appels “hors-cible”, décisions plus rapides.</div>
+
+          <div class="proofBadges" aria-label="Trust badges">
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round"/>
+              </svg>
+              <span data-lang="fr">Process d’entrée cadré</span>
+              <span data-lang="en">Structured intake</span>
+            </div>
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 7l-9 10-4-4" stroke="#10B981" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span data-lang="fr">Qualification avant RDV</span>
+              <span data-lang="en">Qualify before calls</span>
+            </div>
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 6v6l4 2" stroke="#F59E0B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" stroke="rgba(11,27,52,.55)" stroke-width="2"/>
+              </svg>
+              <span data-lang="fr">Temps associé respecté</span>
+              <span data-lang="en">Partner time saved</span>
+            </div>
           </div>
         </div>
       </div>
@@ -711,41 +856,56 @@
   <section id="how">
     <div class="container">
       <div class="sectionHead">
-        <h2 data-lang="en">A clear method</h2>
-        <h2 data-lang="fr">Une méthode claire</h2>
-        <div class="hint" data-lang="en">Acquisition → qualification → handoff</div>
-        <div class="hint" data-lang="fr">Acquisition → qualification → passation</div>
+        <h2 data-lang="fr">La méthode (spéciale cabinets)</h2>
+        <h2 data-lang="en">Method (accounting-firm specific)</h2>
+        <div class="hint" data-lang="fr">Acquisition → Qualification → Passation</div>
+        <div class="hint" data-lang="en">Acquisition → Qualification → Handoff</div>
       </div>
 
       <div class="grid3">
         <div class="card">
           <div class="cardTop">
             <div class="step" aria-hidden="true">1</div>
-            <h4 data-lang="en">Targeting & positioning</h4>
-            <h4 data-lang="fr">Ciblage & positionnement</h4>
+            <h4 data-lang="fr">Ciblage “bon dossier”</h4>
+            <h4 data-lang="en">Right-fit targeting</h4>
           </div>
-          <p data-lang="en">Define the profiles you really want (fees, complexity, sector, entity type), then align acquisition around them.</p>
-          <p data-lang="fr">On précise les dossiers que vous souhaitez (honoraires, complexité, secteur, forme juridique), puis on aligne l’acquisition sur ces critères.</p>
+          <p data-lang="fr">
+            On fixe des critères concrets (niveau d’honoraires, secteur, périmètre, complexité, taille, multi-entités),
+            compatibles avec votre capacité et vos standards.
+          </p>
+          <p data-lang="en">
+            We define concrete criteria (fees, sector, scope, complexity, size, multi-entity) aligned with your capacity and standards.
+          </p>
         </div>
 
         <div class="card">
           <div class="cardTop">
             <div class="step" aria-hidden="true">2</div>
-            <h4 data-lang="en">Short pre-qualification</h4>
-            <h4 data-lang="fr">Pré-qualification courte</h4>
+            <h4 data-lang="fr">Qualification avant le rendez-vous</h4>
+            <h4 data-lang="en">Qualification before calls</h4>
           </div>
-          <p data-lang="en">A short intake filters by budget, scope, urgency and responsiveness — so your team avoids early time waste.</p>
-          <p data-lang="fr">Un questionnaire court filtre budget, périmètre, urgence et réactivité — pour éviter la perte de temps dès le départ.</p>
+          <p data-lang="fr">
+            Un questionnaire court élimine les demandes non compatibles. Les bons prospects arrivent avec
+            les infos clés (contexte, urgence, attentes, contraintes).
+          </p>
+          <p data-lang="en">
+            A short intake removes wrong-fit inquiries. Right-fit prospects arrive with key context (timing, needs, constraints).
+          </p>
         </div>
 
         <div class="card">
           <div class="cardTop">
             <div class="step" aria-hidden="true">3</div>
-            <h4 data-lang="en">Structured handoff</h4>
             <h4 data-lang="fr">Passation structurée</h4>
+            <h4 data-lang="en">Structured handoff</h4>
           </div>
-          <p data-lang="en">Each request arrives with context: who they are, why now, constraints, and recommended next step.</p>
-          <p data-lang="fr">Chaque demande remonte avec le contexte : profil, besoin, contraintes, et recommandation claire de suite à donner.</p>
+          <p data-lang="fr">
+            Chaque demande remonte avec une synthèse claire : <b>acceptation/refus</b> recommandé,
+            et prochaine action pour l’équipe (prise de rendez-vous, clarification, refus).
+          </p>
+          <p data-lang="en">
+            Each request includes a clear summary: recommended <b>accept/reject</b>, and next step for the team.
+          </p>
         </div>
       </div>
     </div>
@@ -756,58 +916,61 @@
     <div class="container">
       <div class="split">
         <div class="miniCard">
-          <h3 data-lang="en">Common pain points (we fix)</h3>
-          <h3 data-lang="fr">Problèmes fréquents (que l’on corrige)</h3>
+          <h3 data-lang="fr">Problèmes que l’on règle (cabinets)</h3>
+          <h3 data-lang="en">Common issues we fix</h3>
 
           <ul class="list">
             <li class="li">
               <div class="check" aria-hidden="true">✓</div>
               <div>
-                <b data-lang="en">Too many low-fee requests</b>
-                <b data-lang="fr">Trop de demandes à faible valeur</b>
-                <span data-lang="en">The pipeline is busy, but unit economics suffer.</span>
-                <span data-lang="fr">Le flux existe, mais la rentabilité par dossier se dégrade.</span>
+                <b data-lang="fr">Trop de “petits dossiers” qui saturent</b>
+                <b data-lang="en">Too many low-fee micro-clients</b>
+                <span data-lang="fr">Beaucoup d’activité… mais une rentabilité par dossier qui souffre.</span>
+                <span data-lang="en">High activity… but profit per client suffers.</span>
               </div>
             </li>
             <li class="li">
               <div class="check" aria-hidden="true">✓</div>
               <div>
-                <b data-lang="en">Partner time gets consumed</b>
-                <b data-lang="fr">Le temps associé est aspiré</b>
-                <span data-lang="en">Calls that should have been filtered earlier.</span>
-                <span data-lang="fr">Des échanges qui auraient dû être filtrés avant.</span>
+                <b data-lang="fr">Temps associé aspiré par le tri</b>
+                <b data-lang="en">Partner time consumed by triage</b>
+                <span data-lang="fr">Des appels “hors-cible” qui auraient dû être filtrés avant.</span>
+                <span data-lang="en">Wrong-fit calls that should’ve been filtered earlier.</span>
               </div>
             </li>
             <li class="li">
               <div class="check" aria-hidden="true">✓</div>
               <div>
-                <b data-lang="en">Unclear intake rules</b>
-                <b data-lang="fr">Des règles d’entrée floues</b>
-                <span data-lang="en">Clear accept/refuse rules reduce friction across the team.</span>
-                <span data-lang="fr">Des critères d’acceptation refus clairs réduisent les frictions.</span>
+                <b data-lang="fr">Critères d’entrée flous pour l’équipe</b>
+                <b data-lang="en">Unclear intake rules for the team</b>
+                <span data-lang="fr">Des règles simples et partagées réduisent les frictions internes.</span>
+                <span data-lang="en">Simple shared rules reduce internal friction.</span>
               </div>
             </li>
           </ul>
         </div>
 
         <div class="miniCard">
-          <h3 data-lang="en">What “qualified” means</h3>
-          <h3 data-lang="fr">Ce que “qualifié” signifie</h3>
+          <h3 data-lang="fr">Ce que “qualifié” signifie vraiment</h3>
+          <h3 data-lang="en">What “qualified” truly means</h3>
 
-          <p data-lang="en" style="color:var(--muted); margin:0; line-height:1.7; font-size:13.7px">
-            Qualified doesn’t mean “interested”. It means the prospect matches your constraints: acceptable fee level, scope/complexity, responsiveness, and a clear problem to solve.
+          <p data-lang="fr" style="color:var(--muted); margin:0; line-height:1.75; font-size:13.9px">
+            “Qualifié” ne veut pas dire “intéressé”.
+            Cela veut dire : compatible avec <b>vos honoraires</b>, votre périmètre, votre niveau de complexité acceptable,
+            et la capacité de votre équipe — avec un besoin clair.
           </p>
-          <p data-lang="fr" style="color:var(--muted); margin:0; line-height:1.7; font-size:13.7px">
-            “Qualifié” ne veut pas dire “intéressé”. Cela veut dire : compatible avec vos contraintes (niveau d’honoraires, périmètre/complexité, réactivité) et un besoin clair.
+          <p data-lang="en" style="color:var(--muted); margin:0; line-height:1.75; font-size:13.9px">
+            “Qualified” doesn’t mean “interested”.
+            It means aligned with <b>your fee level</b>, scope, acceptable complexity, team capacity — with a clear need.
           </p>
 
           <div class="divider" aria-hidden="true"></div>
 
-          <p data-lang="en" style="color:var(--muted2); margin:0; line-height:1.7; font-size:13.4px">
-            The intake adapts to your positioning (SMEs, groups, real estate, advisory-heavy, multi-entity…).
+          <p data-lang="fr" style="color:var(--muted2); margin:0; line-height:1.75; font-size:13.6px">
+            La qualification s’adapte à votre positionnement : PME, groupes, immobilier, forte part de conseil, multi-entités…
           </p>
-          <p data-lang="fr" style="color:var(--muted2); margin:0; line-height:1.7; font-size:13.4px">
-            Le questionnaire s’adapte à votre positionnement (PME, groupes, immobilier, forte part de conseil, multi-entités…).
+          <p data-lang="en" style="color:var(--muted2); margin:0; line-height:1.75; font-size:13.6px">
+            Qualification adapts to your positioning: SMEs, groups, real estate, advisory-heavy, multi-entity…
           </p>
         </div>
       </div>
@@ -818,33 +981,35 @@
   <section id="contact">
     <div class="container">
       <div class="sectionHead">
-        <h2 data-lang="en">Request a free fit check</h2>
         <h2 data-lang="fr">Demander un diagnostic gratuit</h2>
-        <div class="hint" data-lang="en">Reply within 24–48h</div>
+        <h2 data-lang="en">Request a free fit check</h2>
         <div class="hint" data-lang="fr">Réponse sous 24–48h</div>
+        <div class="hint" data-lang="en">Reply within 24–48h</div>
       </div>
 
       <div class="formWrap" role="region" aria-label="Contact form">
         <div class="formInner">
           <div class="split" style="grid-template-columns:1.05fr .95fr; align-items:start">
             <div>
-              <h3 style="margin:0 0 8px; font-size:15px" data-lang="en">Tell us your goal</h3>
-              <h3 style="margin:0 0 8px; font-size:15px" data-lang="fr">Expliquez votre objectif</h3>
+              <h3 style="margin:0 0 8px; font-size:15px; color:rgba(11,27,52,.94)" data-lang="fr">Objectif : clarifier vos critères et filtrer plus tôt</h3>
+              <h3 style="margin:0 0 8px; font-size:15px; color:rgba(11,27,52,.94)" data-lang="en">Goal: clarify your criteria and filter earlier</h3>
 
-              <p style="margin:0; color:var(--muted); line-height:1.7; font-size:13.7px" data-lang="en">
-                We’ll review your positioning and suggest the fastest qualification levers for your firm.
+              <p style="margin:0; color:var(--muted); line-height:1.75; font-size:13.9px" data-lang="fr">
+                Vous décrivez votre situation. Nous vous répondons avec une recommandation claire :
+                critères d’acceptation, question de qualification, et la meilleure façon de faire remonter uniquement le pertinent.
               </p>
-              <p style="margin:0; color:var(--muted); line-height:1.7; font-size:13.7px" data-lang="fr">
-                Nous analysons votre positionnement et proposons des leviers simples pour qualifier plus tôt.
+              <p style="margin:0; color:var(--muted); line-height:1.75; font-size:13.9px" data-lang="en">
+                You describe your situation. We respond with a clear recommendation:
+                acceptance criteria, qualification questions, and how to surface only relevant requests.
               </p>
 
               <div class="divider" aria-hidden="true"></div>
 
-              <p style="margin:0; color:var(--muted2); line-height:1.7; font-size:13.4px" data-lang="en">
-                Note: this page doesn’t show a “thank you” banner. After sending, you’ll be redirected (configurable).
-              </p>
-              <p style="margin:0; color:var(--muted2); line-height:1.7; font-size:13.4px" data-lang="fr">
+              <p style="margin:0; color:var(--muted2); line-height:1.75; font-size:13.6px" data-lang="fr">
                 Note : cette page n’affiche pas de bannière “merci”. Après l’envoi, vous êtes redirigé(e) (configurable).
+              </p>
+              <p style="margin:0; color:var(--muted2); line-height:1.75; font-size:13.6px" data-lang="en">
+                Note: this page doesn’t show a “thank you” banner. After sending, you’ll be redirected (configurable).
               </p>
             </div>
 
@@ -858,32 +1023,32 @@
 
                 <div class="row2">
                   <div>
-                    <label for="name" data-lang="en">Your name</label>
                     <label for="name" data-lang="fr">Votre nom</label>
+                    <label for="name" data-lang="en">Your name</label>
                     <input class="field" id="name" name="name" type="text" autocomplete="name" required />
-                    <div class="help" data-lang="en">So we know how to address you.</div>
                     <div class="help" data-lang="fr">Pour savoir comment vous adresser.</div>
+                    <div class="help" data-lang="en">So we know how to address you.</div>
                   </div>
 
                   <div>
-                    <label for="firm" data-lang="en">Firm / cabinet</label>
                     <label for="firm" data-lang="fr">Cabinet</label>
+                    <label for="firm" data-lang="en">Firm</label>
                     <input class="field" id="firm" name="firm" type="text" autocomplete="organization" />
+                    <div class="help" data-lang="fr">Optionnel, mais utile pour le contexte.</div>
                     <div class="help" data-lang="en">Optional, but helpful for context.</div>
-                    <div class="help" data-lang="fr">Optionnel, utile pour le contexte.</div>
                   </div>
                 </div>
 
                 <div class="row2">
                   <div>
-                    <label for="email" data-lang="en">Email</label>
                     <label for="email" data-lang="fr">Email</label>
+                    <label for="email" data-lang="en">Email</label>
                     <input class="field" id="email" name="email" type="email" autocomplete="email" required />
                   </div>
 
                   <div>
-                    <label for="phone" data-lang="en">Phone</label>
                     <label for="phone" data-lang="fr">Téléphone</label>
+                    <label for="phone" data-lang="en">Phone</label>
                     <input
                       class="field"
                       id="phone"
@@ -895,31 +1060,31 @@
                       pattern="^(\+33|0)[1-9](?:[ .-]?\d{2}){4}$"
                       title="Format attendu : +33 6 12 34 56 78 ou 06 12 34 56 78"
                     />
-                    <div class="help" data-lang="en">Example: +33 6 12 34 56 78</div>
                     <div class="help" data-lang="fr">Exemple : 06 12 34 56 78</div>
+                    <div class="help" data-lang="en">Example: +33 6 12 34 56 78</div>
                   </div>
                 </div>
 
                 <div>
-                  <label for="message" data-lang="en">What do you want to improve?</label>
                   <label for="message" data-lang="fr">Que souhaitez-vous améliorer ?</label>
+                  <label for="message" data-lang="en">What do you want to improve?</label>
                   <textarea class="field" id="message" name="message" required></textarea>
-                  <div class="help" data-lang="en">A few lines are enough (current situation + goal).</div>
-                  <div class="help" data-lang="fr">Quelques lignes suffisent (situation actuelle + objectif).</div>
+                  <div class="help" data-lang="fr">Quelques lignes suffisent (situation actuelle + objectif + type de dossiers recherchés).</div>
+                  <div class="help" data-lang="en">A few lines are enough (current situation + goal + ideal client type).</div>
                 </div>
 
                 <div class="submitRow">
                   <button class="submit" type="submit" id="submitBtn">
                     <span aria-hidden="true">✦</span>
-                    <span data-lang="en">Send request</span>
                     <span data-lang="fr">Envoyer la demande</span>
+                    <span data-lang="en">Send request</span>
                   </button>
 
-                  <div class="fineprint" data-lang="en">
-                    By sending, you agree to be contacted about this request. No spam, no mailing list.
-                  </div>
                   <div class="fineprint" data-lang="fr">
                     En envoyant, vous acceptez d’être recontacté(e) au sujet de cette demande. Pas de spam, pas de liste email.
+                  </div>
+                  <div class="fineprint" data-lang="en">
+                    By sending, you agree to be contacted about this request. No spam, no mailing list.
                   </div>
                 </div>
               </form>
@@ -939,58 +1104,57 @@
           <div class="miniLogo" aria-hidden="true" title="Logo mini">
             <svg viewBox="0 0 64 64" role="img" aria-label="Lead2Value mini logo">
               <defs>
-                <linearGradient id="L2Vgrad2" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#7CC7FF"/>
-                  <stop offset="1" stop-color="#FFD24A"/>
+                <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#2563EB"/>
+                  <stop offset="1" stop-color="#F59E0B"/>
                 </linearGradient>
               </defs>
-              <rect x="10" y="10" width="44" height="44" rx="0" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.18)"/>
-              <path d="M20 41 L31 30 L38 35 L46 26" fill="none" stroke="url(#L2Vgrad2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="32" y="52" text-anchor="middle" font-size="9.5" font-weight="950" fill="rgba(243,246,255,.86)">L2V</text>
+              <rect x="10" y="10" width="44" height="44" rx="16" fill="rgba(37,99,235,.08)" stroke="rgba(11,27,52,.12)"/>
+              <path d="M22 28H42M22 34H40M22 40H36" stroke="rgba(11,27,52,.45)" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M20 41 L30 33 L37 37 L46 26" fill="none" stroke="url(#g2)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="32" y="54" text-anchor="middle" font-size="10.2" font-weight="950" fill="rgba(11,27,52,.86)">L2V</text>
             </svg>
           </div>
           <div class="footMeta">
-            <div style="font-weight:950; color:rgba(243,246,255,.92)">Lead2Value</div>
-            <div data-lang="en">Accounting firms — acquisition & qualification</div>
-            <div data-lang="fr">Cabinets comptables — acquisition & qualification</div>
+            <div style="font-weight:950; color:rgba(11,27,52,.92)">Lead2Value</div>
+            <div data-lang="fr">Pour cabinets d’expertise comptable — acquisition & qualification B2B</div>
+            <div data-lang="en">For accounting firms — acquisition & qualification</div>
           </div>
         </div>
 
         <div class="footLinks">
-          <a class="link" href="#how"><span data-lang="en">Method</span><span data-lang="fr">Méthode</span></a>
-          <a class="link" href="#contact"><span data-lang="en">Contact</span><span data-lang="fr">Contact</span></a>
-          <a class="link" href="#top">
-            <span data-lang="en">Back to top</span><span data-lang="fr">Haut de page</span>
-          </a>
+          <a class="link" href="#how"><span data-lang="fr">Méthode</span><span data-lang="en">Method</span></a>
+          <a class="link" href="#contact"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span></a>
+          <a class="link" href="#top"><span data-lang="fr">Haut de page</span><span data-lang="en">Back to top</span></a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // ---------- Language handling ----------
-    const btnEN = document.getElementById('btnEN');
+    // ---------- Language handling (FR default) ----------
     const btnFR = document.getElementById('btnFR');
+    const btnEN = document.getElementById('btnEN');
 
     const ph = {
-      en: {
-        name: "Your name",
-        firm: "Firm name (optional)",
-        email: "you@example.com",
-        phone: "+33 6 12 34 56 78",
-        message: "Example: We receive many small requests. We want to filter earlier (size, budget, complexity, sector)."
-      },
       fr: {
         name: "Votre nom",
         firm: "Nom du cabinet (optionnel)",
         email: "vous@exemple.com",
         phone: "06 12 34 56 78",
-        message: "Exemple : beaucoup de demandes hors-cible. Nous voulons filtrer plus tôt (taille, budget, complexité, secteur)."
+        message: "Exemple : trop de demandes hors-cible. Nous voulons filtrer plus tôt (honoraires min, secteur, complexité, taille, multi-entités)."
+      },
+      en: {
+        name: "Your name",
+        firm: "Firm name (optional)",
+        email: "you@example.com",
+        phone: "+33 6 12 34 56 78",
+        message: "Example: too many wrong-fit inquiries. We want to filter earlier (min fees, sector, complexity, size, multi-entity)."
       }
     };
 
     function applyPlaceholders(lang){
-      const p = ph[lang] || ph.en;
+      const p = ph[lang] || ph.fr;
       const name = document.getElementById('name');
       const firm = document.getElementById('firm');
       const email = document.getElementById('email');
@@ -1008,29 +1172,29 @@
         el.classList.toggle('show', el.getAttribute('data-lang') === lang);
       });
 
-      const isEN = (lang === 'en');
-      btnEN.classList.toggle('active', isEN);
-      btnFR.classList.toggle('active', !isEN);
-      btnEN.setAttribute('aria-pressed', String(isEN));
-      btnFR.setAttribute('aria-pressed', String(!isEN));
-      document.documentElement.lang = isEN ? 'en' : 'fr';
+      const isFR = (lang === 'fr');
+      btnFR.classList.toggle('active', isFR);
+      btnEN.classList.toggle('active', !isFR);
+      btnFR.setAttribute('aria-pressed', String(isFR));
+      btnEN.setAttribute('aria-pressed', String(!isFR));
 
-      document.title = isEN
-        ? 'Accounting firms — acquisition & qualification | Lead2Value'
-        : 'Cabinets comptables — acquisition & qualification | Lead2Value';
+      document.documentElement.lang = isFR ? 'fr' : 'en';
+      document.title = isFR
+        ? 'Lead2Value — Acquisition & qualification B2B pour cabinets comptables'
+        : 'Lead2Value — Acquisition & qualification for accounting firms';
 
       applyPlaceholders(lang);
 
       try{ localStorage.setItem('l2v_lang', lang); }catch(e){}
     }
 
-    btnEN.addEventListener('click', ()=>setLang('en'));
     btnFR.addEventListener('click', ()=>setLang('fr'));
+    btnEN.addEventListener('click', ()=>setLang('en'));
 
     (function init(){
-      let saved = 'en';
-      try{ saved = localStorage.getItem('l2v_lang') || 'en'; }catch(e){}
-      if(saved !== 'en' && saved !== 'fr') saved = 'en';
+      let saved = 'fr';
+      try{ saved = localStorage.getItem('l2v_lang') || 'fr'; }catch(e){}
+      if(saved !== 'fr' && saved !== 'en') saved = 'fr';
       setLang(saved);
     })();
 
@@ -1050,16 +1214,16 @@
       const msg = document.getElementById('message');
 
       let ok = true;
-      [name,email,phone,msg].forEach(f=> f.style.borderColor = 'rgba(255,255,255,.14)');
+      [name,email,phone,msg].forEach(f=> f.style.borderColor = 'rgba(11,27,52,.14)');
 
-      if(!name.value.trim()){ ok=false; name.style.borderColor='rgba(255,107,107,.75)'; }
-      if(!email.value.trim() || !email.checkValidity()){ ok=false; email.style.borderColor='rgba(255,107,107,.75)'; }
-      if(!validPhone(phone.value)){ ok=false; phone.style.borderColor='rgba(255,107,107,.75)'; }
-      if(!msg.value.trim()){ ok=false; msg.style.borderColor='rgba(255,107,107,.75)'; }
+      if(!name.value.trim()){ ok=false; name.style.borderColor='rgba(239,68,68,.65)'; }
+      if(!email.value.trim() || !email.checkValidity()){ ok=false; email.style.borderColor='rgba(239,68,68,.65)'; }
+      if(!validPhone(phone.value)){ ok=false; phone.style.borderColor='rgba(239,68,68,.65)'; }
+      if(!msg.value.trim()){ ok=false; msg.style.borderColor='rgba(239,68,68,.65)'; }
 
       if(!ok){
         e.preventDefault();
-        submitBtn.style.filter = 'brightness(.96)';
+        submitBtn.style.filter = 'brightness(.98)';
         setTimeout(()=> submitBtn.style.filter='', 180);
         return;
       }
@@ -1072,5 +1236,12 @@
       }, 1800);
     });
   </script>
+
+  <!--
+    Pour intégrer TON vrai logo sans assets :
+    - PNG : remplace le <svg> dans .logoBox par :
+      <img alt="Logo Lead2Value" style="width:100%;height:100%;object-fit:contain" src="data:image/png;base64,..." />
+    - SVG : colle ton SVG à la place de celui actuel.
+  -->
 </body>
 </html>
