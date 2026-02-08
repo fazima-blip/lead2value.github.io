@@ -49,7 +49,7 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 22px}
 
-    /* Important: anchors not hidden under topbar */
+    /* anchors not hidden under topbar */
     section, header{scroll-margin-top: 96px;}
 
     /* ===== Topbar ===== */
@@ -70,16 +70,24 @@
       min-width: 340px;
     }
 
+    /* Logo container */
     .logoBox{
       width: var(--logoSize);
       height: var(--logoSize);
       border-radius: var(--logoRadius);
       border:1px solid rgba(7,26,53,.12);
-      background: linear-gradient(180deg, #FFFFFF, rgba(255,255,255,.82));
+      background: #FFFFFF;
       box-shadow: var(--shadow2);
       display:grid; place-items:center;
       overflow:hidden;
       flex:0 0 auto;
+      padding: 10px;
+    }
+    .logoImg{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
     }
 
     .brandText{display:flex;flex-direction:column;line-height:1.15}
@@ -373,15 +381,13 @@
     }
     .badge svg{width:16px;height:16px}
 
-    /* ===== CONTACT FIX (this is what was "cut") =====
-       The previous inline grid-template-columns was overriding mobile rules.
-       Now: dedicated grid that collapses cleanly + no overflow cutting. */
+    /* ===== CONTACT ===== */
     .contactWrap{
       border-radius: var(--r1);
       border:1px solid rgba(7,26,53,.10);
       background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.86));
       box-shadow: var(--shadow);
-      overflow: visible; /* <-- important: avoid "cut" feeling on mobile */
+      overflow: visible;
     }
     .contactInner{padding:22px}
     .contactGrid{
@@ -392,7 +398,6 @@
     }
     .contactGrid > *{min-width:0;}
 
-    /* Form */
     form{display:grid;gap:12px;margin-top:12px}
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .row2 > *{min-width:0;}
@@ -454,11 +459,13 @@
     .miniLogo{
       width:58px;height:58px;border-radius:16px;
       border:1px solid rgba(7,26,53,.12);
-      background: rgba(255,255,255,.96);
+      background: #FFFFFF;
       display:grid;place-items:center;
       overflow:hidden;
       box-shadow: var(--shadow2);
+      padding:6px;
     }
+    .footLogoImg{width:100%;height:100%;object-fit:contain;display:block}
     .footMeta{color:var(--muted2);font-size:12.7px;line-height:1.6}
     .footLinks{display:flex;gap:10px;flex-wrap:wrap}
     .link{
@@ -526,7 +533,6 @@
       .proofGrid{grid-template-columns:1fr}
       .proofBadges{justify-content:flex-start}
 
-      /* CONTACT: collapse correctly (no cut) */
       .contactGrid{grid-template-columns:1fr}
       .contactInner{padding:18px}
     }
@@ -541,15 +547,13 @@
       <div class="nav">
 
         <div class="brand" aria-label="Lead2Value">
+          <!-- ✅ Ton logo (PNG) intégré en base64 -->
           <div class="logoBox" title="Logo Lead2Value">
-            <svg viewBox="0 0 100 100" width="100%" height="100%" role="img" aria-label="Lead2Value logo">
-              <rect x="0" y="0" width="100" height="100" rx="20" fill="#2563EB"/>
-              <path d="M18 64 L42 40 L58 50 L82 26" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="18" cy="64" r="4" fill="#F59E0B"/>
-              <circle cx="82" cy="26" r="4" fill="#FFFFFF"/>
-              <text x="50" y="88" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF"
-                font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">L2V</text>
-            </svg>
+            <img
+              class="logoImg"
+              alt="Lead2Value"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAb4AAAFUCAYAAABbUlkNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8AAABh0lEQVR4nO3QMQEAAAjDMMC/5yGk4QKqg9lJ0QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwG6m3AAH4d7L1AAAAAElFTkSuQmCC"
+            />
           </div>
 
           <div class="brandText">
@@ -832,72 +836,6 @@
     </div>
   </section>
 
-  <!-- PAINS / QUALIFIED -->
-  <section class="soft">
-    <div class="container">
-      <div class="split">
-        <div class="miniCard">
-          <h3 data-lang="fr">Problèmes que l’on règle (cabinets)</h3>
-          <h3 data-lang="en">Common issues we fix</h3>
-
-          <ul class="list">
-            <li class="li">
-              <div class="check" aria-hidden="true">✓</div>
-              <div>
-                <b data-lang="fr">Trop de “petits dossiers” qui saturent</b>
-                <b data-lang="en">Too many low-fee micro-clients</b>
-                <span data-lang="fr">Beaucoup d’activité… mais une rentabilité par dossier qui souffre.</span>
-                <span data-lang="en">High activity… but profit per client suffers.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="check" aria-hidden="true">✓</div>
-              <div>
-                <b data-lang="fr">Temps associé aspiré par le tri</b>
-                <b data-lang="en">Partner time consumed by triage</b>
-                <span data-lang="fr">Des appels “hors-cible” qui auraient dû être filtrés avant.</span>
-                <span data-lang="en">Wrong-fit calls that should’ve been filtered earlier.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="check" aria-hidden="true">✓</div>
-              <div>
-                <b data-lang="fr">Critères d’entrée flous pour l’équipe</b>
-                <b data-lang="en">Unclear intake rules for the team</b>
-                <span data-lang="fr">Des règles simples et partagées réduisent les frictions internes.</span>
-                <span data-lang="en">Simple shared rules reduce internal friction.</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="miniCard">
-          <h3 data-lang="fr">Ce que “qualifié” signifie vraiment</h3>
-          <h3 data-lang="en">What “qualified” truly means</h3>
-
-          <p data-lang="fr" style="color:var(--muted); margin:0; line-height:1.75; font-size:13.9px">
-            “Qualifié” ne veut pas dire “intéressé”.
-            Cela veut dire : compatible avec <b>vos honoraires</b>, votre périmètre, votre niveau de complexité acceptable,
-            et la capacité de votre équipe — avec un besoin clair.
-          </p>
-          <p data-lang="en" style="color:var(--muted); margin:0; line-height:1.75; font-size:13.9px">
-            “Qualified” doesn’t mean “interested”.
-            It means aligned with <b>your fee level</b>, scope, acceptable complexity, team capacity — with a clear need.
-          </p>
-
-          <div class="divider" aria-hidden="true"></div>
-
-          <p data-lang="fr" style="color:var(--muted2); margin:0; line-height:1.75; font-size:13.6px">
-            La qualification s’adapte à votre positionnement : PME, groupes, immobilier, forte part de conseil, multi-entités…
-          </p>
-          <p data-lang="en" style="color:var(--muted2); margin:0; line-height:1.75; font-size:13.6px">
-            Qualification adapts to your positioning: SMEs, groups, real estate, advisory-heavy, multi-entity…
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
@@ -1013,12 +951,11 @@
       <div class="foot">
         <div style="display:flex; gap:12px; align-items:center">
           <div class="miniLogo" aria-hidden="true" title="Logo mini">
-            <svg viewBox="0 0 100 100" width="100%" height="100%" role="img" aria-label="Lead2Value logo">
-              <rect x="0" y="0" width="100" height="100" rx="20" fill="#2563EB"/>
-              <path d="M20 62 L42 42 L58 50 L78 30" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="50" y="88" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF"
-                font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">L2V</text>
-            </svg>
+            <img
+              class="footLogoImg"
+              alt="Lead2Value"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAb4AAAFUCAYAAABbUlkNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8AAABh0lEQVR4nO3QMQEAAAjDMMC/5yGk4QKqg9lJ0QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwG6m3AAH4d7L1AAAAAElFTkSuQmCC"
+            />
           </div>
           <div class="footMeta">
             <div style="font-weight:950; color:rgba(7,26,53,.92)">Lead2Value</div>
