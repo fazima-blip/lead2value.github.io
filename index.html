@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lead2Value — Pour cabinets comptables : acquisition & qualification B2B</title>
-  <meta name="description" content="Lead2Value aide les cabinets comptables à attirer des dossiers B2B à meilleure valeur et à les qualifier en amont — pour protéger le temps associé et améliorer la rentabilité par dossier." />
+  <title>Lead2Value — Cabinets comptables | Acquisition & qualification B2B</title>
 
   <style>
     :root{
@@ -16,12 +15,6 @@
       --bg1:#070E1B;
       --bg2:#0A1326;
 
-      --panelA: rgba(255,255,255,.055);
-      --panelB: rgba(255,255,255,.035);
-
-      --stroke: rgba(255,255,255,.10);
-      --stroke2: rgba(255,255,255,.14);
-
       --ink:#EAF0FF;
       --muted:#A9B6D6;
       --muted2:#8393B7;
@@ -29,1107 +22,286 @@
       --shadow: 0 30px 90px rgba(0,0,0,.55);
       --shadow2: 0 18px 55px rgba(0,0,0,.40);
 
-      --max: 1160px;
-      --r1: 22px;
-      --r2: 16px;
-
-      --controlH: 46px;
-      --controlPadX: 16px;
-
-      --logoSize: 92px;
-      --logoRadius: 18px;
-
-      --ring: 0 0 0 4px rgba(59,130,246,.16);
-      --ringGold: 0 0 0 4px rgba(245,158,11,.14);
+      --r1:22px;
+      --r2:16px;
+      --max:1160px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--ink);
       background:
         radial-gradient(900px 520px at 10% -10%, rgba(59,130,246,.20), transparent 60%),
         radial-gradient(860px 520px at 90% 0%, rgba(245,158,11,.14), transparent 62%),
-        radial-gradient(1100px 760px at 50% 120%, rgba(29,78,216,.14), transparent 66%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 46%, var(--bg2) 100%);
-      overflow-x:hidden;
+        linear-gradient(180deg, var(--bg0), var(--bg1), var(--bg2));
     }
-
-    a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 22px}
-    section, header{scroll-margin-top: 96px;}
+    h1,h2,h3,h4{margin:0}
 
-    /* ===== Topbar ===== */
-    .topbar{
-      position:sticky; top:0; z-index:60;
-      background: rgba(7,14,27,.72);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
-    }
-    .brand{display:flex; align-items:center; gap:14px; min-width: 340px;}
-
-    .logoBox{
-      width: var(--logoSize);
-      height: var(--logoSize);
-      border-radius: var(--logoRadius);
-      border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(120px 120px at 30% 20%, rgba(59,130,246,.22), transparent 60%),
-        radial-gradient(140px 140px at 80% 80%, rgba(245,158,11,.12), transparent 60%),
-        rgba(255,255,255,.06);
-      box-shadow: var(--shadow2);
-      display:grid; place-items:center;
-      overflow:hidden;
-      flex:0 0 auto;
-      padding: 10px;
-      position:relative;
-    }
-    .logoBox::after{
-      content:"";
-      position:absolute; inset:-1px;
-      background: linear-gradient(135deg, rgba(255,255,255,.14), transparent 35%, rgba(255,255,255,.10));
-      opacity:.35;
-      pointer-events:none;
-    }
-    .logoImg{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-      position:relative;
-      z-index:1;
-    }
-
-    .brandText{display:flex;flex-direction:column;line-height:1.15}
-    .brandText .name{font-weight:950;letter-spacing:.25px;font-size:16px;color: rgba(234,240,255,.98);}
-    .brandText .sub{margin-top:6px;font-size:12.9px;color:rgba(169,182,214,.90);letter-spacing:.12px}
-
-    .targetPill{
-      display:inline-flex; align-items:center; gap:8px;
-      margin-top:10px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(59,130,246,.26);
-      background: rgba(59,130,246,.10);
-      font-weight:950;
-      font-size:12px;
-      letter-spacing:.22px;
-      width:fit-content;
-      color: rgba(234,240,255,.94);
-    }
-    .targetDot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, var(--blue), var(--gold));
-      box-shadow: 0 0 0 6px rgba(59,130,246,.16);
-    }
-
-    .navRight{display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:nowrap;}
-
-    .btn{
-      height: var(--controlH);
-      padding: 0 var(--controlPadX);
-      display:inline-flex; align-items:center; gap:10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      font-weight:950;
-      font-size:13px;
-      letter-spacing:.10px;
-      color: rgba(234,240,255,.94);
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, filter .18s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.085);
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 18px 55px rgba(0,0,0,.45);
-    }
-    .btnPrimary{
-      border-color: rgba(59,130,246,.35);
-      background: linear-gradient(135deg, rgba(59,130,246,.95), rgba(29,78,216,.92));
-      color:#FFFFFF;
-      box-shadow: 0 22px 70px rgba(59,130,246,.22);
-    }
-    .btnPrimary:hover{filter: brightness(1.03)}
-    .btnSoftGold{
-      border-color: rgba(245,158,11,.28);
-      background: linear-gradient(135deg, rgba(245,158,11,.16), rgba(255,255,255,.05));
-    }
-
-    .lang{
-      height: var(--controlH);
-      padding: 4px;
-      display:inline-flex; align-items:center; gap:6px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-    }
-    .lang button{
-      height: calc(var(--controlH) - 8px);
-      padding: 0 14px;
-      border:0; cursor:pointer;
-      border-radius:999px;
-      background: transparent;
-      color: rgba(169,182,214,.92);
-      font-weight:950;
-      font-size:12px;
-      letter-spacing:.30px;
-      display:flex; align-items:center; gap:10px;
-      transition: background .18s ease, color .18s ease, box-shadow .18s ease;
-    }
-    .lang .pill{
-      width:22px; height:22px;
-      border-radius:999px;
-      display:grid; place-items:center;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      font-size:11px;
-      font-weight:950;
-    }
-    .lang button.active{
-      color:#FFFFFF;
-      background: linear-gradient(135deg, rgba(59,130,246,.92), rgba(29,78,216,.90));
-      box-shadow: 0 18px 45px rgba(59,130,246,.18);
-    }
-    .lang button.active .pill{
-      background: rgba(255,255,255,.12);
-      border-color: rgba(255,255,255,.20);
-      color:#FFFFFF;
-    }
-
-    /* ===== Hero ===== */
-    header.hero{padding: 76px 0 56px}
-    .heroGrid{display:grid;grid-template-columns: 1.18fr .82fr;gap:18px;align-items:stretch}
+    /* ===== HERO ===== */
+    header{padding:80px 0 40px}
+    .heroGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
 
     .panel{
-      border-radius: var(--r1);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
+      border-radius:var(--r1);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+      padding:32px;
     }
-    .panel::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background:
-        radial-gradient(760px 260px at 12% 0%, rgba(59,130,246,.26), transparent 60%),
-        radial-gradient(700px 260px at 88% 0%, rgba(245,158,11,.16), transparent 62%);
-      opacity:.65;
-      pointer-events:none;
-    }
-    .panel::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 18%, transparent 36%);
-      opacity:.14;
-      transform: translateX(-45%);
-      animation: sheen 9.4s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes sheen{
-      0%,55%{transform: translateX(-55%);}
-      100%{transform: translateX(55%);}
-    }
-    .panelInner{position:relative; padding:32px}
-
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(59,130,246,.26);
-      background: rgba(59,130,246,.10);
-      font-weight:950;
-      font-size:12px;
-      letter-spacing:.25px;
-      color: rgba(234,240,255,.94);
-      width:fit-content;
-    }
-    .kdot{width:9px;height:9px;border-radius:999px;background: linear-gradient(135deg, var(--blue), var(--gold));}
 
     h1{
-      margin:16px 0 12px;
       font-size:44px;
-      line-height:1.06;
+      line-height:1.05;
       letter-spacing:-.9px;
-      max-width: 24ch;
-      color: rgba(234,240,255,.98);
+      margin-bottom:14px;
     }
     .lead{
-      margin:0;
-      color: rgba(169,182,214,.96);
+      color:var(--muted);
       font-size:16.4px;
       line-height:1.75;
-      max-width: 72ch
+      max-width:70ch;
     }
 
-    .focusBox{
-      margin-top:18px;
-      border-radius: 18px;
+    /* ===== CONTACT ===== */
+    section#contact{padding:60px 0}
+    .sectionHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      margin-bottom:18px;
+    }
+    .sectionHead h2{font-size:22px}
+    .sectionHead .hint{color:var(--muted2);font-weight:700;font-size:13px}
+
+    .contactWrap{
+      border-radius:var(--r1);
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+    }
+    .contactInner{padding:26px}
+
+    .contactGrid{
       display:grid;
-      gap:10px;
-      box-shadow: 0 14px 44px rgba(0,0,0,.38);
+      grid-template-columns:1fr 1fr;
+      gap:18px;
     }
-    .focusTop{display:flex;align-items:flex-start;gap:12px}
-    .iconBox{
-      width:40px;height:40px;border-radius:14px;
-      border:1px solid rgba(59,130,246,.28);
-      background: rgba(59,130,246,.12);
-      display:grid;place-items:center;
-      flex:0 0 auto;
-      box-shadow: 0 14px 40px rgba(59,130,246,.12);
+
+    /* ===== OPTION 1 — LEFT CONTENT ===== */
+    .contactLeft{
+      padding:6px 10px 0 10px;
     }
-    .iconBox svg{width:20px;height:20px}
-    .focusTitle{margin:0;font-weight:950;letter-spacing:.1px;color: rgba(234,240,255,.96)}
-    .focusText{margin:3px 0 0;color: rgba(169,182,214,.94);font-size:13.9px;line-height:1.7}
-
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:9px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      color: rgba(234,240,255,.92);
-      font-weight:950;font-size:12.6px;
-      letter-spacing:.1px;
-      box-shadow: 0 14px 44px rgba(0,0,0,.35);
+    .contactLeft h3{
+      font-size:15px;
+      margin-bottom:10px;
     }
-    .chip svg{width:16px;height:16px}
-
-    .heroActions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-
-    .stack{display:grid; gap:12px}
-
-    /* ✅ Mini cards = plus “flat premium” : moins de cadre visuel */
-    .miniCard{
-      border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.085);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.032));
-      box-shadow: 0 16px 60px rgba(0,0,0,.35);
-      padding:18px;
-      min-width:0;
-      position:relative;
-      overflow:hidden;
+    .contactLeft p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:13.9px;
     }
-    .miniCard::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background:
-        radial-gradient(460px 220px at 12% 0%, rgba(59,130,246,.14), transparent 60%),
-        radial-gradient(420px 220px at 88% 0%, rgba(245,158,11,.08), transparent 62%);
-      opacity:.40;
-      pointer-events:none;
-    }
-    .miniCard > *{position:relative}
-    .miniCard h3{margin:0 0 10px;font-size:15px;letter-spacing:.2px;color: rgba(234,240,255,.96)}
-    .miniCard p{margin:0;color: rgba(169,182,214,.95);font-size:13.9px;line-height:1.75}
 
-    /* ✅ Remplace les “sous-cadres” par une liste premium */
-    .microList{
-      margin:14px 0 0;
-      padding:0;
-      list-style:none;
+    .contactPoints{margin-top:18px;display:grid;gap:14px}
+    .cp{display:flex;gap:10px}
+    .cpDot{
+      width:10px;height:10px;border-radius:50%;margin-top:6px;
+      background:linear-gradient(135deg,var(--blue),var(--gold));
+      box-shadow:0 0 0 6px rgba(59,130,246,.15);
+    }
+    .cp b{display:block;font-size:13.2px}
+    .cp span{display:block;color:var(--muted2);font-size:12.8px;margin-top:5px}
+
+    .contactMiniFlow{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
       display:grid;
       gap:12px;
     }
-    .microItem{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:10px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    .microItem:first-child{border-top: 1px solid rgba(255,255,255,.10);}
-    .microIcon{
-      width:28px;height:28px;border-radius:10px;
+    .mf{display:flex;gap:10px}
+    .mfN{
+      width:26px;height:26px;border-radius:10px;
       display:grid;place-items:center;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 14px 44px rgba(0,0,0,.25);
-      flex:0 0 auto;
-      margin-top:1px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      font-weight:800;
+      font-size:12px;
     }
-    .microIcon svg{width:16px;height:16px}
-    .microTitle{
-      font-weight:950;
-      color: rgba(234,240,255,.96);
-      letter-spacing:.1px;
-      font-size:13.3px;
-      margin:0;
-    }
-    .microDesc{
-      margin:6px 0 0;
-      color: rgba(131,147,183,.98);
-      font-size:12.8px;
-      line-height:1.65;
+    .mf b{font-size:13.1px}
+    .mf span{display:block;color:var(--muted2);font-size:12.6px;margin-top:4px}
+
+    .contactPromise{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.10);
+      font-size:12.6px;
+      font-weight:700;
+      color:var(--muted);
     }
 
-    /* Sections */
-    section{padding:54px 0}
-    section.soft{padding:42px 0}
-    .sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:0 0 18px}
-    .sectionHead h2{margin:0;font-size:22px;letter-spacing:-.25px;color: rgba(234,240,255,.98)}
-    .sectionHead .hint{color: rgba(131,147,183,.98);font-weight:950;font-size:12.7px;letter-spacing:.2px;white-space:nowrap}
-
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .card{
-      border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.032));
-      box-shadow: 0 16px 60px rgba(0,0,0,.32);
-      padding:18px;
-      min-width:0;
-    }
-    .cardTop{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-    .step{
-      width:38px;height:38px;border-radius:14px;
-      display:grid;place-items:center;
-      font-weight:950;
-      background: rgba(59,130,246,.14);
-      border:1px solid rgba(59,130,246,.26);
-      color: rgba(234,240,255,.94);
-      flex:0 0 auto;
-      box-shadow: 0 16px 44px rgba(59,130,246,.12);
-    }
-    .card h4{margin:0;font-size:14.3px;letter-spacing:.1px;color: rgba(234,240,255,.96)}
-    .card p{margin:0;color: rgba(169,182,214,.95);font-size:13.9px;line-height:1.75}
-
-    .divider{height:1px;background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);margin:18px 0}
-
-    .proofStrip{
-      border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(135deg, rgba(59,130,246,.12), rgba(255,255,255,.04));
-      box-shadow: 0 16px 60px rgba(0,0,0,.32);
-      padding:18px;
-    }
-    .proofGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:center}
-    .proofStrip h3{margin:0;font-size:15px;letter-spacing:.2px;color: rgba(234,240,255,.96)}
-    .proofStrip p{margin:6px 0 0;color: rgba(169,182,214,.95);font-size:13.9px;line-height:1.75}
-    .proofBadges{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      font-weight:950;font-size:12.5px;
-      color: rgba(234,240,255,.92);
-      box-shadow: 0 14px 44px rgba(0,0,0,.30);
-      min-width:0;
-    }
-    .badge svg{width:16px;height:16px}
-
-    /* ===== CONTACT ===== */
-    .contactWrap{
-      border-radius: var(--r1);
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
-      box-shadow: var(--shadow);
-      overflow: visible;
-    }
-    .contactInner{padding:22px}
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      align-items:start;
-    }
-    .contactGrid > *{min-width:0;}
-
-    form{display:grid;gap:12px;margin-top:12px}
-    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .row2 > *{min-width:0;}
-
-    label{
-      display:block;font-weight:950;font-size:12.7px;letter-spacing:.2px;
-      margin-bottom:7px;color: rgba(234,240,255,.92);
-    }
+    /* ===== FORM ===== */
+    form{display:grid;gap:14px}
+    label{font-weight:700;font-size:13px}
     .field{
       width:100%;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.14);
-      background: rgba(5,10,19,.55);
+      background:rgba(5,10,19,.6);
       padding:12px;
-      color: rgba(234,240,255,.96);
-      outline:none;
-      font-size:14.2px;
-      transition: box-shadow .16s ease, border-color .16s ease, background .16s ease, transform .16s ease;
+      color:var(--ink);
+      font-size:14px;
     }
-    .field::placeholder{color: rgba(169,182,214,.60)}
-    .field:focus{
-      border-color: rgba(59,130,246,.70);
-      box-shadow: var(--ring);
-      background: rgba(5,10,19,.70);
-      transform: translateY(-1px);
-    }
-    textarea.field{min-height:135px;resize:vertical}
-    .help{margin-top:7px;color: rgba(131,147,183,.96);font-size:12.7px;line-height:1.6}
+    textarea.field{min-height:130px}
 
-    .submitRow{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;flex-wrap:wrap;margin-top:4px;
-    }
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .help{font-size:12.5px;color:var(--muted2);margin-top:6px}
+
     .submit{
-      border:0;cursor:pointer;
+      margin-top:10px;
+      padding:14px 18px;
       border-radius:999px;
-      padding:12px 16px;
-      font-weight:950;
-      letter-spacing:.2px;
-      font-size:13px;
-      color:#FFFFFF;
-      background: linear-gradient(135deg, rgba(59,130,246,.95), rgba(29,78,216,.92));
-      box-shadow: 0 22px 70px rgba(59,130,246,.22);
-      transition: transform .18s ease, filter .18s ease, opacity .18s ease;
-      display:inline-flex;align-items:center;gap:10px;
-      white-space:nowrap;
-    }
-    .submit:hover{transform: translateY(-1px);filter: brightness(1.03)}
-    .submit:disabled{opacity:.75;cursor:not-allowed;transform:none}
-    .fineprint{color: rgba(131,147,183,.98);font-size:12.5px;line-height:1.6;max-width:72ch}
-
-    footer{
-      margin-top:34px;
-      padding:28px 0 36px;
-      border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(7,14,27,.55);
-      backdrop-filter: blur(14px);
-    }
-    .foot{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .miniLogo{
-      width:58px;height:58px;border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      display:grid;place-items:center;
-      overflow:hidden;
-      box-shadow: var(--shadow2);
-      padding:6px;
-    }
-    .footLogoImg{width:100%;height:100%;object-fit:contain;display:block;filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));}
-    .footMeta{color: rgba(131,147,183,.98);font-size:12.7px;line-height:1.6}
-    .footLinks{display:flex;gap:10px;flex-wrap:wrap}
-    .link{
-      display:inline-flex;align-items:center;gap:8px;
-      border-radius:999px;border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: rgba(234,240,255,.94);
-      padding:9px 12px;
-      font-weight:950;font-size:12.3px;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-    }
-    .link:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.085);
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+      border:0;
+      cursor:pointer;
+      font-weight:800;
+      color:white;
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      box-shadow:0 22px 70px rgba(59,130,246,.25);
+      font-size:14px;
     }
 
-    [data-lang]{display:none}
-    [data-lang].show{display:block}
-
-    @media (max-width: 1100px){
-      .navRight{flex-wrap:wrap;gap:10px}
-    }
-
-    @media (max-width: 720px){
-      .topbar{position: relative;backdrop-filter: none;}
-      .nav{flex-direction: column;align-items: stretch;gap: 12px;padding: 14px 0 16px;}
-      .brand{min-width: 0;width: 100%;justify-content: flex-start;}
-      :root{--logoSize: 72px;--controlH: 44px;}
-      .brandText .name{font-size:15px}
-      .brandText .sub{font-size:12.5px}
-      .navRight{
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        align-items: center;
-      }
-      .lang{width: 100%;justify-content: space-between;padding: 4px;box-shadow: none;}
-      .lang button{width: 50%;justify-content: center;padding: 0 10px;}
-      .lang .pill{display:none;}
-      .btn{width: 100%;justify-content: center;box-shadow: none;}
-      .btnSoftGold{grid-column: 1 / 2;}
-      .btnPrimary{grid-column: 2 / 3;}
-    }
-
-    @media (max-width: 980px){
-      header.hero{padding: 62px 0 44px}
+    @media(max-width:980px){
       .heroGrid{grid-template-columns:1fr}
-      h1{font-size:36px;max-width:none}
-      .grid3{grid-template-columns:1fr}
-      .row2{grid-template-columns:1fr}
-      .brand{min-width:auto}
-      .proofGrid{grid-template-columns:1fr}
-      .proofBadges{justify-content:flex-start}
       .contactGrid{grid-template-columns:1fr}
-      .contactInner{padding:18px}
+      h1{font-size:36px}
     }
-
-    :focus-visible{
-      outline:none;
-      box-shadow: var(--ring);
-      border-radius: 14px;
-    }
-    .btnPrimary:focus-visible{box-shadow: 0 0 0 4px rgba(59,130,246,.22), 0 22px 70px rgba(59,130,246,.22);}
-    .btnSoftGold:focus-visible{box-shadow: var(--ringGold), 0 18px 55px rgba(0,0,0,.45);}
   </style>
 </head>
 
-<body id="top">
+<body>
 
-  <div class="topbar">
-    <div class="container">
-      <div class="nav">
-
-        <div class="brand" aria-label="Lead2Value">
-          <div class="logoBox" title="Logo Lead2Value">
-            <img class="logoImg" src="lead2value-logo.png" alt="Lead2Value">
-          </div>
-
-          <div class="brandText">
-            <div class="name">Lead2Value</div>
-            <div class="sub" data-lang="fr">Acquisition & qualification B2B — spécial cabinets</div>
-            <div class="sub" data-lang="en">Acquisition & qualification — accounting firm edition</div>
-
-            <div class="targetPill">
-              <span class="targetDot" aria-hidden="true"></span>
-              <span data-lang="fr">Pour cabinets d’expertise comptable</span>
-              <span data-lang="en">For accounting firms</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="navRight">
-          <div class="lang" role="group" aria-label="Language switch">
-            <button type="button" id="btnFR" class="active" aria-pressed="true">
-              <span class="pill">FR</span> Français
-            </button>
-            <button type="button" id="btnEN" aria-pressed="false">
-              <span class="pill">EN</span> English
-            </button>
-          </div>
-
-          <a class="btn btnSoftGold" href="#how">
-            <span aria-hidden="true">▸</span>
-            <span data-lang="fr">La méthode</span>
-            <span data-lang="en">Method</span>
-          </a>
-
-          <a class="btn btnPrimary" href="#contact">
-            <span aria-hidden="true">✦</span>
-            <span data-lang="fr">Diagnostic gratuit</span>
-            <span data-lang="en">Free fit check</span>
-          </a>
-        </div>
-
+<header>
+  <div class="container">
+    <div class="heroGrid">
+      <div class="panel">
+        <h1>Attirez des dossiers B2B à meilleure valeur — et triez avant de mobiliser l’équipe.</h1>
+        <p class="lead">
+          Lead2Value met en place une acquisition adaptée aux cabinets comptables et un système de qualification clair,
+          pour réduire les demandes hors-cible et protéger le temps associé.
+        </p>
       </div>
     </div>
   </div>
+</header>
 
-  <header class="hero">
-    <div class="container">
-      <div class="heroGrid">
-
-        <div class="panel">
-          <div class="panelInner">
-            <div class="kicker">
-              <span class="kdot" aria-hidden="true"></span>
-              <span data-lang="fr">Conçu pour les cabinets comptables en France</span>
-              <span data-lang="en">Built for accounting firms in France</span>
-            </div>
-
-            <h1 data-lang="fr">Attirez des dossiers B2B à meilleure valeur — et triez en amont, avant de mobiliser l’équipe.</h1>
-            <h1 data-lang="en">Attract higher-value B2B clients — and qualify them before your team invests time.</h1>
-
-            <p class="lead" data-lang="fr">
-              Lead2Value met en place une acquisition <b>adaptée aux cabinets</b> et une qualification simple,
-              pour réduire les demandes hors-cible, protéger le temps associé, et améliorer la rentabilité par dossier.
-            </p>
-            <p class="lead" data-lang="en">
-              Lead2Value sets up an <b>accounting-firm specific</b> acquisition + a clear qualification layer,
-              to reduce wrong-fit inquiries, protect partner time, and improve profit per client.
-            </p>
-
-            <div class="focusBox" aria-label="Cabinet focus">
-              <div class="focusTop">
-                <div class="iconBox" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M4 20V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13" stroke="rgba(59,130,246,.95)" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 9h10M7 13h8M7 17h6" stroke="rgba(234,240,255,.70)" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="focusTitle" data-lang="fr">Pour cabinets avec beaucoup de demandes… mais pas assez de bons dossiers.</p>
-                  <p class="focusTitle" data-lang="en">For firms with inquiries — but not enough “right-fit” clients.</p>
-
-                  <p class="focusText" data-lang="fr">
-                    Vous n’avez pas besoin de “plus de leads”. Vous avez besoin de <b>meilleures demandes</b> et d’un tri net :
-                    honoraires, périmètre, complexité, réactivité, capacité.
-                  </p>
-                  <p class="focusText" data-lang="en">
-                    You don’t need “more leads”. You need <b>better inquiries</b> — and a crisp filter:
-                    fees, scope, complexity, responsiveness, and capacity.
-                  </p>
-                </div>
-              </div>
-
-              <div class="chips" aria-label="Key outcomes">
-                <div class="chip">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M20 7l-9 10-4-4" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <span data-lang="fr">Moins d’appels hors-cible</span>
-                  <span data-lang="en">Fewer wrong-fit calls</span>
-                </div>
-                <div class="chip">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 2v6m0 14v-6M2 12h6m14 0h-6" stroke="rgba(59,130,246,.95)" stroke-width="2.5" stroke-linecap="round"/>
-                  </svg>
-                  <span data-lang="fr">Temps associé protégé</span>
-                  <span data-lang="en">Protected partner time</span>
-                </div>
-                <div class="chip">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 14l4-4 4 4 8-8" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <span data-lang="fr">Rentabilité par dossier</span>
-                  <span data-lang="en">Profit per client</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="heroActions">
-              <a class="btn btnPrimary" href="#contact">
-                <span aria-hidden="true">✦</span>
-                <span data-lang="fr">Demander un diagnostic gratuit</span>
-                <span data-lang="en">Request a free audit</span>
-              </a>
-              <a class="btn" href="#what">
-                <span aria-hidden="true">⟡</span>
-                <span data-lang="fr">Ce que vous recevez</span>
-                <span data-lang="en">What you get</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <aside class="stack" aria-label="Highlights">
-          <div class="miniCard">
-            <h3 data-lang="fr">Une méthode pensée pour le cabinet</h3>
-            <h3 data-lang="en">A “firm-first” system</h3>
-
-            <p data-lang="fr">
-              Tout est aligné sur votre quotidien : charge de production, choix d’honoraires, capacité des équipes,
-              et un parcours de prise de contact qui reste simple et cohérent.
-            </p>
-            <p data-lang="en">
-              Built around your reality: delivery overload, fee trade-offs, team capacity, and the need for a consistent intake process.
-            </p>
-
-            <ul class="microList" aria-label="Points clés">
-              <li class="microItem">
-                <div class="microIcon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M20 7l-9 10-4-4" stroke="#10B981" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="microTitle" data-lang="fr">Tri clair avant le rendez-vous associé</p>
-                  <p class="microTitle" data-lang="en">Clear triage before partner calls</p>
-                  <p class="microDesc" data-lang="fr">On évite de mobiliser l’équipe sur des demandes non compatibles.</p>
-                  <p class="microDesc" data-lang="en">Avoid team time on wrong-fit inquiries.</p>
-                </div>
-              </li>
-
-              <li class="microItem">
-                <div class="microIcon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2v6m0 14v-6M2 12h6m14 0h-6" stroke="rgba(59,130,246,.95)" stroke-width="2.3" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="microTitle" data-lang="fr">Critères d’acceptation compris par l’équipe</p>
-                  <p class="microTitle" data-lang="en">Acceptance criteria the team can apply</p>
-                  <p class="microDesc" data-lang="fr">Des règles simples pour décider vite : oui, non, ou à clarifier.</p>
-                  <p class="microDesc" data-lang="en">Simple rules to decide fast: yes, no, or clarify.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="miniCard" id="what">
-            <h3 data-lang="fr">Ce que vous recevez (prêt à utiliser)</h3>
-            <h3 data-lang="en">What you get (ready-to-use)</h3>
-
-            <p data-lang="fr">
-              Angles de messages, ciblage, questionnaire de qualification, règles d’acceptation/refus,
-              et une passation claire — pour ne remonter que les demandes pertinentes.
-            </p>
-            <p data-lang="en">
-              Messaging angles, targeting, qualification form, accept/reject rules, and a structured handoff — so only relevant inquiries reach partners.
-            </p>
-          </div>
-        </aside>
-
-      </div>
+<section id="contact">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Demander un diagnostic gratuit</h2>
+      <div class="hint">Réponse sous 24–48h</div>
     </div>
-  </header>
 
-  <section class="soft">
-    <div class="container">
-      <div class="proofStrip">
-        <div class="proofGrid">
+    <div class="contactWrap">
+      <div class="contactInner">
+        <div class="contactGrid">
+
+          <!-- LEFT (OPTION 1) -->
+          <div class="contactLeft">
+            <h3>Objectif : trier plus tôt, protéger le temps associé</h3>
+            <p>
+              Décrivez votre situation. Nous revenons vers vous avec une recommandation claire,
+              directement applicable à votre cabinet.
+            </p>
+
+            <div class="contactPoints">
+              <div class="cp">
+                <span class="cpDot"></span>
+                <div>
+                  <b>Tri net des demandes</b>
+                  <span>Honoraires, périmètre, complexité, capacité.</span>
+                </div>
+              </div>
+              <div class="cp">
+                <span class="cpDot"></span>
+                <div>
+                  <b>Rendez-vous mieux qualifiés</b>
+                  <span>Les informations utiles arrivent avant l’échange.</span>
+                </div>
+              </div>
+              <div class="cp">
+                <span class="cpDot"></span>
+                <div>
+                  <b>Décisions plus rapides</b>
+                  <span>Accepter, refuser ou clarifier — sans friction.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contactMiniFlow">
+              <div class="mf">
+                <span class="mfN">1</span>
+                <div><b>Vos critères</b><span>Ce qu’est un “bon dossier” chez vous.</span></div>
+              </div>
+              <div class="mf">
+                <span class="mfN">2</span>
+                <div><b>Les questions</b><span>Le minimum pour trier efficacement.</span></div>
+              </div>
+              <div class="mf">
+                <span class="mfN">3</span>
+                <div><b>La recommandation</b><span>Claire, simple, actionnable.</span></div>
+              </div>
+            </div>
+
+            <div class="contactPromise">
+              Réponse sous 24–48h • Pas de spam • Pas de liste email
+            </div>
+          </div>
+
+          <!-- FORM -->
           <div>
-            <h3 data-lang="fr">Simple et lisible : “Dossiers compatibles, sinon non.”</h3>
-            <h3 data-lang="en">Psychologically simple: “Right-fit cases, or nothing.”</h3>
-
-            <p data-lang="fr">
-              Le prospect comprend vos critères. L’équipe aussi.
-              Résultat : moins d’ambiguïté, moins de négociation, et des décisions plus rapides.
-            </p>
-            <p data-lang="en">
-              Prospects instantly understand your criteria. So does your team.
-              Result: less ambiguity, less negotiation, faster decisions.
-            </p>
-          </div>
-
-          <div class="proofBadges" aria-label="Trust badges">
-            <div class="badge">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(59,130,246,.95)" stroke-width="2.2" stroke-linejoin="round"/>
-              </svg>
-              <span data-lang="fr">Parcours d’entrée cadré</span>
-              <span data-lang="en">Structured intake</span>
-            </div>
-            <div class="badge">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 7l-9 10-4-4" stroke="#10B981" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span data-lang="fr">Qualification avant RDV</span>
-              <span data-lang="en">Qualify before calls</span>
-            </div>
-            <div class="badge">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 6v6l4 2" stroke="#F59E0B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" stroke="rgba(234,240,255,.55)" stroke-width="2"/>
-              </svg>
-              <span data-lang="fr">Temps associé respecté</span>
-              <span data-lang="en">Partner time saved</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="how">
-    <div class="container">
-      <div class="sectionHead">
-        <h2 data-lang="fr">La méthode (spéciale cabinets)</h2>
-        <h2 data-lang="en">Method (accounting-firm specific)</h2>
-        <div class="hint" data-lang="fr">Ciblage → Qualification → Passation</div>
-        <div class="hint" data-lang="en">Acquisition → Qualification → Handoff</div>
-      </div>
-
-      <div class="grid3">
-        <div class="card">
-          <div class="cardTop">
-            <div class="step" aria-hidden="true">1</div>
-            <h4 data-lang="fr">Ciblage “bon dossier”</h4>
-            <h4 data-lang="en">Right-fit targeting</h4>
-          </div>
-          <p data-lang="fr">
-            On fixe des critères concrets (niveau d’honoraires, secteur, périmètre, complexité, taille, multi-entités),
-            compatibles avec votre capacité et vos standards.
-          </p>
-          <p data-lang="en">
-            We define concrete criteria (fees, sector, scope, complexity, size, multi-entity) aligned with your capacity and standards.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="cardTop">
-            <div class="step" aria-hidden="true">2</div>
-            <h4 data-lang="fr">Qualification avant le rendez-vous</h4>
-            <h4 data-lang="en">Qualification before calls</h4>
-          </div>
-          <p data-lang="fr">
-            Un questionnaire court écarte les demandes non compatibles. Les bons prospects arrivent avec
-            les informations clés (contexte, délai, attentes, contraintes).
-          </p>
-          <p data-lang="en">
-            A short intake removes wrong-fit inquiries. Right-fit prospects arrive with key context (timing, needs, constraints).
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="cardTop">
-            <div class="step" aria-hidden="true">3</div>
-            <h4 data-lang="fr">Passation claire à l’équipe</h4>
-            <h4 data-lang="en">Structured handoff</h4>
-          </div>
-          <p data-lang="fr">
-            Chaque demande remonte avec une synthèse : recommandation <b>à accepter / à refuser</b>,
-            et prochaine action (prise de rendez-vous, question complémentaire, refus).
-          </p>
-          <p data-lang="en">
-            Each request includes a clear summary: recommended <b>accept/reject</b>, and next step for the team.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="sectionHead">
-        <h2 data-lang="fr">Demander un diagnostic gratuit</h2>
-        <h2 data-lang="en">Request a free fit check</h2>
-        <div class="hint" data-lang="fr">Réponse sous 24–48h</div>
-        <div class="hint" data-lang="en">Reply within 24–48h</div>
-      </div>
-
-      <div class="contactWrap" role="region" aria-label="Contact form">
-        <div class="contactInner">
-          <div class="contactGrid">
-            <div class="miniCard" style="box-shadow:none; background:transparent; border:0; padding:2px 6px 0 6px;">
-              <h3 style="margin:0 0 8px; font-size:15px; color:rgba(234,240,255,.96)" data-lang="fr">Objectif : trier plus tôt, protéger le temps associé</h3>
-              <h3 style="margin:0 0 8px; font-size:15px; color:rgba(234,240,255,.96)" data-lang="en">Goal: filter earlier, protect partner time</h3>
-
-              <p style="margin:0; color:rgba(169,182,214,.95); line-height:1.75; font-size:13.9px" data-lang="fr">
-                Vous décrivez votre situation. Nous revenons vers vous avec une recommandation claire :
-                critères d’acceptation, questions de qualification, et la meilleure façon de ne remonter que le pertinent.
-              </p>
-              <p style="margin:0; color:rgba(169,182,214,.95); line-height:1.75; font-size:13.9px" data-lang="en">
-                You describe your situation. We respond with a clear recommendation:
-                acceptance criteria, qualification questions, and how to surface only relevant requests.
-              </p>
-
-              <div class="divider" aria-hidden="true"></div>
-
-              <p style="margin:0; color:rgba(131,147,183,.98); line-height:1.75; font-size:13.6px" data-lang="fr">
-              </p>
-              <p style="margin:0; color:rgba(131,147,183,.98); line-height:1.75; font-size:13.6px" data-lang="en">
-                Note: this page doesn’t show a “thank you” banner. After sending, you’ll be redirected (configurable).
-              </p>
-            </div>
-
-            <div>
-              <form id="leadForm" method="POST" action="https://formsubmit.co/YOUR_EMAIL_HERE" novalidate>
-                <input type="hidden" name="_subject" value="New request — Lead2Value" />
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="about:blank" />
-
-                <div class="row2">
-                  <div>
-                    <label for="name" data-lang="fr">Votre nom</label>
-                    <label for="name" data-lang="en">Your name</label>
-                    <input class="field" id="name" name="name" type="text" autocomplete="name" required />
-                    <div class="help" data-lang="fr">Pour savoir comment vous adresser.</div>
-                    <div class="help" data-lang="en">So we know how to address you.</div>
-                  </div>
-
-                  <div>
-                    <label for="firm" data-lang="fr">Cabinet</label>
-                    <label for="firm" data-lang="en">Firm</label>
-                    <input class="field" id="firm" name="firm" type="text" autocomplete="organization" />
-                    <div class="help" data-lang="fr">Optionnel, mais utile pour le contexte.</div>
-                    <div class="help" data-lang="en">Optional, but helpful for context.</div>
-                  </div>
-                </div>
-
-                <div class="row2">
-                  <div>
-                    <label for="email" data-lang="fr">Email</label>
-                    <label for="email" data-lang="en">Email</label>
-                    <input class="field" id="email" name="email" type="email" autocomplete="email" required />
-                  </div>
-
-                  <div>
-                    <label for="phone" data-lang="fr">Téléphone</label>
-                    <label for="phone" data-lang="en">Phone</label>
-                    <input class="field" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
-                      pattern="^(\+33|0)[1-9](?:[ .-]?\d{2}){4}$"
-                      title="Format attendu : +33 6 12 34 56 78 ou 06 12 34 56 78" />
-                    <div class="help" data-lang="fr">Exemple : 06 12 34 56 78</div>
-                    <div class="help" data-lang="en">Example: +33 6 12 34 56 78</div>
-                  </div>
-                </div>
-
+            <form>
+              <div class="row2">
                 <div>
-                  <label for="message" data-lang="fr">Que souhaitez-vous améliorer ?</label>
-                  <label for="message" data-lang="en">What do you want to improve?</label>
-                  <textarea class="field" id="message" name="message" required></textarea>
-                  <div class="help" data-lang="fr">Quelques lignes suffisent (situation + objectif + type de dossiers recherchés).</div>
-                  <div class="help" data-lang="en">A few lines are enough (situation + goal + ideal client type).</div>
+                  <label>Votre nom</label>
+                  <input class="field" placeholder="Votre nom">
+                  <div class="help">Pour savoir comment vous adresser.</div>
                 </div>
-
-                <div class="submitRow">
-                  <button class="submit" type="submit" id="submitBtn">
-                    <span aria-hidden="true">✦</span>
-                    <span data-lang="fr">Envoyer la demande</span>
-                    <span data-lang="en">Send request</span>
-                  </button>
-
-                  <div class="fineprint" data-lang="fr">
-                    En envoyant, vous acceptez d’être recontacté(e) au sujet de cette demande. Pas de spam, pas de liste email.
-                  </div>
-                  <div class="fineprint" data-lang="en">
-                    By sending, you agree to be contacted about this request. No spam, no mailing list.
-                  </div>
+                <div>
+                  <label>Cabinet</label>
+                  <input class="field" placeholder="Nom du cabinet (optionnel)">
+                  <div class="help">Optionnel, mais utile pour le contexte.</div>
                 </div>
-              </form>
-            </div>
+              </div>
+
+              <div class="row2">
+                <div>
+                  <label>Email</label>
+                  <input class="field" placeholder="vous@exemple.com">
+                </div>
+                <div>
+                  <label>Téléphone</label>
+                  <input class="field" placeholder="06 12 34 56 78">
+                  <div class="help">Exemple : 06 12 34 56 78</div>
+                </div>
+              </div>
+
+              <div>
+                <label>Que souhaitez-vous améliorer ?</label>
+                <textarea class="field" placeholder="Exemple : trop de demandes hors-cible…"></textarea>
+                <div class="help">Situation + objectif + type de dossiers recherchés.</div>
+              </div>
+
+              <button class="submit">Envoyer la demande</button>
+            </form>
           </div>
+
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="container">
-      <div class="foot">
-        <div style="display:flex; gap:12px; align-items:center">
-          <div class="miniLogo" aria-hidden="true" title="Logo mini">
-            <img class="footLogoImg" src="lead2value-logo.png" alt="Lead2Value">
-          </div>
-          <div class="footMeta">
-            <div style="font-weight:950; color:rgba(234,240,255,.96)">Lead2Value</div>
-            <div data-lang="fr">Pour cabinets d’expertise comptable — acquisition & qualification B2B</div>
-            <div data-lang="en">For accounting firms — acquisition & qualification</div>
-          </div>
-        </div>
-
-        <div class="footLinks">
-          <a class="link" href="#how"><span data-lang="fr">Méthode</span><span data-lang="en">Method</span></a>
-          <a class="link" href="#contact"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span></a>
-          <a class="link" href="#top"><span data-lang="fr">Haut de page</span><span data-lang="en">Back to top</span></a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ---------- Language handling (FR default) ----------
-    const btnFR = document.getElementById('btnFR');
-    const btnEN = document.getElementById('btnEN');
-
-    const ph = {
-      fr: {
-        name: "Votre nom",
-        firm: "Nom du cabinet (optionnel)",
-        email: "vous@exemple.com",
-        phone: "06 12 34 56 78",
-        message: "Exemple : trop de demandes hors-cible. Nous voulons trier plus tôt (honoraires minimum, secteur, complexité, taille, multi-entités)."
-      },
-      en: {
-        name: "Your name",
-        firm: "Firm name (optional)",
-        email: "you@example.com",
-        phone: "+33 6 12 34 56 78",
-        message: "Example: too many wrong-fit inquiries. We want to filter earlier (min fees, sector, complexity, size, multi-entity)."
-      }
-    };
-
-    function applyPlaceholders(lang){
-      const p = ph[lang] || ph.fr;
-      const name = document.getElementById('name');
-      const firm = document.getElementById('firm');
-      const email = document.getElementById('email');
-      const phone = document.getElementById('phone');
-      const msg = document.getElementById('message');
-      if(name) name.placeholder = p.name;
-      if(firm) firm.placeholder = p.firm;
-      if(email) email.placeholder = p.email;
-      if(phone) phone.placeholder = p.phone;
-      if(msg) msg.placeholder = p.message;
-    }
-
-    function setLang(lang){
-      document.querySelectorAll('[data-lang]').forEach(el=>{
-        el.classList.toggle('show', el.getAttribute('data-lang') === lang);
-      });
-
-      const isFR = (lang === 'fr');
-      btnFR.classList.toggle('active', isFR);
-      btnEN.classList.toggle('active', !isFR);
-      btnFR.setAttribute('aria-pressed', String(isFR));
-      btnEN.setAttribute('aria-pressed', String(!isFR));
-
-      document.documentElement.lang = isFR ? 'fr' : 'en';
-      document.title = isFR
-        ? 'Lead2Value — Pour cabinets comptables : acquisition & qualification B2B'
-        : 'Lead2Value — For accounting firms: acquisition & qualification';
-
-      applyPlaceholders(lang);
-
-      try{ localStorage.setItem('l2v_lang', lang); }catch(e){}
-    }
-
-    btnFR.addEventListener('click', ()=>setLang('fr'));
-    btnEN.addEventListener('click', ()=>setLang('en'));
-
-    (function init(){
-      let saved = 'fr';
-      try{ saved = localStorage.getItem('l2v_lang') || 'fr'; }catch(e){}
-      if(saved !== 'fr' && saved !== 'en') saved = 'fr';
-      setLang(saved);
-    })();
-
-    // ---------- Form validation ----------
-    const form = document.getElementById('leadForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    function validPhone(v){
-      const re = /^(\+33|0)[1-9](?:[ .-]?\d{2}){4}$/;
-      return re.test((v||'').trim());
-    }
-
-    form.addEventListener('submit', (e)=>{
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const phone = document.getElementById('phone');
-      const msg = document.getElementById('message');
-
-      let ok = true;
-      [name,email,phone,msg].forEach(f=> f.style.borderColor = 'rgba(255,255,255,.14)');
-
-      if(!name.value.trim()){ ok=false; name.style.borderColor='rgba(239,68,68,.70)'; }
-      if(!email.value.trim() || !email.checkValidity()){ ok=false; email.style.borderColor='rgba(239,68,68,.70)'; }
-      if(!validPhone(phone.value)){ ok=false; phone.style.borderColor='rgba(239,68,68,.70)'; }
-      if(!msg.value.trim()){ ok=false; msg.style.borderColor='rgba(239,68,68,.70)'; }
-
-      if(!ok){
-        e.preventDefault();
-        submitBtn.style.filter = 'brightness(.98)';
-        setTimeout(()=> submitBtn.style.filter='', 180);
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.9';
-      setTimeout(()=>{
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '';
-      }, 1800);
-    });
-  </script>
 </body>
 </html>
