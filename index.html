@@ -16,12 +16,6 @@
       --bg1:#070E1B;
       --bg2:#0A1326;
 
-      --panelA: rgba(255,255,255,.055);
-      --panelB: rgba(255,255,255,.035);
-
-      --stroke: rgba(255,255,255,.10);
-      --stroke2: rgba(255,255,255,.14);
-
       --ink:#EAF0FF;
       --muted:#A9B6D6;
       --muted2:#8393B7;
@@ -31,7 +25,6 @@
 
       --max: 1160px;
       --r1: 22px;
-      --r2: 16px;
 
       --controlH: 46px;
       --controlPadX: 16px;
@@ -71,8 +64,7 @@
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
+      padding:14px 0; gap:14px;
     }
     .brand{display:flex; align-items:center; gap:14px; min-width: 340px;}
 
@@ -230,19 +222,6 @@
       opacity:.65;
       pointer-events:none;
     }
-    .panel::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 18%, transparent 36%);
-      opacity:.14;
-      transform: translateX(-45%);
-      animation: sheen 9.4s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes sheen{
-      0%,55%{transform: translateX(-55%);}
-      100%{transform: translateX(55%);}
-    }
     .panelInner{position:relative; padding:32px}
 
     .kicker{
@@ -315,7 +294,6 @@
 
     .stack{display:grid; gap:12px}
 
-    /* ✅ Mini cards = plus “flat premium” : moins de cadre visuel */
     .miniCard{
       border-radius: var(--r1);
       border:1px solid rgba(255,255,255,.085);
@@ -339,7 +317,6 @@
     .miniCard h3{margin:0 0 10px;font-size:15px;letter-spacing:.2px;color: rgba(234,240,255,.96)}
     .miniCard p{margin:0;color: rgba(169,182,214,.95);font-size:13.9px;line-height:1.75}
 
-    /* ✅ Remplace les “sous-cadres” par une liste premium */
     .microList{
       margin:14px 0 0;
       padding:0;
@@ -440,7 +417,6 @@
       border:1px solid rgba(255,255,255,.10);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
       box-shadow: var(--shadow);
-      overflow: visible;
     }
     .contactInner{padding:22px}
     .contactGrid{
@@ -451,7 +427,7 @@
     }
     .contactGrid > *{min-width:0;}
 
-    form{display:grid;gap:12px;margin-top:12px}
+    form{display:grid;gap:12px;margin-top:0}
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .row2 > *{min-width:0;}
 
@@ -478,10 +454,9 @@
       transform: translateY(-1px);
     }
     textarea.field{min-height:135px;resize:vertical}
-    .help{margin-top:7px;color: rgba(131,147,183,.96);font-size:12.7px;line-height:1.6}
 
     .submitRow{
-      display:flex;align-items:center;justify-content:space-between;
+      display:flex;align-items:center;justify-content:flex-start;
       gap:12px;flex-wrap:wrap;margin-top:4px;
     }
     .submit{
@@ -500,7 +475,6 @@
     }
     .submit:hover{transform: translateY(-1px);filter: brightness(1.03)}
     .submit:disabled{opacity:.75;cursor:not-allowed;transform:none}
-    .fineprint{color: rgba(131,147,183,.98);font-size:12.5px;line-height:1.6;max-width:72ch}
 
     footer{
       margin-top:34px;
@@ -539,8 +513,12 @@
       box-shadow: 0 18px 55px rgba(0,0,0,.45);
     }
 
+    /* Language visibility (default FR in JS init) */
     [data-lang]{display:none}
-    [data-lang].show{display:block}
+    [data-lang].show{display:inline}
+    /* For block elements we will override in JS using data-display */
+    [data-lang][data-display="block"].show{display:block}
+    [data-lang][data-display="inline-flex"].show{display:inline-flex}
 
     @media (max-width: 1100px){
       .navRight{flex-wrap:wrap;gap:10px}
@@ -588,16 +566,6 @@
     }
     .btnPrimary:focus-visible{box-shadow: 0 0 0 4px rgba(59,130,246,.22), 0 22px 70px rgba(59,130,246,.22);}
     .btnSoftGold:focus-visible{box-shadow: var(--ringGold), 0 18px 55px rgba(0,0,0,.45);}
-
-.contactVisual{
-  border-radius: 20px;
-  background:
-    radial-gradient(420px 320px at 30% 20%, rgba(59,130,246,.18), transparent 60%),
-    radial-gradient(420px 320px at 80% 80%, rgba(245,158,11,.12), transparent 65%),
-    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-  border: 1px solid rgba(255,255,255,.08);
-}
-    
   </style>
 </head>
 
@@ -614,13 +582,16 @@
 
           <div class="brandText">
             <div class="name">Lead2Value</div>
-            <div class="sub" data-lang="fr">Acquisition & qualification B2B — spécial cabinets</div>
-            <div class="sub" data-lang="en">Acquisition & qualification — accounting firm edition</div>
+            <div class="sub" data-lang="fr" data-display="block">Acquisition & qualification B2B — spécial cabinets</div>
+            <div class="sub" data-lang="en" data-display="block">Acquisition & qualification — accounting firm edition</div>
 
-            <div class="targetPill">
+            <div class="targetPill" data-lang="fr" data-display="inline-flex">
               <span class="targetDot" aria-hidden="true"></span>
-              <span data-lang="fr">Pour cabinets d’expertise comptable</span>
-              <span data-lang="en">For accounting firms</span>
+              Pour cabinets d’expertise comptable
+            </div>
+            <div class="targetPill" data-lang="en" data-display="inline-flex">
+              <span class="targetDot" aria-hidden="true"></span>
+              For accounting firms
             </div>
           </div>
         </div>
@@ -664,14 +635,14 @@
               <span data-lang="en">Built for accounting firms in France</span>
             </div>
 
-            <h1 data-lang="fr">Attirez des dossiers B2B à meilleure valeur — et triez en amont, avant de mobiliser l’équipe.</h1>
-            <h1 data-lang="en">Attract higher-value B2B clients — and qualify them before your team invests time.</h1>
+            <h1 data-lang="fr" data-display="block">Attirez des dossiers B2B à meilleure valeur — et triez en amont, avant de mobiliser l’équipe.</h1>
+            <h1 data-lang="en" data-display="block">Attract higher-value B2B clients — and qualify them before your team invests time.</h1>
 
-            <p class="lead" data-lang="fr">
+            <p class="lead" data-lang="fr" data-display="block">
               Lead2Value met en place une acquisition <b>adaptée aux cabinets</b> et une qualification simple,
               pour réduire les demandes hors-cible, protéger le temps associé, et améliorer la rentabilité par dossier.
             </p>
-            <p class="lead" data-lang="en">
+            <p class="lead" data-lang="en" data-display="block">
               Lead2Value sets up an <b>accounting-firm specific</b> acquisition + a clear qualification layer,
               to reduce wrong-fit inquiries, protect partner time, and improve profit per client.
             </p>
@@ -685,14 +656,14 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="focusTitle" data-lang="fr">Pour cabinets avec beaucoup de demandes… mais pas assez de bons dossiers.</p>
-                  <p class="focusTitle" data-lang="en">For firms with inquiries — but not enough “right-fit” clients.</p>
+                  <p class="focusTitle" data-lang="fr" data-display="block">Pour cabinets avec beaucoup de demandes… mais pas assez de bons dossiers.</p>
+                  <p class="focusTitle" data-lang="en" data-display="block">For firms with inquiries — but not enough “right-fit” clients.</p>
 
-                  <p class="focusText" data-lang="fr">
+                  <p class="focusText" data-lang="fr" data-display="block">
                     Vous n’avez pas besoin de “plus de leads”. Vous avez besoin de <b>meilleures demandes</b> et d’un tri net :
                     honoraires, périmètre, complexité, réactivité, capacité.
                   </p>
-                  <p class="focusText" data-lang="en">
+                  <p class="focusText" data-lang="en" data-display="block">
                     You don’t need “more leads”. You need <b>better inquiries</b> — and a crisp filter:
                     fees, scope, complexity, responsiveness, and capacity.
                   </p>
@@ -741,14 +712,14 @@
 
         <aside class="stack" aria-label="Highlights">
           <div class="miniCard">
-            <h3 data-lang="fr">Une méthode pensée pour le cabinet</h3>
-            <h3 data-lang="en">A “firm-first” system</h3>
+            <h3 data-lang="fr" data-display="block">Une méthode pensée pour le cabinet</h3>
+            <h3 data-lang="en" data-display="block">A “firm-first” system</h3>
 
-            <p data-lang="fr">
+            <p data-lang="fr" data-display="block">
               Tout est aligné sur votre quotidien : charge de production, choix d’honoraires, capacité des équipes,
               et un parcours de prise de contact qui reste simple et cohérent.
             </p>
-            <p data-lang="en">
+            <p data-lang="en" data-display="block">
               Built around your reality: delivery overload, fee trade-offs, team capacity, and the need for a consistent intake process.
             </p>
 
@@ -760,10 +731,10 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="microTitle" data-lang="fr">Tri clair avant le rendez-vous associé</p>
-                  <p class="microTitle" data-lang="en">Clear triage before partner calls</p>
-                  <p class="microDesc" data-lang="fr">On évite de mobiliser l’équipe sur des demandes non compatibles.</p>
-                  <p class="microDesc" data-lang="en">Avoid team time on wrong-fit inquiries.</p>
+                  <p class="microTitle" data-lang="fr" data-display="block">Tri clair avant le rendez-vous associé</p>
+                  <p class="microTitle" data-lang="en" data-display="block">Clear triage before partner calls</p>
+                  <p class="microDesc" data-lang="fr" data-display="block">On évite de mobiliser l’équipe sur des demandes non compatibles.</p>
+                  <p class="microDesc" data-lang="en" data-display="block">Avoid team time on wrong-fit inquiries.</p>
                 </div>
               </li>
 
@@ -774,24 +745,24 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="microTitle" data-lang="fr">Critères d’acceptation compris par l’équipe</p>
-                  <p class="microTitle" data-lang="en">Acceptance criteria the team can apply</p>
-                  <p class="microDesc" data-lang="fr">Des règles simples pour décider vite : oui, non, ou à clarifier.</p>
-                  <p class="microDesc" data-lang="en">Simple rules to decide fast: yes, no, or clarify.</p>
+                  <p class="microTitle" data-lang="fr" data-display="block">Critères d’acceptation compris par l’équipe</p>
+                  <p class="microTitle" data-lang="en" data-display="block">Acceptance criteria the team can apply</p>
+                  <p class="microDesc" data-lang="fr" data-display="block">Des règles simples pour décider vite : oui, non, ou à clarifier.</p>
+                  <p class="microDesc" data-lang="en" data-display="block">Simple rules to decide fast: yes, no, or clarify.</p>
                 </div>
               </li>
             </ul>
           </div>
 
           <div class="miniCard" id="what">
-            <h3 data-lang="fr">Ce que vous recevez (prêt à utiliser)</h3>
-            <h3 data-lang="en">What you get (ready-to-use)</h3>
+            <h3 data-lang="fr" data-display="block">Ce que vous recevez (prêt à utiliser)</h3>
+            <h3 data-lang="en" data-display="block">What you get (ready-to-use)</h3>
 
-            <p data-lang="fr">
+            <p data-lang="fr" data-display="block">
               Angles de messages, ciblage, questionnaire de qualification, règles d’acceptation/refus,
               et une passation claire — pour ne remonter que les demandes pertinentes.
             </p>
-            <p data-lang="en">
+            <p data-lang="en" data-display="block">
               Messaging angles, targeting, qualification form, accept/reject rules, and a structured handoff — so only relevant inquiries reach partners.
             </p>
           </div>
@@ -806,14 +777,14 @@
       <div class="proofStrip">
         <div class="proofGrid">
           <div>
-            <h3 data-lang="fr">Simple et lisible : “Dossiers compatibles, sinon non.”</h3>
-            <h3 data-lang="en">Psychologically simple: “Right-fit cases, or nothing.”</h3>
+            <h3 data-lang="fr" data-display="block">Simple et lisible : “Dossiers compatibles, sinon non.”</h3>
+            <h3 data-lang="en" data-display="block">Psychologically simple: “Right-fit cases, or nothing.”</h3>
 
-            <p data-lang="fr">
+            <p data-lang="fr" data-display="block">
               Le prospect comprend vos critères. L’équipe aussi.
               Résultat : moins d’ambiguïté, moins de négociation, et des décisions plus rapides.
             </p>
-            <p data-lang="en">
+            <p data-lang="en" data-display="block">
               Prospects instantly understand your criteria. So does your team.
               Result: less ambiguity, less negotiation, faster decisions.
             </p>
@@ -906,6 +877,7 @@
     </div>
   </section>
 
+  <!-- ✅ CONTACT: texte à gauche, formulaire à droite -->
   <section id="contact">
     <div class="container">
       <div class="sectionHead">
@@ -917,59 +889,124 @@
 
       <div class="contactWrap" role="region" aria-label="Contact form">
         <div class="contactInner">
-         <div class="contactGrid">
+          <div class="contactGrid">
 
-  <!-- Colonne gauche (Option 1) -->
-  <div class="contactLeft">
+            <!-- Colonne gauche -->
+            <div class="contactLeft">
+              <h3 data-lang="fr" data-display="block" style="margin:0 0 10px; font-size:15px; color:rgba(234,240,255,.96)">
+                Objectif : trier plus tôt, protéger le temps associé
+              </h3>
+              <h3 data-lang="en" data-display="block" style="margin:0 0 10px; font-size:15px; color:rgba(234,240,255,.96)">
+                Goal: filter earlier, protect partner time
+              </h3>
 
-    <h3 data-lang="fr" style="margin:0 0 10px; font-size:15px; color:rgba(234,240,255,.96)">
-      Objectif : trier plus tôt, protéger le temps associé
-    </h3>
-    <h3 data-lang="en" style="margin:0 0 10px; font-size:15px; color:rgba(234,240,255,.96)">
-      Goal: filter earlier, protect partner time
-    </h3>
+              <p data-lang="fr" data-display="block" style="margin:0; color:rgba(169,182,214,.95); line-height:1.75; font-size:13.9px">
+                Décrivez votre situation. Nous revenons vers vous avec une recommandation claire, directement applicable au cabinet.
+              </p>
+              <p data-lang="en" data-display="block" style="margin:0; color:rgba(169,182,214,.95); line-height:1.75; font-size:13.9px">
+                Describe your situation. We’ll reply with a clear, actionable recommendation.
+              </p>
 
-    <p data-lang="fr" style="margin:0; color:rgba(169,182,214,.95); line-height:1.75; font-size:13.9px">
-      Décrivez votre situation. Nous revenons vers vous avec une recommandation claire, directement applicable au cabinet.
-    </p>
-    <p data-lang="en" style="margin:0; color:rgba(169,182,214,.95); line-height:1.75; font-size:13.9px">
-      Describe your situation. We’ll reply with a clear, actionable recommendation.
-    </p>
+              <div style="margin-top:16px; display:grid; gap:12px">
+                <div style="display:flex; gap:10px; align-items:flex-start">
+                  <span style="width:10px;height:10px;border-radius:999px;margin-top:6px;flex:0 0 auto;background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(245,158,11,.70)); box-shadow:0 0 0 6px rgba(59,130,246,.14)"></span>
+                  <div>
+                    <b data-lang="fr" data-display="block" style="color:rgba(234,240,255,.96);font-size:13.2px">Tri net</b>
+                    <b data-lang="en" data-display="block" style="color:rgba(234,240,255,.96);font-size:13.2px">Clear triage</b>
+                    <span data-lang="fr" data-display="block" style="margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Honoraires, périmètre, complexité, capacité.</span>
+                    <span data-lang="en" data-display="block" style="margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Fees, scope, complexity, capacity.</span>
+                  </div>
+                </div>
 
-    <div style="margin-top:16px; display:grid; gap:12px">
-      <div style="display:flex; gap:10px; align-items:flex-start">
-        <span style="width:10px;height:10px;border-radius:999px;margin-top:6px;flex:0 0 auto;background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(245,158,11,.70)); box-shadow:0 0 0 6px rgba(59,130,246,.14)"></span>
-        <div>
-          <b data-lang="fr" style="display:block;color:rgba(234,240,255,.96);font-size:13.2px">Tri net</b>
-          <b data-lang="en" style="display:block;color:rgba(234,240,255,.96);font-size:13.2px">Clear triage</b>
-          <span data-lang="fr" style="display:block;margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Honoraires, périmètre, complexité, capacité.</span>
-          <span data-lang="en" style="display:block;margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Fees, scope, complexity, capacity.</span>
-        </div>
-      </div>
+                <div style="display:flex; gap:10px; align-items:flex-start">
+                  <span style="width:10px;height:10px;border-radius:999px;margin-top:6px;flex:0 0 auto;background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(245,158,11,.70)); box-shadow:0 0 0 6px rgba(59,130,246,.14)"></span>
+                  <div>
+                    <b data-lang="fr" data-display="block" style="color:rgba(234,240,255,.96);font-size:13.2px">RDV mieux qualifiés</b>
+                    <b data-lang="en" data-display="block" style="color:rgba(234,240,255,.96);font-size:13.2px">Better qualified calls</b>
+                    <span data-lang="fr" data-display="block" style="margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Les infos utiles arrivent avant l’échange.</span>
+                    <span data-lang="en" data-display="block" style="margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Key context arrives before the call.</span>
+                  </div>
+                </div>
 
-      <div style="display:flex; gap:10px; align-items:flex-start">
-        <span style="width:10px;height:10px;border-radius:999px;margin-top:6px;flex:0 0 auto;background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(245,158,11,.70)); box-shadow:0 0 0 6px rgba(59,130,246,.14)"></span>
-        <div>
-          <b data-lang="fr" style="display:block;color:rgba(234,240,255,.96);font-size:13.2px">RDV mieux qualifiés</b>
-          <b data-lang="en" style="display:block;color:rgba(234,240,255,.96);font-size:13.2px">Better qualified calls</b>
-          <span data-lang="fr" style="display:block;margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Les infos utiles arrivent avant l’échange.</span>
-          <span data-lang="en" style="display:block;margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Key context arrives before the call.</span>
-        </div>
-      </div>
+                <div style="display:flex; gap:10px; align-items:flex-start">
+                  <span style="width:10px;height:10px;border-radius:999px;margin-top:6px;flex:0 0 auto;background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(245,158,11,.70)); box-shadow:0 0 0 6px rgba(59,130,246,.14)"></span>
+                  <div>
+                    <b data-lang="fr" data-display="block" style="color:rgba(234,240,255,.96);font-size:13.2px">Décision plus rapide</b>
+                    <b data-lang="en" data-display="block" style="color:rgba(234,240,255,.96);font-size:13.2px">Faster decisions</b>
+                    <span data-lang="fr" data-display="block" style="margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Accepter, refuser, ou clarifier — sans friction.</span>
+                    <span data-lang="en" data-display="block" style="margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Accept, reject, or clarify — fast.</span>
+                  </div>
+                </div>
+              </div>
 
-      <div style="display:flex; gap:10px; align-items:flex-start">
-        <span style="width:10px;height:10px;border-radius:999px;margin-top:6px;flex:0 0 auto;background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(245,158,11,.70)); box-shadow:0 0 0 6px rgba(59,130,246,.14)"></span>
-        <div>
-          <b data-lang="fr" style="display:block;color:rgba(234,240,255,.96);font-size:13.2px">Décision plus rapide</b>
-          <b data-lang="en" style="display:block;color:rgba(234,240,255,.96);font-size:13.2px">Faster decisions</b>
-          <span data-lang="fr" style="display:block;margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Accepter, refuser, ou clarifier — sans friction.</span>
-          <span data-lang="en" style="display:block;margin-top:5px;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">Accept, reject, or clarify — fast.</span>
-        </div>
-      </div>
-    </div>
+              <div class="divider" aria-hidden="true"></div>
 
-    <div class="divider" aria-hidden="true"></div>
+              <p data-lang="fr" data-display="block" style="margin:0;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">
+                Quelques lignes suffisent. Réponse sous 24–48h.
+              </p>
+              <p data-lang="en" data-display="block" style="margin:0;color:rgba(131,147,183,.98);font-size:12.8px;line-height:1.65">
+                A few lines are enough. Reply within 24–48h.
+              </p>
+            </div>
 
+            <!-- Colonne droite : formulaire -->
+            <div>
+              <form id="leadForm" method="POST" action="https://formsubmit.co/YOUR_EMAIL_HERE" novalidate>
+                <input type="hidden" name="_subject" value="New request — Lead2Value" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="about:blank" />
+
+                <div class="row2">
+                  <div>
+                    <label for="name" data-lang="fr" data-display="block">Votre nom</label>
+                    <label for="name" data-lang="en" data-display="block">Your name</label>
+                    <input class="field" id="name" name="name" type="text" autocomplete="name" required />
+                  </div>
+
+                  <div>
+                    <label for="firm" data-lang="fr" data-display="block">Cabinet</label>
+                    <label for="firm" data-lang="en" data-display="block">Firm</label>
+                    <input class="field" id="firm" name="firm" type="text" autocomplete="organization" />
+                  </div>
+                </div>
+
+                <div class="row2">
+                  <div>
+                    <label for="email" data-lang="fr" data-display="block">Email</label>
+                    <label for="email" data-lang="en" data-display="block">Email</label>
+                    <input class="field" id="email" name="email" type="email" autocomplete="email" required />
+                  </div>
+
+                  <div>
+                    <label for="phone" data-lang="fr" data-display="block">Téléphone</label>
+                    <label for="phone" data-lang="en" data-display="block">Phone</label>
+                    <input class="field" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required
+                      pattern="^(\+33|0)[1-9](?:[ .-]?\d{2}){4}$"
+                      title="Format attendu : +33 6 12 34 56 78 ou 06 12 34 56 78" />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="message" data-lang="fr" data-display="block">Que souhaitez-vous améliorer ?</label>
+                  <label for="message" data-lang="en" data-display="block">What do you want to improve?</label>
+                  <textarea class="field" id="message" name="message" required></textarea>
+                </div>
+
+                <div class="submitRow">
+                  <button class="submit" type="submit" id="submitBtn">
+                    <span aria-hidden="true">✦</span>
+                    <span data-lang="fr">Envoyer la demande</span>
+                    <span data-lang="en">Send request</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div><!-- /contactGrid -->
+        </div><!-- /contactInner -->
+      </div><!-- /contactWrap -->
+    </div><!-- /container -->
   </section>
 
   <footer>
@@ -981,8 +1018,8 @@
           </div>
           <div class="footMeta">
             <div style="font-weight:950; color:rgba(234,240,255,.96)">Lead2Value</div>
-            <div data-lang="fr">Pour cabinets d’expertise comptable — acquisition & qualification B2B</div>
-            <div data-lang="en">For accounting firms — acquisition & qualification</div>
+            <div data-lang="fr" data-display="block">Pour cabinets d’expertise comptable — acquisition & qualification B2B</div>
+            <div data-lang="en" data-display="block">For accounting firms — acquisition & qualification</div>
           </div>
         </div>
 
@@ -996,7 +1033,6 @@
   </footer>
 
   <script>
-    // ---------- Language handling (FR default) ----------
     const btnFR = document.getElementById('btnFR');
     const btnEN = document.getElementById('btnEN');
 
@@ -1033,7 +1069,18 @@
 
     function setLang(lang){
       document.querySelectorAll('[data-lang]').forEach(el=>{
-        el.classList.toggle('show', el.getAttribute('data-lang') === lang);
+        const show = el.getAttribute('data-lang') === lang;
+        el.classList.toggle('show', show);
+
+        // Respect intended display (block/inline/inline-flex)
+        if(show){
+          const d = el.getAttribute('data-display');
+          if(d === 'block') el.style.display = 'block';
+          else if(d === 'inline-flex') el.style.display = 'inline-flex';
+          else el.style.display = 'inline';
+        }else{
+          el.style.display = 'none';
+        }
       });
 
       const isFR = (lang === 'fr');
@@ -1052,8 +1099,8 @@
       try{ localStorage.setItem('l2v_lang', lang); }catch(e){}
     }
 
-    btnFR.addEventListener('click', ()=>setLang('fr'));
-    btnEN.addEventListener('click', ()=>setLang('en'));
+    if(btnFR) btnFR.addEventListener('click', ()=>setLang('fr'));
+    if(btnEN) btnEN.addEventListener('click', ()=>setLang('en'));
 
     (function init(){
       let saved = 'fr';
@@ -1071,34 +1118,40 @@
       return re.test((v||'').trim());
     }
 
-    form.addEventListener('submit', (e)=>{
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const phone = document.getElementById('phone');
-      const msg = document.getElementById('message');
+    if(form){
+      form.addEventListener('submit', (e)=>{
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const phone = document.getElementById('phone');
+        const msg = document.getElementById('message');
 
-      let ok = true;
-      [name,email,phone,msg].forEach(f=> f.style.borderColor = 'rgba(255,255,255,.14)');
+        let ok = true;
+        [name,email,phone,msg].forEach(f=>{ if(f) f.style.borderColor = 'rgba(255,255,255,.14)'; });
 
-      if(!name.value.trim()){ ok=false; name.style.borderColor='rgba(239,68,68,.70)'; }
-      if(!email.value.trim() || !email.checkValidity()){ ok=false; email.style.borderColor='rgba(239,68,68,.70)'; }
-      if(!validPhone(phone.value)){ ok=false; phone.style.borderColor='rgba(239,68,68,.70)'; }
-      if(!msg.value.trim()){ ok=false; msg.style.borderColor='rgba(239,68,68,.70)'; }
+        if(!name || !name.value.trim()){ ok=false; if(name) name.style.borderColor='rgba(239,68,68,.70)'; }
+        if(!email || !email.value.trim() || !email.checkValidity()){ ok=false; if(email) email.style.borderColor='rgba(239,68,68,.70)'; }
+        if(!phone || !validPhone(phone.value)){ ok=false; if(phone) phone.style.borderColor='rgba(239,68,68,.70)'; }
+        if(!msg || !msg.value.trim()){ ok=false; if(msg) msg.style.borderColor='rgba(239,68,68,.70)'; }
 
-      if(!ok){
-        e.preventDefault();
-        submitBtn.style.filter = 'brightness(.98)';
-        setTimeout(()=> submitBtn.style.filter='', 180);
-        return;
-      }
+        if(!ok){
+          e.preventDefault();
+          if(submitBtn){
+            submitBtn.style.filter = 'brightness(.98)';
+            setTimeout(()=> submitBtn.style.filter='', 180);
+          }
+          return;
+        }
 
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.9';
-      setTimeout(()=>{
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '';
-      }, 1800);
-    });
+        if(submitBtn){
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.9';
+          setTimeout(()=>{
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '';
+          }, 1800);
+        }
+      });
+    }
   </script>
 </body>
 </html>
